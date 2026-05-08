@@ -713,10 +713,10 @@ function showStoryModal(charName, storyText, themeName, themeId = "random") {
     if (isMobileDevice) {
         // Simple horizontal row for mobile
         footerHtml = `
-            <div class="au-universal-popup-footer" style="display:flex; justify-content:space-around; align-items:center; padding:12px; border-top:1px solid rgba(130, 100, 255, 0.2);">
-                <div id="au-modal-save-long" class="au-modal-close" style="font-size:1.5em; padding:4px 12px; opacity:0.8;" title="Long Card">📖</div>
-                <div id="au-modal-save-short" class="au-modal-close" style="font-size:1.5em; padding:4px 12px; opacity:0.8;" title="Short Card">✨</div>
-                <div id="au-modal-regenerate" class="au-modal-close" style="font-size:1.5em; padding:4px 12px; opacity:0.8;" title="Regenerate">🔄</div>
+            <div class="au-universal-popup-footer" style="display:flex; flex-direction:row; justify-content:center; gap:8px; padding:12px; border-top:1px solid rgba(130, 100, 255, 0.2);">
+                <button id="au-modal-save-long" style="flex:1; padding:8px 4px; border-radius:8px; background:rgba(255,255,255,0.1); color:#fff; border:1px solid rgba(255,255,255,0.2); font-size:0.9em; cursor:pointer;">📖 Long</button>
+                <button id="au-modal-save-short" style="flex:1; padding:8px 4px; border-radius:8px; background:rgba(255,255,255,0.1); color:#fff; border:1px solid rgba(255,255,255,0.2); font-size:0.9em; cursor:pointer;">✨ Short</button>
+                <button id="au-modal-regenerate" style="flex:1; padding:8px 4px; border-radius:8px; background:rgba(255,255,255,0.1); color:#fff; border:1px solid rgba(255,255,255,0.2); font-size:0.9em; cursor:pointer;">🔄 New</button>
             </div>
         `;
     } else {
