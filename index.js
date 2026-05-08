@@ -789,15 +789,23 @@ function showStoryModal(charName, storyText, themeName, themeId = "random") {
             `;
         }
 
-        // Bake blob effect into CSS radial-gradient (no DOM blur = much faster on mobile)
-        const blobBg = `radial-gradient(circle at 15% 15%, ${p.blob1}cc 0%, transparent 50%),
-                        radial-gradient(circle at 85% 85%, ${p.blob2}cc 0%, transparent 50%),
+        // Helper to convert hex to rgba (html2canvas needs rgba, not 8-digit hex)
+        const hexToRgba = (hex, alpha) => {
+            const r = parseInt(hex.slice(1,3), 16);
+            const g = parseInt(hex.slice(3,5), 16);
+            const b = parseInt(hex.slice(5,7), 16);
+            return `rgba(${r},${g},${b},${alpha})`;
+        };
+
+        // Bake blob effect into CSS radial-gradient using rgba() for compatibility
+        const blobBg = `radial-gradient(circle at 15% 15%, ${hexToRgba(p.blob1, 0.7)} 0%, transparent 55%),
+                        radial-gradient(circle at 85% 85%, ${hexToRgba(p.blob2, 0.7)} 0%, transparent 55%),
                         ${bgGradient}`;
 
-        // Vibrant background container (no filter:blur elements for performance)
+        // Off-screen container: use fixed+clip to avoid mobile clipping issues
         const exportHtml = `
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;600;700&family=Prompt:wght@400;600;700&family=Sarabun:wght@400;600&display=swap" rel="stylesheet">
-        <div id="au-export-container" style="position: absolute; top: -9999px; left: -9999px; width: 680px; padding: 40px; background: ${blobBg}; border-radius: 24px; box-sizing: border-box; overflow: hidden;">
+        <div id="au-export-container" style="position: fixed; top: 0; left: -9999px; width: 680px; padding: 40px; background: ${blobBg}; border-radius: 24px; box-sizing: border-box; overflow: hidden; visibility: hidden;">
             <div style="position: relative; background: ${cardBg}; padding: 36px; border-radius: 16px; border: 1px solid ${cardBorder}; box-shadow: 0 10px 30px rgba(0,0,0,0.2); text-align: center;">
                 ${innerContent}
                 <div style="text-align: center; font-size: 0.85em; color: ${poweredColor}; border-top: 1px dashed ${hrColor}; padding-top: 16px; font-family: 'Prompt', 'Noto Sans Thai', sans-serif;">
@@ -816,11 +824,15 @@ function showStoryModal(charName, storyText, themeName, themeId = "random") {
             await new Promise(resolve => setTimeout(resolve, isMobile ? 500 : 200));
             const element = document.getElementById("au-export-container");
             const canvas = await html2canvas(element, {
-                backgroundColor: null,
-                scale: isMobile ? 1.5 : 2, // Lower scale on mobile for speed
+                backgroundColor: isShort ? "#110e17" : "#fdfbfb", // Explicit bg, not null
+                scale: isMobile ? 1.5 : 2,
                 logging: false,
                 useCORS: true,
-                allowTaint: true
+                allowTaint: true,
+                x: 0,
+                y: 0,
+                scrollX: 0,
+                scrollY: 0
             });
 
             const imgData = canvas.toDataURL("image/png");
