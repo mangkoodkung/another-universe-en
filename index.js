@@ -861,9 +861,9 @@ function showStoryModal(charName, storyText, themeName, themeId = "random") {
 
             const scrollStyle = !isShort ? 'overflow-y:auto;max-height:80vh;' : '';
             const mobilePopupHtml = `
-            <div id="au-mobile-card-overlay" style="position:fixed;inset:0;z-index:99999;background:${bgM};display:flex;flex-direction:column;align-items:center;justify-content:${isShort?'center':'flex-start'};padding:${isShort?'20px':'0'};box-sizing:border-box;">
-                <!-- Hint bar (hidden during screenshot by being semi-transparent) -->
-                <div id="au-mobile-card-hint" style="position:fixed;top:0;left:0;right:0;padding:10px 16px;background:rgba(0,0,0,0.5);display:flex;justify-content:space-between;align-items:center;z-index:100000;">
+            <div id="au-mobile-card-overlay" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:99999;background:${bgM};display:flex;flex-direction:column;align-items:center;justify-content:${isShort?'center':'flex-start'};padding:${isShort?'20px':'0'};box-sizing:border-box;">
+                <!-- Hint bar -->
+                <div id="au-mobile-card-hint" style="position:absolute;top:0;left:0;right:0;padding:10px 16px;background:rgba(0,0,0,0.5);display:flex;justify-content:space-between;align-items:center;z-index:1;">
                     <span style="color:rgba(255,255,255,0.7);font-size:11px;">📸 แคปหน้าจอเพื่อบันทึก</span>
                     <div style="display:flex;gap:8px;">
                         <button id="au-mobile-card-hide-ui" style="padding:4px 12px;background:rgba(255,255,255,0.15);color:#fff;border:1px solid rgba(255,255,255,0.25);border-radius:6px;font-size:11px;cursor:pointer;">ซ่อน UI</button>
@@ -871,7 +871,7 @@ function showStoryModal(charName, storyText, themeName, themeId = "random") {
                     </div>
                 </div>
                 <!-- Card -->
-                <div style="width:100%;${isShort?'max-width:420px;':''}padding:${isShort?'0':'60px 0 24px'};${scrollStyle}box-sizing:border-box;">
+                <div style="width:100%;min-height:0;${isShort?'max-width:420px;':''}padding:${isShort?'0':'60px 0 24px'};${scrollStyle}box-sizing:border-box;">
                     <div style="margin:0 ${isShort?'0':'16px'};padding:28px 24px;background:${cardBgM};border-radius:20px;border:1px solid ${borderM};box-shadow:0 12px 40px rgba(0,0,0,0.3);">
                         ${cardContent}
                         <div style="border-top:1px dashed ${hrM};padding-top:14px;font-size:11px;color:${tMutedM};text-align:center;">Powered by <b>POPKO</b></div>
