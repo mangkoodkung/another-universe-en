@@ -5,7 +5,8 @@
     "optional": [],
     "js": "index.js",
     "css": "style.css",
-    "author": "POPUKO",
+    "author": "POPUKO (majesty.pop)",
     "version": "1.0.0",
-    "homePage": "https://github.com/POPUKO/another-universe"
+    "homePage": "https://github.com/mangkoodkung/Another-Universe",
+    "auto_update": true
 }

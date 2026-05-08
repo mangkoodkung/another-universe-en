@@ -5,9 +5,10 @@
 import { extension_settings, getContext, loadExtensionSettings } from "../../../extensions.js";
 import { saveSettingsDebounced, generateQuietPrompt, eventSource, event_types } from "../../../../script.js";
 
-// Extension name MUST match folder name
-const extensionName = "another-universe";
-const extensionFolderPath = `scripts/extensions/third-party/${extensionName}`;
+// Dynamically determine extension name and path based on module URL
+const moduleUrl = new URL(import.meta.url);
+const extensionFolderPath = moduleUrl.pathname.replace(/^\//, '').replace(/\/index\.js$/, '');
+const extensionName = extensionFolderPath.split('/').pop();
 
 // Universe themes
 const universeThemes = {
