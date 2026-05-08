@@ -1028,8 +1028,30 @@ async function initExtension() {
     }
 }
 
-// Wait for SillyTavern to fully initialize before loading the extension
-// This is the recommended approach for mobile compatibility
+// Multi-layer initialization for maximum compatibility
+// Covers: Desktop (fast), Mobile (slow), Cloud/Termux, old ST versions
+let _extensionInitialized = false;
+
+async function safeInitExtension() {
+    if (_extensionInitialized) return; // Prevent double-init
+    _extensionInitialized = true;
+    await initExtension();
+}
+
 jQuery(() => {
-    eventSource.on(event_types.APP_READY, () => initExtension());
+    // Layer 1: If container already exists (Desktop fast-load), init immediately
+    if ($("#extensions_settings2").length) {
+        safeInitExtension();
+        return;
+    }
+
+    // Layer 2: Wait for APP_READY event (Mobile, slow load, cloud environments)
+    try {
+        eventSource.on(event_types.APP_READY, () => safeInitExtension());
+    } catch (e) {
+        console.warn(`[${extensionName}] eventSource not available, using fallback timer`);
+    }
+
+    // Layer 3: Timeout fallback for old ST versions where APP_READY may not fire
+    setTimeout(() => safeInitExtension(), 2000);
 });
