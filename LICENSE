@@ -11,29 +11,20 @@ of this software and associated documentation files (the "Software"), to use,
 copy, modify, merge, and distribute the Software, subject to the following
 conditions:
 
-### 1. Non-Commercial Use Only
-The Software, in whole or in part, may NOT be used for any commercial purpose.
-This includes, but is not limited to: selling, licensing, offering as a paid
-service, bundling with paid products, or using the Software to generate revenue
-in any form.
+### 1. Forking & Modifying
+You are permitted to fork, modify, or improve the Software strictly for the purpose of giving back to the community as a free and open-source project.
 
-### 2. Open Source Required
-Any derivative work, modification, or fork of the Software MUST remain open
-source. The source code of any derivative work MUST be publicly available and
-freely accessible.
+### 2. Strict Non-Commercial & Open Source Requirement
+You may NOT use the concepts, logic, or source code of this project to create a commercial or profit-generating version. You may NOT close the source code for sale or distribution. The Software and any derivative work MUST remain free and open-source forever. All distributed copies must include the complete source code.
 
-### 3. No Closed Source
-You may NOT distribute closed-source versions of the Software or any derivative
-work. All distributed copies must include the complete source code.
-
-### 4. Attribution Required
+### 3. Attribution Required
 Any derivative work or distribution of the Software MUST include clear
 attribution to the original author:
 - Project: **Another Universe**
 - Author: **POPUKO (majesty.pop)**
 - Home Page: https://github.com/mangkoodkung/Another-Universe.git
 
-### 5. No Warranty
+### 4. No Warranty
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -54,29 +45,20 @@ distribution — will be reported to all relevant communities and platforms.
 ("ซอฟต์แวร์") สามารถใช้ คัดลอก แก้ไข รวม และแจกจ่ายซอฟต์แวร์ได้
 ภายใต้เงื่อนไขดังต่อไปนี้:
 
-### 1. ห้ามใช้เพื่อการค้า (Non-Commercial)
-ห้ามมิให้นำซอฟต์แวร์นี้ ทั้งหมดหรือบางส่วน ไปใช้เพื่อวัตถุประสงค์ทางการค้าใดๆ
-ทั้งสิ้น รวมถึงแต่ไม่จำกัดเพียง: การขาย, การให้สิทธิ์ใช้งานแบบมีค่าใช้จ่าย,
-การนำไปรวมกับผลิตภัณฑ์ที่ต้องเสียเงิน, หรือการใช้ซอฟต์แวร์เพื่อสร้างรายได้
-ในรูปแบบใดก็ตาม
+### 1. การนำไปดัดแปลงและพัฒนาต่อ (Forking & Modifying)
+อนุญาตให้ Fork ดัดแปลง ปรับปรุงให้ดีขึ้น หรือพัฒนาเป็นเวอร์ชันใหม่ เพื่อเปิดและแจกจ่ายคืนให้คอมมูนิตี้เท่านั้น
 
-### 2. ต้องเปิดซอร์สโค้ด (Open Source Required)
-งานดัดแปลง, การแก้ไข, หรือ Fork ใดๆ ของซอฟต์แวร์นี้ จะต้องคงสถานะเป็น
-โอเพนซอร์ส ซอร์สโค้ดของงานดัดแปลงทั้งหมดจะต้องเปิดเผยต่อสาธารณะ
-และเข้าถึงได้อย่างอิสระ
+### 2. ห้ามใช้เพื่อการค้า และ ห้ามปิดซอร์สโค้ด (Strict Non-Commercial & Open Source Only)
+ห้ามไม่ให้ผู้ใดนำแนวคิด การทำงาน หรือซอร์สโค้ดในโปรเจกต์นี้ ไปดัดแปลงหรือสร้างเป็นเวอร์ชันสำหรับการค้า ค้ากำไร หรือนำไปปิดซอร์สโค้ดเพื่อจำหน่ายโดยเด็ดขาด โปรเจกต์นี้และงานดัดแปลงทั้งหมดจะต้องคงสถานะเป็นโอเพนซอร์ส (Open Source) ที่เข้าถึงได้ฟรีเสมอ
 
-### 3. ห้ามปิดซอร์สโค้ด (No Closed Source)
-ห้ามแจกจ่ายเวอร์ชันปิดซอร์สโค้ดของซอฟต์แวร์นี้หรืองานดัดแปลงใดๆ
-สำเนาที่แจกจ่ายทั้งหมดจะต้องมีซอร์สโค้ดที่สมบูรณ์
-
-### 4. ต้องให้เครดิต (Attribution Required)
+### 3. ต้องให้เครดิต (Attribution Required)
 งานดัดแปลงหรือการแจกจ่ายซอฟต์แวร์นี้ จะต้องระบุเครดิตให้ผู้สร้างต้นฉบับ
 อย่างชัดเจน:
 - โปรเจกต์: **Another Universe**
 - ผู้สร้าง: **POPUKO (majesty.pop)**
 - HomePage: https://github.com/mangkoodkung/Another-Universe.git
 
-### 5. ไม่รับประกัน (No Warranty)
+### 4. ไม่รับประกัน (No Warranty)
 ซอฟต์แวร์นี้จัดให้ "ตามสภาพ" โดยไม่มีการรับประกันใดๆ ทั้งโดยชัดแจ้ง
 หรือโดยนัย รวมถึงแต่ไม่จำกัดเพียงการรับประกันความเหมาะสมในเชิงพาณิชย์
 หรือความเหมาะสมสำหรับวัตถุประสงค์เฉพาะ ผู้สร้างจะไม่รับผิดชอบต่อ

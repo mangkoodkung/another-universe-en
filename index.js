@@ -163,7 +163,7 @@ async function loadSettings() {
     if (!extension_settings[extensionName].selectedTheme) {
         extension_settings[extensionName].selectedTheme = defaultSettings.selectedTheme;
     }
-    
+
     // Migration: If user had selectedDynamic from previous quick iteration, map it back
     if (extension_settings[extensionName].selectedDynamic) {
         if (encounterTypes[extension_settings[extensionName].selectedDynamic]) {
@@ -637,10 +637,10 @@ function showMobileCardPopup(type, charName, storyText, themeName, themeId = "ra
         bodyHtml = `
             <div style="text-align:center;padding:12px 4px 0;">
                 <div style="font-size:1.05em;font-style:italic;font-weight:700;line-height:1.5;margin-bottom:20px;padding:0 8px;word-break:break-word;">
-                    ${quote.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+                    ${quote.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}
                 </div>
                 <div style="font-size:0.95em;line-height:1.7;opacity:0.75;">
-                    ${teaser.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>')}
+                    ${teaser.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\n/g, '<br>')}
                 </div>
             </div>`;
     } else {
@@ -672,7 +672,7 @@ function showMobileCardPopup(type, charName, storyText, themeName, themeId = "ra
 
     // Bind events
     if (onDownload) {
-        $("#au-mcard-download").on("click", async function() {
+        $("#au-mcard-download").on("click", async function () {
             const btn = $(this);
             btn.css({ opacity: "0.3", pointerEvents: "none" });
             await onDownload();
@@ -777,7 +777,7 @@ function showStoryModal(charName, storyText, themeName, themeId = "random") {
     function extractQuoteAndSnippet(text) {
         // Strip think tags and hook tags
         let cleanText = text.replace(/<think>[\s\S]*?<\/think>/gi, '').replace(/<hook>[\s\S]*?<\/hook>/gi, '').trim();
-        
+
         const hookMatch = text.match(/<hook>(.*?)<\/hook>/is);
         const llmHook = hookMatch ? hookMatch[1].trim() : null;
 
@@ -909,9 +909,9 @@ function showStoryModal(charName, storyText, themeName, themeId = "random") {
 
         // Helper to convert hex to rgba (html2canvas needs rgba, not 8-digit hex)
         const hexToRgba = (hex, alpha) => {
-            const r = parseInt(hex.slice(1,3), 16);
-            const g = parseInt(hex.slice(3,5), 16);
-            const b = parseInt(hex.slice(5,7), 16);
+            const r = parseInt(hex.slice(1, 3), 16);
+            const g = parseInt(hex.slice(3, 5), 16);
+            const b = parseInt(hex.slice(5, 7), 16);
             return `rgba(${r},${g},${b},${alpha})`;
         };
 
@@ -1050,7 +1050,7 @@ async function onOpenUniverseClick() {
             if (selectedEncounter !== "none" && encounterLabel) badgeParts.push(encounterLabel);
             if (selectedMood !== "none" && moodLabel) badgeParts.push(moodLabel);
             const badge = badgeParts.join(" · ");
-            
+
             saveToGallery(charName, result, badge, selectedTheme);
             showStoryModal(charName, result, badge, selectedTheme);
             toastr.success("เรื่องราวจักรวาลคู่ขนานพร้อมแล้ว!", "🌌 Another Universe");
@@ -1100,16 +1100,15 @@ function showWelcomeModal() {
 
                 <hr style="border-color: rgba(130, 100, 255, 0.15); margin: 16px 0;">
 
-                <p style="font-size:0.9em; line-height:1.6; opacity:0.85; margin-bottom:12px;">
-                    ✨ กดปุ่ม 🌌 ข้างช่องแชท เพื่อเริ่มเปิดประตูสู่จักรวาลใหม่
-                </p>
 
                 <p style="font-size: 0.85em; opacity: 0.75; margin:0;">
                     หากเกิดรอยร้าวระหว่างจักรวาล หรือพบปัญหาในการเดินทางข้ามโลก สามารถติดต่อได้ที่ Discord: <strong>majesty.pop (POPKO)</strong>
                 </p>
                 
                 <div style="margin-top: 28px; font-size: 0.65em; opacity: 0.6; text-align:center; padding-top: 14px; border-top: 1px dashed rgba(255, 180, 230, 0.2);">
-                    ⚠️ Custom License — ดูไฟล์ LICENSE สำหรับรายละเอียดเต็ม อนุญาตให้ Fork/ดัดแปลงได้ แต่ <strong>ห้ามใช้เพื่อการค้า, ห้ามปิดซอร์สโค้ด, ต้องให้เครดิต</strong> <span style="color: #ff8888;">หากตรวจพบการละเมิด จะดำเนินการแจ้งกับทุกคอมมูนิตี้ที่เกี่ยวข้องทันที</span>
+                    ⚠️ Custom License — ดูไฟล์ LICENSE สำหรับรายละเอียดเต็ม<br>
+                    อนุญาตให้ดัดแปลงและพัฒนาต่อเพื่อแจกจ่ายคืนคอมมูนิตี้เท่านั้น <strong>ห้ามนำไปปิดซอร์สโค้ด หรือดัดแปลงเพื่อการค้า/ค้ากำไรโดยเด็ดขาด</strong><br>
+                    <span style="color: #ff8888;">หากตรวจพบการละเมิด จะดำเนินการแจ้งกับทุกคอมมูนิตี้ที่เกี่ยวข้องทันที</span>
                 </div>
             </div>
             <div class="au-universal-popup-footer" style="justify-content:center;">
