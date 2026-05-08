@@ -225,34 +225,7 @@
     width: 100%;
 }
 
-/* ===== Floating Chat Button ===== */
-.au-chat-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, rgba(88, 56, 200, 0.3), rgba(130, 100, 255, 0.15));
-    border: 1px solid rgba(130, 100, 255, 0.35);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    flex-shrink: 0;
-    order: -1;
-    margin-right: 4px;
-}
-
-.au-chat-btn:hover {
-    background: linear-gradient(135deg, rgba(88, 56, 200, 0.5), rgba(130, 100, 255, 0.3));
-    border-color: rgba(160, 130, 255, 0.6);
-    box-shadow: 0 0 16px rgba(130, 100, 255, 0.3);
-    transform: scale(1.1);
-}
-
-.au-chat-btn:active {
-    transform: scale(0.95);
-}
-
+/* ===== Chat Menu Button specific styles (Optional if needed) ===== */
 .au-chat-btn-icon {
     font-size: 1.15em;
     line-height: 1;
@@ -320,11 +293,6 @@
     .au-universal-popup-footer .menu_button {
         width: 100%;
         text-align: center;
-    }
-
-    .au-chat-btn {
-        width: 42px;
-        height: 42px;
     }
 
     .au-chat-btn-icon,

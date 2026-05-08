@@ -1,60 +1,177 @@
 <div class="another-universe-settings">
     <div class="inline-drawer">
         <div class="inline-drawer-toggle inline-drawer-header">
-            <b>🌌 Another Universe</b>
+            <b>🌌 Another Universe (จักรวาลคู่ขนาน)</b>
             <div class="inline-drawer-icon fa-solid fa-circle-chevron-down down"></div>
         </div>
         <div class="inline-drawer-content">
-            <div>
+            <div style="margin-bottom: 10px;">
                 <input id="another_universe_enabled" type="checkbox" />
-                <label for="another_universe_enabled">Enable Another Universe</label>
+                <label for="another_universe_enabled"><b>เปิดใช้งานระบบ Another Universe</b></label>
             </div>
             <hr />
             <div class="au-theme-selector">
-                <label for="another_universe_theme"><small>🎭 Universe Theme:</small></label>
+                <label for="another_universe_theme"><small>🎭 ธีมจักรวาล (Universe Theme):</small></label>
                 <select id="another_universe_theme" class="text_pole">
-                    <option value="random">🎲 Random</option>
-                    <option value="medieval">🏰 Medieval Fantasy</option>
-                    <option value="scifi">🚀 Sci-Fi / Space</option>
-                    <option value="cyberpunk">🌆 Cyberpunk</option>
-                    <option value="modern">☕ Modern Slice of Life</option>
-                    <option value="postapoc">🏚️ Post-Apocalyptic</option>
-                    <option value="historical">🎭 Historical Drama</option>
-                    <option value="horror">🌑 Dark / Horror</option>
-                    <option value="dream">💫 Dreamscape / Surreal</option>
+                    <option value="random">🎲 สุ่ม (Random)</option>
+                    <optgroup label="── คลาสสิก (Classic) ──">
+                    <option value="medieval">🏰 แฟนตาซียุคกลาง</option>
+                    <option value="scifi">🚀 ไซไฟ / อวกาศ</option>
+                    <option value="cyberpunk">🌆 ไซเบอร์พังก์</option>
+                    <option value="modern">☕ ชีวิตยุคปัจจุบัน</option>
+                    <option value="postapoc">🏚️ โลกหลังหายนะ</option>
+                    <option value="historical">🎭 ย้อนยุคประวัติศาสตร์</option>
+                    <option value="horror">🌑 สยองขวัญ / ระทึกขวัญ</option>
+                    <option value="dream">💫 ความฝัน / เหนือจริง</option>
+                    </optgroup>
+                    <optgroup label="── แปลกใหม่ (Wild & Unique) ──">
+                    <option value="thaidrama">📺 ละครไทย</option>
+                    <option value="thaifolk">🐍 นิทานพื้นบ้านไทย</option>
+                    <option value="kemono">🐾 ครึ่งคนครึ่งสัตว์</option>
+                    <option value="prehistoric">🦕 ยุคดึกดำบรรพ์</option>
+                    <option value="wuxia">⚔️ กำลังภายใน / เซียน</option>
+                    <option value="pirate">🏴‍☠️ ยุคโจรสลัด</option>
+                    <option value="underwater">🧜 อาณาจักรใต้บาดาล</option>
+                    <option value="zombie">🧟 ซอมบี้บุกโลก</option>
+                    <option value="isekai">🌀 ต่างโลก</option>
+                    <option value="mafia">🔫 มาเฟีย / โลกมืด</option>
+                    <option value="steampunk">⚙️ สตีมพังก์</option>
+                    <option value="fairytale">👑 เทพนิยาย</option>
+                    <option value="mythology">⚡ เทพเจ้าและตำนาน</option>
+                    <option value="school">🎒 ชีวิตในรั้วโรงเรียน</option>
+                    <option value="idol">🎤 ไอดอล / คนดัง</option>
+                    <option value="vampire">🧛 แวมไพร์ / โกธิค</option>
+                    <option value="mecha">🤖 หุ่นยนต์รบ</option>
+                    <option value="noir">🕵️ นักสืบฟิล์มนัวร์</option>
+                    <option value="timeloop">⏳ วนลูปเวลา</option>
+                    <option value="virtualworld">🎮 โลกเกมเสมือนจริง</option>
+                    <option value="spiritworld">👻 โลกวิญญาณ</option>
+                    <option value="desert">🏜️ ทะเลทรายลี้ลับ</option>
+                    <option value="cooking">🍳 ศึกทำอาหาร</option>
+                    <option value="circus">🎪 คณะละครสัตว์เวทมนตร์</option>
+                    <option value="omegaverse">🐺 โอเมก้าเวิร์ส</option>
+                    <option value="superhero">🦸 ซูเปอร์ฮีโร่ / ตัวร้าย</option>
+                    <option value="royal">👑 ราชวงศ์ / วังหลวง</option>
+                    <option value="yokai">🦊 ภูตผีญี่ปุ่น (Yokai)</option>
+                    </optgroup>
                 </select>
             </div>
             <div class="au-theme-selector">
-                <label for="another_universe_encounter"><small>💫 Encounter Type:</small></label>
+                <label for="another_universe_encounter"><small>💫 รูปแบบการพบเจอ (Encounter Type):</small></label>
                 <select id="another_universe_encounter" class="text_pole">
-                    <option value="random">🎲 Random</option>
-                    <option value="firstMeet">💫 First Meeting</option>
-                    <option value="reunion">🔄 Reunion</option>
-                    <option value="rivals">⚔️ Rivals / Enemies</option>
-                    <option value="allies">🤝 Partners / Allies</option>
-                    <option value="bittersweet">💔 Bittersweet</option>
-                    <option value="mistaken">🎭 Mistaken Identity</option>
-                    <option value="fated">🌙 Fated Encounter</option>
+                    <option value="none">❌ ไม่ระบุ (None)</option>
+                    <option value="random">🎲 สุ่ม (Random)</option>
+                    <optgroup label="── คลาสสิก (Classic) ──">
+                    <option value="firstMeet">💫 พบกันครั้งแรก</option>
+                    <option value="reunion">🔄 กลับมาพบกันอีกครั้ง</option>
+                    <option value="rivals">⚔️ คู่แข่ง / ศัตรู</option>
+                    <option value="allies">🤝 พันธมิตร / สหายร่วมรบ</option>
+                    <option value="bittersweet">💔 พบรักที่เจ็บปวด</option>
+                    <option value="mistaken">🎭 จำคนผิด</option>
+                    <option value="fated">🌙 พรหมลิขิต</option>
+                    </optgroup>
+                    <optgroup label="── ใหม่ (New) ──">
+                    <option value="protector">🛡️ ผู้พิทักษ์ / ผู้คุ้มครอง</option>
+                    <option value="forbidden">🚫 รักต้องห้าม</option>
+                    <option value="childhood">🌟 เพื่อนสมัยเด็ก</option>
+                    <option value="master_servant">👑 เจ้านายกับลูกน้อง</option>
+                    <option value="savior">🩺 ผู้ช่วยชีวิต</option>
+                    <option value="reincarnation">🔮 กลับชาติมาเกิด</option>
+                    <option value="strangers_night">🌃 คนแปลกหน้าในคืนหนึ่ง</option>
+                    <option value="accidental">💥 อุบัติเหตุพาไป</option>
+                    </optgroup>
+                    <optgroup label="── พิเศษ (Extra) ──">
+                    <option value="fakeDating">💍 แฟนกำมะลอ</option>
+                    <option value="arrangedMarriage">📜 คลุมถุงชน</option>
+                    <option value="roommates">🏠 เพื่อนร่วมห้อง</option>
+                    <option value="amnesia">🧠 ความจำเสื่อม</option>
+                    <option value="betrayal">🔪 การทรยศหักหลัง</option>
+                    <option value="soulmates">✨ โซลเมท</option>
+                    <option value="timeTravel">⏳ ข้ามเวลา</option>
+                    <option value="penPals">✉️ จดหมายลึกลับ</option>
+                    </optgroup>
+                    <optgroup label="── เผ็ดร้อน / ดาร์ก (Spicy & Wild) ──">
+                    <option value="bodySwap">🧬 สลับร่าง</option>
+                    <option value="experiment">🧪 หนูทดลอง</option>
+                    <option value="vampireBlood">🩸 แหล่งเลือด</option>
+                    <option value="ghostHuman">👻 คนกับผี</option>
+                    <option value="demonPact">😈 สัญญากับปีศาจ</option>
+                    <option value="stalker">👁️ คนแอบตาม</option>
+                    <option value="sugarDaddy">💸 สายเปย์ / เด็กเลี้ยง</option>
+                    <option value="identityReveal">🎭 ความลับแตก</option>
+                    <option value="multiverseGlitch">🌌 มิติพังทลาย</option>
+                    <option value="doppelganger">🪞 ร่างโคลน</option>
+                    </optgroup>
                 </select>
             </div>
             <div class="au-theme-selector">
-                <label for="another_universe_mood"><small>🎨 Mood / Tone:</small></label>
+                <label for="another_universe_mood"><small>🎨 อารมณ์ / โทนเรื่อง (Mood / Tone):</small></label>
                 <select id="another_universe_mood" class="text_pole">
-                    <option value="random">🎲 Random</option>
-                    <option value="romantic">💕 Romantic</option>
-                    <option value="comedic">😂 Comedic</option>
-                    <option value="dark">🖤 Dark / Intense</option>
-                    <option value="melancholic">🌧️ Melancholic</option>
-                    <option value="mysterious">🔮 Mysterious</option>
-                    <option value="wholesome">🌻 Wholesome</option>
+                    <option value="none">❌ ไม่ระบุ (None)</option>
+                    <option value="random">🎲 สุ่ม (Random)</option>
+                    <optgroup label="── คลาสสิก (Classic) ──">
+                    <option value="romantic">💕 โรแมนติก</option>
+                    <option value="comedic">😂 ตลกขบขัน</option>
+                    <option value="dark">🖤 ดาร์ก / ตึงเครียด</option>
+                    <option value="melancholic">🌧️ เศร้าหมอง / เหงา</option>
+                    <option value="mysterious">🔮 ลึกลับ / ปริศนา</option>
+                    <option value="wholesome">🌻 อบอุ่นหัวใจ</option>
+                    </optgroup>
+                    <optgroup label="── ใหม่ (New) ──">
+                    <option value="chaotic">🌪️ วุ่นวายโกลาหล</option>
+                    <option value="sensual">🔥 เย้ายวน / เร่าร้อน</option>
+                    <option value="epic">🌋 ยิ่งใหญ่อลังการ</option>
+                    <option value="playful">😜 หยอกล้อ / ขี้เล่น</option>
+                    <option value="nostalgic">🌅 หวนคิดถึงอดีต</option>
+                    <option value="suspenseful">😨 ระทึกขวัญ / ลุ้นระทึก</option>
+                    <option value="dreamy">🌙 เพ้อฝัน / ล่องลอย</option>
+                    <option value="angsty">😭 ปวดตับ / เจ็บปวด</option>
+                    </optgroup>
+                    <optgroup label="── พิเศษ (Extra) ──">
+                    <option value="fluff">☁️ นุ่มฟูละมุนละไม</option>
+                    <option value="passionate">💋 เร่าร้อน / ดุเดือด</option>
+                    <option value="yandere">🔪 ยันเดเระ / คลั่งรัก</option>
+                    <option value="tragic">🥀 โศกนาฏกรรม</option>
+                    <option value="tsundere">😤 ปากแข็ง (ซึนเดเระ)</option>
+                    <option value="healing">🩹 เยียวยาหัวใจ</option>
+                    <option value="jealousy">😒 หึงหวง</option>
+                    <option value="unrequited">💔 รักเขาข้างเดียว</option>
+                    </optgroup>
+                    <optgroup label="── มืดหม่น / ร้อนแรง (Dark & Spicy) ──">
+                    <option value="morallyGrey">🎭 เทาๆ / ผิดศีลธรรม</option>
+                    <option value="gore">🩸 เลือดสาด / รุนแรง</option>
+                    <option value="mindbreak">🧠 ปั่นหัว / พังทลาย</option>
+                    <option value="pureDevotion">💖 ภักดีสุดหัวใจ</option>
+                    <option value="trapped">🕸️ ถูกขัง / ไร้ทางหนี</option>
+                    <option value="decadent">🍷 หรูหรา / ฟุ้งเฟ้อ</option>
+                    <option value="starving">🤤 หิวโหยในตัวอีกฝ่าย</option>
+                    <option value="domestic">🧸 ใช้ชีวิตคู่</option>
+                    <option value="outOfTime">⏳ เวลาเหลือน้อย</option>
+                    <option value="masquerade">🎭 ซ่อนเร้น / หน้ากาก</option>
+                    </optgroup>
                 </select>
             </div>
             <hr />
             <div>
-                <input id="another_universe_open_btn" class="menu_button" type="submit" value="✨ Open Another Universe" />
-                <input id="another_universe_gallery_btn" class="menu_button" type="submit" value="📚 Gallery" />
+                <input id="another_universe_open_btn" class="menu_button" type="submit" value="✨ เปิดจักรวาลคู่ขนาน" />
+                <input id="another_universe_gallery_btn" class="menu_button" type="submit" value="📚 แกลเลอรี" />
             </div>
             <p><small>เลือกธีม + ประเภทการพบเจอ + อารมณ์ แล้วกดเปิดจักรวาลคู่ขนาน</small></p>
+            
+            <div style="margin-top: 15px; padding: 12px; background: rgba(130, 100, 255, 0.1); border-radius: 8px; border: 1px solid rgba(130, 100, 255, 0.2);">
+                <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px;">
+                    <h3 style="margin: 0; color: var(--SmartThemeBodyColor, #e0d0ff);">🌌 Another Universe</h3>
+                    <span style="font-size: 0.75em; opacity: 0.7; font-weight: bold;">v1.0</span>
+                </div>
+                <p style="margin: 0 0 10px 0; font-size: 0.85em; opacity: 0.9; line-height: 1.5;">
+                    <i>"ถ้าเราได้พบกัน...ในอีกจักรวาลหนึ่ง"</i><br>
+                    ส่วนเสริมสำหรับสร้างเรื่องราวคู่ขนานแบบสุ่ม หรือตามธีมที่คุณเลือกได้ตามใจชอบ โดยดึงคาร์แรคเตอร์มาเล่าใหม่ในบริบทที่ต่างออกไป (ไม่กระทบแชทหลัก)
+                </p>
+                <div style="font-size: 0.75em; opacity: 0.6; display: flex; justify-content: space-between;">
+                    <span><a href="https://github.com/mangkoodkung/another-universe" target="_blank" style="color: inherit; text-decoration: underline;">GitHub</a></span>
+                    <span>✨ Created by <b>POPKO (majesty.pop)</b></span>
+                </div>
+            </div>
         </div>
     </div>
 </div>
