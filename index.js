@@ -518,11 +518,10 @@ function showGalleryModal(showFavOnly = false) {
             <div class="au-universal-popup-body au-gallery-list">
                 ${listHtml}
             </div>
-            <div class="au-universal-popup-footer">
-                <input id="au-gallery-filter" class="menu_button" type="submit" value="${favBtnLabel}" />
-                <input id="au-gallery-backup" class="menu_button" type="submit" value="💾 Backup" title="Export all stories" />
-                <input id="au-gallery-clear" class="menu_button" type="submit" value="🗑️ Clear All" />
-                <input id="au-modal-close-btn" class="menu_button" type="submit" value="Close" />
+            <div class="au-universal-popup-footer" style="display:flex; flex-direction:row; gap:8px; justify-content:center;">
+                <input id="au-gallery-filter" class="menu_button" type="submit" value="${favBtnLabel}" style="flex:1;" />
+                <input id="au-gallery-backup" class="menu_button" type="submit" value="💾 Backup" title="Export all stories" style="flex:1;" />
+                <input id="au-gallery-clear" class="menu_button" type="submit" value="🗑️ Clear All" style="flex:1;" />
             </div>
         </div>
     </div>`;
@@ -592,7 +591,7 @@ function showGalleryModal(showFavOnly = false) {
     });
 
     // Close
-    $("#au-modal-close, #au-modal-close-btn").on("click", () => {
+    $("#au-modal-close").on("click", () => {
         $("#another-universe-modal-overlay").remove();
     });
     $("#another-universe-modal-overlay").on("click", (e) => {
@@ -1083,7 +1082,7 @@ function showWelcomeModal() {
             </div>
             <div class="au-universal-popup-body" style="padding: 24px; text-align: left;">
                 <h3 style="margin-top:0; margin-bottom:16px; color:#edf2f7;">
-                    ขอบคุณที่ติดตั้ง <strong>Another Universe</strong> 🌌
+                    ขอบคุณที่ติดตั้ง <strong>Another Universe</strong> 
                 </h3>
                 <p style="font-size:0.95em; line-height:1.6; margin-bottom:12px;">
                     โปรเจกต์นี้เกิดขึ้นจากคำถามง่ายๆ คำถามหนึ่ง<br>
@@ -1102,7 +1101,7 @@ function showWelcomeModal() {
 
 
                 <p style="font-size: 0.85em; opacity: 0.75; margin:0;">
-                    หากเกิดรอยร้าวระหว่างจักรวาล หรือพบปัญหาในการเดินทางข้ามโลก สามารถติดต่อได้ที่ Discord: <strong>majesty.pop (POPKO)</strong>
+                    หากพบปัญหาในการเดินทางข้ามโลก โปรดแจ้งที่ Discord: <strong>majesty.pop (POPKO)</strong>
                 </p>
                 
                 <div style="margin-top: 28px; font-size: 0.65em; opacity: 0.6; text-align:center; padding-top: 14px; border-top: 1px dashed rgba(130, 160, 220, 0.2);">
