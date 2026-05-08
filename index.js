@@ -808,21 +808,62 @@ function showStoryModal(charName, storyText, themeName, themeId = "random") {
         $("body").append(exportHtml);
 
         try {
-            await new Promise(resolve => setTimeout(resolve, 200));
+            await new Promise(resolve => setTimeout(resolve, 300));
             const element = document.getElementById("au-export-container");
+
+            // Reduce scale on mobile to prevent slowness/crashes
+            const isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
+            const canvasScale = isMobile ? 1.5 : 2;
+
             const canvas = await html2canvas(element, {
-                backgroundColor: null, // Transparent to keep border-radius logic if needed
-                scale: 2,
+                backgroundColor: null,
+                scale: canvasScale,
                 logging: false,
-                useCORS: true
+                useCORS: true,
+                allowTaint: true
             });
 
             const imgData = canvas.toDataURL("image/png");
-            const a = document.createElement("a");
-            a.href = imgData;
-            a.download = `Another_Universe_${type}_${charName.replace(/[^a-z0-9]/gi, '_')}.png`;
-            a.click();
-            toastr.success("บันทึกภาพเสร็จสิ้น!", "🌌 Another Universe");
+
+            if (isMobile) {
+                // Mobile: show image in a preview overlay for long-press saving
+                // (programmatic a.click() is blocked on iOS/Android browsers)
+                const previewOverlay = document.createElement("div");
+                previewOverlay.id = "au-img-preview-overlay";
+                previewOverlay.style.cssText = `
+                    position: fixed; inset: 0; z-index: 99999;
+                    background: rgba(0,0,0,0.92);
+                    display: flex; flex-direction: column;
+                    align-items: center; justify-content: center;
+                    padding: 16px; box-sizing: border-box;
+                `;
+                previewOverlay.innerHTML = `
+                    <div style="color:#fff; font-size:0.9em; margin-bottom:12px; text-align:center; opacity:0.8;">
+                        📱 กดค้างที่รูปเพื่อบันทึกลงเครื่อง
+                    </div>
+                    <img src="${imgData}" style="max-width:100%; max-height:75vh; border-radius:12px; box-shadow:0 8px 32px rgba(0,0,0,0.5);" />
+                    <button id="au-img-preview-close" style="margin-top:16px; padding:10px 28px; background:rgba(255,255,255,0.15); color:#fff; border:1px solid rgba(255,255,255,0.3); border-radius:20px; font-size:1em; cursor:pointer;">
+                        ✕ ปิด
+                    </button>
+                `;
+                document.body.appendChild(previewOverlay);
+                document.getElementById("au-img-preview-close").addEventListener("click", () => {
+                    previewOverlay.remove();
+                });
+                previewOverlay.addEventListener("click", (e) => {
+                    if (e.target === previewOverlay) previewOverlay.remove();
+                });
+                toastr.info("กดค้างที่รูปเพื่อบันทึกครับ!", "📱 Another Universe");
+            } else {
+                // Desktop: direct download works fine
+                const a = document.createElement("a");
+                a.href = imgData;
+                a.download = `Another_Universe_${type}_${charName.replace(/[^a-z0-9]/gi, '_')}.png`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                toastr.success("บันทึกภาพเสร็จสิ้น!", "🌌 Another Universe");
+            }
         } catch (error) {
             console.error("Failed to generate image:", error);
             toastr.error("ไม่สามารถสร้างรูปภาพได้", "Error");
