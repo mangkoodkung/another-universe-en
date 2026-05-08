@@ -5,10 +5,9 @@
 import { extension_settings, getContext, loadExtensionSettings } from "../../../extensions.js";
 import { saveSettingsDebounced, generateQuietPrompt, eventSource, event_types } from "../../../../script.js";
 
-// Dynamically determine extension name and path based on module URL
-const moduleUrl = new URL(import.meta.url);
-const extensionFolderPath = moduleUrl.pathname.replace(/^\//, '').replace(/\/index\.js$/, '');
-const extensionName = extensionFolderPath.split('/').pop();
+// Extension name MUST match the GitHub repo folder name exactly (case-sensitive on Linux/Android)
+const extensionName = "Another-Universe";
+const extensionFolderPath = `scripts/extensions/third-party/${extensionName}`;
 
 // Universe themes
 const universeThemes = {
