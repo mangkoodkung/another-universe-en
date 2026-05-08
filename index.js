@@ -819,139 +819,44 @@ function showStoryModal(charName, storyText, themeName, themeId = "random") {
         const isMobile = /Android|iPhone|iPad|iPod|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
 
         if (isMobile) {
-            // --- MOBILE: Use Native Canvas 2D (no html2canvas = no OOM crash) ---
-            $("#au-export-container").remove(); // Not needed for this path
+            // --- MOBILE: Lightweight html2canvas with simple template ---
+            // No blur, no CSS filters, solid colors, scale 1 = minimal RAM + Thai text works
+            const extracted2 = extractQuoteAndSnippet(storyText);
+            const bodyContent = isShort
+                ? `${extracted2.quote}<br><br>${extracted2.teaser}`
+                : extracted2.cleanText.substring(0, 600).replace(/\n/g, '<br>');
+            const badgeParts2 = themeName.split('·').map(s => s.trim());
+            const badgeHtml2 = badgeParts2.map(b => `<span style="display:inline-block;padding:4px 12px;margin:3px;background:${p.textAccent};border-radius:14px;font-size:11px;font-weight:600;color:#fff;">${b}</span>`).join('');
+
+            const bgColor = isShort ? '#1a1725' : '#f5f3fa';
+            const cardBgM = isShort ? '#252132' : '#ffffff';
+            const textColorM = isShort ? '#ede8ff' : '#3b2e5a';
+            const accentColorM = isShort ? '#c5bced' : p.textAccent;
+            const mutedColorM = isShort ? '#7a7490' : '#999';
+
+            const mobileHtml = `
+            <div id="au-export-container" style="position:fixed;top:0;left:-9999px;width:360px;padding:20px;background:${bgColor};box-sizing:border-box;font-family:sans-serif;">
+                <div style="background:${cardBgM};padding:24px;border-radius:14px;text-align:center;">
+                    <div style="font-size:11px;font-weight:700;color:${accentColorM};letter-spacing:1px;margin-bottom:4px;">🌌 ANOTHER UNIVERSE</div>
+                    <div style="font-size:10px;color:${mutedColorM};font-style:italic;margin-bottom:14px;">"ถ้าพวกเราเจอกันในอีกจักรวาลหนึ่ง..."</div>
+                    <div style="font-size:22px;font-weight:800;color:${textColorM};margin-bottom:14px;">${charName}</div>
+                    <div style="margin-bottom:18px;">${badgeHtml2}</div>
+                    <div style="font-size:13px;line-height:1.75;text-align:left;color:${textColorM};margin-bottom:18px;">${bodyContent}</div>
+                    <div style="border-top:1px dashed ${isShort ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'};padding-top:12px;font-size:10px;color:${mutedColorM};text-align:center;">Powered by <b>POPKO</b></div>
+                </div>
+            </div>`;
+
+            $("body").append(mobileHtml);
 
             try {
-                // Helpers
-                const h2rgb = (hex) => `${parseInt(hex.slice(1,3),16)},${parseInt(hex.slice(3,5),16)},${parseInt(hex.slice(5,7),16)}`;
-                const wrapText = (ctx, text, maxW, font) => {
-                    ctx.font = font;
-                    const out = [];
-                    for (const raw of text.split('\n')) {
-                        if (!raw.trim()) { out.push(''); continue; }
-                        let cur = '';
-                        for (const ch of raw) {
-                            if (ctx.measureText(cur + ch).width > maxW && cur) { out.push(cur); cur = ch; }
-                            else cur += ch;
-                        }
-                        if (cur) out.push(cur);
-                    }
-                    return out;
-                };
-                const rr = (ctx, x, y, w, h, r) => {
-                    ctx.beginPath();
-                    ctx.moveTo(x+r, y); ctx.arcTo(x+w,y,x+w,y+h,r); ctx.arcTo(x+w,y+h,x,y+h,r);
-                    ctx.arcTo(x,y+h,x,y,r); ctx.arcTo(x,y,x+w,y,r); ctx.closePath();
-                };
-
-                const W = 360, PAD = 26, IW = 360 - 26*2;
-                const DPR = 1; // Force 1x on mobile to prevent oversized canvas
-                const extracted2 = extractQuoteAndSnippet(storyText);
-                const bodyText = isShort
-                    ? `${extracted2.quote}\n\n${extracted2.teaser}`
-                    : extracted2.cleanText.substring(0, 700);
-                const badgeParts = themeName.split('·').map(s => s.trim());
-
-                const TITLE_FONT = `bold 11px Prompt,'Noto Sans Thai',sans-serif`;
-                const NAME_FONT  = `bold 22px Prompt,'Noto Sans Thai',sans-serif`;
-                const BADGE_FONT = `bold 11px Prompt,'Noto Sans Thai',sans-serif`;
-                const BODY_FONT  = `14px Sarabun,'Noto Sans Thai',sans-serif`;
-                const FOOT_FONT  = `11px Prompt,'Noto Sans Thai',sans-serif`;
-                const LH = 21, NLH = 30;
-
-                // Measure phase
-                const mc = document.createElement('canvas').getContext('2d');
-                const nameLines = wrapText(mc, charName, IW, NAME_FONT);
-                const bodyLines = wrapText(mc, bodyText, IW, BODY_FONT);
-                const bodyH = bodyLines.reduce((a,l) => a + (l ? LH : LH*0.5), 0);
-                const H = PAD + 16 + 14 + 10 + nameLines.length*NLH + 10 + 32 + 12 + bodyH + 18 + 24 + PAD;
-
-                const cv = document.createElement('canvas');
-                cv.width = W*DPR; cv.height = H*DPR;
-                const ctx = cv.getContext('2d');
-                ctx.scale(DPR, DPR);
-
-                // Fill ENTIRE canvas with solid color first (prevents black/transparent)
-                ctx.fillStyle = isShort ? '#110e17' : '#fdfbfb';
-                ctx.fillRect(0, 0, W, H);
-
-                // Background gradient overlay
-                const bg = ctx.createLinearGradient(0,0,0,H);
-                if (isShort) { bg.addColorStop(0,'#1e1b26'); bg.addColorStop(1,'#110e17'); }
-                else { bg.addColorStop(0,'#fdfbfb'); bg.addColorStop(1,'#f4f2f8'); }
-                ctx.fillStyle = bg;
-                ctx.fillRect(0, 0, W, H);
-
-                // Blob accents
-                [[W*0.1,H*0.1,p.blob1],[W*0.9,H*0.9,p.blob2]].forEach(([bx,by,col]) => {
-                    const grad = ctx.createRadialGradient(bx,by,0,bx,by,W*0.55);
-                    grad.addColorStop(0,`rgba(${h2rgb(col)},0.3)`); grad.addColorStop(1,'transparent');
-                    rr(ctx,0,0,W,H,18); ctx.fillStyle = grad; ctx.fill();
+                await new Promise(resolve => setTimeout(resolve, 300));
+                const el = document.getElementById("au-export-container");
+                const canvas = await html2canvas(el, {
+                    backgroundColor: bgColor, scale: 1, logging: false,
+                    useCORS: false, allowTaint: true, width: 360
                 });
 
-                // Inner card
-                rr(ctx, PAD*0.5, PAD*0.5, W-PAD, H-PAD, 12);
-                ctx.fillStyle = isShort ? 'rgba(25,23,30,0.75)' : 'rgba(255,255,255,0.78)';
-                ctx.fill();
-
-                // Text colors
-                const tAccent = isShort ? '#c5bced' : p.textAccent;
-                const tMain   = isShort ? '#f4f0ff' : p.textMain;
-                const tMuted  = isShort ? '#8a8399' : '#888';
-                const tBody   = isShort ? '#d0cce8' : '#3a324d';
-
-                ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-                let y = PAD;
-
-                // Title
-                ctx.font = TITLE_FONT; ctx.fillStyle = tAccent;
-                ctx.fillText('🌌 ANOTHER UNIVERSE', W/2, y+8); y += 18;
-
-                // Subtitle
-                ctx.font = `italic 10px Sarabun,'Noto Sans Thai',sans-serif`; ctx.fillStyle = tMuted;
-                ctx.fillText('"ถ้าพวกเราเจอกันในอีกจักรวาลหนึ่ง..."', W/2, y+7); y += 16;
-
-                // Name
-                ctx.textBaseline = 'alphabetic';
-                nameLines.forEach(line => {
-                    ctx.font = NAME_FONT; ctx.fillStyle = tMain;
-                    ctx.fillText(line, W/2, y+NLH*0.78); y += NLH;
-                });
-                y += 8;
-
-                // Badges
-                mc.font = BADGE_FONT;
-                let bx = PAD;
-                badgeParts.forEach(badge => {
-                    const bw = mc.measureText(badge).width + 22, bh = 22;
-                    if (bx + bw > W - PAD) { bx = PAD; y += 28; }
-                    rr(ctx, bx, y, bw, bh, 11);
-                    ctx.fillStyle = p.textAccent; ctx.fill();
-                    ctx.font = BADGE_FONT; ctx.fillStyle = '#fff'; ctx.textAlign = 'left';
-                    ctx.fillText(badge, bx+11, y+bh*0.72); bx += bw+6;
-                });
-                y += 32; ctx.textAlign = 'left';
-
-                // Body
-                ctx.font = BODY_FONT; ctx.fillStyle = tBody;
-                bodyLines.forEach(line => {
-                    if (!line) { y += LH*0.5; return; }
-                    ctx.fillText(line, PAD, y+LH*0.8); y += LH;
-                });
-                y += 16;
-
-                // Divider
-                ctx.strokeStyle = isShort ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.1)';
-                ctx.lineWidth=1; ctx.setLineDash([4,4]);
-                ctx.beginPath(); ctx.moveTo(PAD,y); ctx.lineTo(W-PAD,y); ctx.stroke();
-                ctx.setLineDash([]); y += 14;
-
-                // Footer
-                ctx.textAlign='center'; ctx.font=FOOT_FONT; ctx.fillStyle=tMuted;
-                ctx.fillText('Powered by POPKO', W/2, y+12);
-
-                const imgData = cv.toDataURL('image/png');
+                const imgData = canvas.toDataURL("image/png");
                 const previewHtml = `
                 <div id="au-image-preview-overlay" style="${getOverlayStyle()}">
                     <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;padding:20px;box-sizing:border-box;">
@@ -964,15 +869,16 @@ function showStoryModal(charName, storyText, themeName, themeId = "random") {
                 </div>`;
                 document.body.insertAdjacentHTML('beforeend', previewHtml);
                 $("#au-image-preview-close").on("click", () => $("#au-image-preview-overlay").remove());
-                $("#au-image-preview-overlay").on("click", (e) => { if (e.target===e.currentTarget) $("#au-image-preview-overlay").remove(); });
+                $("#au-image-preview-overlay").on("click", (e) => { if (e.target === e.currentTarget) $("#au-image-preview-overlay").remove(); });
                 toastr.success("กดค้างที่รูปเพื่อบันทึก!", "🌌 Another Universe");
-            } catch(error) {
-                console.error("Mobile canvas render failed:", error);
-                toastr.error("ไม่สามารถสร้างรูปภาพได้", "Error");
+            } catch (error) {
+                console.error("Mobile export failed:", error);
+                toastr.error("ไม่สามารถสร้างรูปภาพได้ ลองอีกครั้ง", "Error");
             } finally {
+                $("#au-export-container").remove();
                 btn.val(originalText).prop("disabled", false);
             }
-            return; // Early return for mobile path
+            return;
         }
 
         // --- DESKTOP: Use html2canvas ---
