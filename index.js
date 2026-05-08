@@ -846,7 +846,7 @@ function showStoryModal(charName, storyText, themeName, themeId = "random") {
                 };
 
                 const W = 360, PAD = 26, IW = 360 - 26*2;
-                const DPR = Math.min(window.devicePixelRatio || 2, 2);
+                const DPR = 1; // Force 1x on mobile to prevent oversized canvas
                 const extracted2 = extractQuoteAndSnippet(storyText);
                 const bodyText = isShort
                     ? `${extracted2.quote}\n\n${extracted2.teaser}`
@@ -872,11 +872,16 @@ function showStoryModal(charName, storyText, themeName, themeId = "random") {
                 const ctx = cv.getContext('2d');
                 ctx.scale(DPR, DPR);
 
-                // Background
+                // Fill ENTIRE canvas with solid color first (prevents black/transparent)
+                ctx.fillStyle = isShort ? '#110e17' : '#fdfbfb';
+                ctx.fillRect(0, 0, W, H);
+
+                // Background gradient overlay
                 const bg = ctx.createLinearGradient(0,0,0,H);
                 if (isShort) { bg.addColorStop(0,'#1e1b26'); bg.addColorStop(1,'#110e17'); }
                 else { bg.addColorStop(0,'#fdfbfb'); bg.addColorStop(1,'#f4f2f8'); }
-                rr(ctx,0,0,W,H,18); ctx.fillStyle = bg; ctx.fill();
+                ctx.fillStyle = bg;
+                ctx.fillRect(0, 0, W, H);
 
                 // Blob accents
                 [[W*0.1,H*0.1,p.blob1],[W*0.9,H*0.9,p.blob2]].forEach(([bx,by,col]) => {
@@ -946,7 +951,7 @@ function showStoryModal(charName, storyText, themeName, themeId = "random") {
                 ctx.textAlign='center'; ctx.font=FOOT_FONT; ctx.fillStyle=tMuted;
                 ctx.fillText('Powered by POPKO', W/2, y+12);
 
-                const imgData = cv.toDataURL('image/jpeg', 0.92);
+                const imgData = cv.toDataURL('image/png');
                 const previewHtml = `
                 <div id="au-image-preview-overlay" style="${getOverlayStyle()}">
                     <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;padding:20px;box-sizing:border-box;">
