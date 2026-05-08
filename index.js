@@ -805,7 +805,7 @@ function showStoryModal(charName, storyText, themeName, themeId = "random") {
         // Off-screen container: use fixed+clip to avoid mobile clipping issues
         const exportHtml = `
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;600;700&family=Prompt:wght@400;600;700&family=Sarabun:wght@400;600&display=swap" rel="stylesheet">
-        <div id="au-export-container" style="position: fixed; top: 0; left: -9999px; width: 680px; padding: 40px; background: ${blobBg}; border-radius: 24px; box-sizing: border-box; overflow: hidden; visibility: hidden;">
+        <div id="au-export-container" style="position: fixed; top: 0; left: -9999px; width: 680px; padding: 40px; background: ${blobBg}; border-radius: 24px; box-sizing: border-box; overflow: hidden;">
             <div style="position: relative; background: ${cardBg}; padding: 36px; border-radius: 16px; border: 1px solid ${cardBorder}; box-shadow: 0 10px 30px rgba(0,0,0,0.2); text-align: center;">
                 ${innerContent}
                 <div style="text-align: center; font-size: 0.85em; color: ${poweredColor}; border-top: 1px dashed ${hrColor}; padding-top: 16px; font-family: 'Prompt', 'Noto Sans Thai', sans-serif;">
