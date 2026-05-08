@@ -655,15 +655,14 @@ function showMobileCardPopup(type, charName, storyText, themeName, themeId = "ra
                     <span class="au-modal-title">🌌 ${charName}</span>
                     <span class="au-modal-theme-badge">${themeName}</span>
                 </div>
-                <span id="au-mcard-close" class="au-modal-close">✕</span>
+                <div style="display:flex; gap:12px; align-items:center;">
+                    <span id="au-mcard-back" class="au-modal-close" style="font-size:1.2em;" title="กลับ">◀</span>
+                    <span id="au-mcard-close" class="au-modal-close" style="font-size:1.2em;" title="ปิด">✕</span>
+                </div>
             </div>
-            <div class="au-universal-popup-body">
+            <div class="au-universal-popup-body" style="overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch;">
                 ${bodyHtml}
-            </div>
-            <div class="au-universal-popup-footer">
-                <div style="width:100%;text-align:center;padding-top:8px;font-size:0.8em;opacity:0.6;margin-bottom:8px;">Powered by <b>POPKO</b></div>
-                <input id="au-mcard-back" class="menu_button" type="submit" value="◀ กลับ" />
-                <input id="au-mcard-close-btn" class="menu_button" type="submit" value="Close" />
+                <div style="text-align:center;padding-top:16px;font-size:0.8em;opacity:0.5;border-top:1px dashed rgba(180,160,255,0.2);margin-top:20px;">Powered by <b>POPKO</b></div>
             </div>
         </div>
     </div>`;
@@ -671,7 +670,7 @@ function showMobileCardPopup(type, charName, storyText, themeName, themeId = "ra
     document.body.insertAdjacentHTML('beforeend', popupHtml);
 
     // Bind events
-    $("#au-mcard-close, #au-mcard-close-btn").on("click", () => $("#au-mobile-card-overlay").remove());
+    $("#au-mcard-close").on("click", () => $("#au-mobile-card-overlay").remove());
     $("#au-mcard-back").on("click", () => {
         $("#au-mobile-card-overlay").remove();
         showStoryModal(charName, storyText, themeName, themeId);
@@ -698,6 +697,29 @@ function showStoryModal(charName, storyText, themeName, themeId = "random") {
         .replace(/>/g, '&gt;')
         .replace(/\n/g, '<br>');
 
+    // Detect mobile
+    const isMobileDevice = /Android|iPhone|iPad|iPod|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
+
+    let footerHtml = '';
+    if (isMobileDevice) {
+        footerHtml = `
+            <div class="au-universal-popup-footer" style="display:flex; justify-content:center; gap:24px; padding:12px 20px;">
+                <div id="au-modal-save-long" class="au-modal-close" style="font-size:1.4em; padding:4px 12px;" title="Long Card">📖</div>
+                <div id="au-modal-save-short" class="au-modal-close" style="font-size:1.4em; padding:4px 12px;" title="Short Card">✨</div>
+                <div id="au-modal-regenerate" class="au-modal-close" style="font-size:1.4em; padding:4px 12px;" title="Regenerate">🔄</div>
+            </div>
+        `;
+    } else {
+        footerHtml = `
+            <div class="au-universal-popup-footer" style="flex-wrap: wrap;">
+                <input id="au-modal-save-long" class="menu_button" type="submit" value="📸 Long Card" title="Save full story" />
+                <input id="au-modal-save-short" class="menu_button" type="submit" value="📸 Short Card" title="Save quote & snippet" />
+                <input id="au-modal-regenerate" class="menu_button" type="submit" value="🔄 Generate" />
+                <input id="au-modal-close-btn" class="menu_button" type="submit" value="Close" />
+            </div>
+        `;
+    }
+
     const modalHtml = `
     <div id="another-universe-modal-overlay" style="${getOverlayStyle()}">
         <div class="au-universal-popup">
@@ -708,31 +730,23 @@ function showStoryModal(charName, storyText, themeName, themeId = "random") {
                 </div>
                 <span id="au-modal-close" class="au-modal-close">✕</span>
             </div>
-            <div class="au-universal-popup-body">
+            <div class="au-universal-popup-body" style="overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch;">
                 <div class="au-story-text">${escapedStory}</div>
             </div>
-            <div class="au-universal-popup-footer" style="flex-wrap: wrap;">
-                <input id="au-modal-save-long" class="menu_button" type="submit" value="📸 Long Card" title="Save full story" />
-                <input id="au-modal-save-short" class="menu_button" type="submit" value="📸 Short Card" title="Save quote & snippet" />
-                <input id="au-modal-regenerate" class="menu_button" type="submit" value="🔄 Generate" />
-                <input id="au-modal-close-btn" class="menu_button" type="submit" value="Close" />
-            </div>
+            ${footerHtml}
         </div>
     </div>`;
 
     // Append as LAST child of <body> to avoid parent transform issues
     document.body.insertAdjacentHTML('beforeend', modalHtml);
 
-    // Detect mobile
-    const isMobileDevice = /Android|iPhone|iPad|iPod|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
-
-    // On mobile: swap 📸 buttons with 📖/✨ popup buttons
+    // On mobile: bind the new popup buttons
     if (isMobileDevice) {
-        $("#au-modal-save-long").val("📖 Long").off("click").on("click", () => {
+        $("#au-modal-save-long").off("click").on("click", () => {
             $("#another-universe-modal-overlay").remove();
             showMobileCardPopup('long', charName, storyText, themeName, themeId);
         });
-        $("#au-modal-save-short").val("✨ Short").off("click").on("click", () => {
+        $("#au-modal-save-short").off("click").on("click", () => {
             $("#another-universe-modal-overlay").remove();
             showMobileCardPopup('short', charName, storyText, themeName, themeId);
         });
