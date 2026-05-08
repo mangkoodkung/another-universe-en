@@ -662,8 +662,8 @@ function showMobileCardPopup(type, charName, storyText, themeName, themeId = "ra
                 <div style="text-align:center;padding-top:16px;font-size:0.8em;opacity:0.5;border-top:1px dashed rgba(255,180,230,0.2);margin-top:20px;">Powered by <b>POPKO</b></div>
             </div>
             <div class="au-universal-popup-footer" style="display:flex; flex-direction:row; justify-content:center; gap:8px; padding:12px; border-top:1px solid rgba(255, 180, 230, 0.2);">
-                <button id="au-mcard-back" style="flex:1; padding:8px 4px; border-radius:8px; background:rgba(255, 150, 200, 0.15); color:#6a4a75; font-weight:600; border:1px solid rgba(255, 150, 200, 0.4); font-size:0.9em; cursor:pointer;">◀ Back</button>
-                ${onDownload ? `<button id="au-mcard-download" style="flex:1; padding:8px 4px; border-radius:8px; background:rgba(255, 150, 200, 0.15); color:#6a4a75; font-weight:600; border:1px solid rgba(255, 150, 200, 0.4); font-size:0.9em; cursor:pointer;">📥 Save Image</button>` : ''}
+                <button id="au-mcard-back" style="flex:1; padding:8px 4px; border-radius:8px; background:rgba(255,255,255,0.1); color:#fff; border:1px solid rgba(255,255,255,0.2); font-size:0.9em; cursor:pointer;">◀ Back</button>
+                ${onDownload ? `<button id="au-mcard-download" style="flex:1; padding:8px 4px; border-radius:8px; background:rgba(255,255,255,0.1); color:#fff; border:1px solid rgba(255,255,255,0.2); font-size:0.9em; cursor:pointer;">📥 Save Image</button>` : ''}
             </div>
         </div>
     </div>`;
@@ -714,9 +714,9 @@ function showStoryModal(charName, storyText, themeName, themeId = "random") {
         // Simple horizontal row for mobile
         footerHtml = `
             <div class="au-universal-popup-footer" style="display:flex; flex-direction:row; justify-content:center; gap:8px; padding:12px; border-top:1px solid rgba(255, 180, 230, 0.2);">
-                <button id="au-modal-save-long" style="flex:1; padding:8px 4px; border-radius:8px; background:rgba(255, 150, 200, 0.15); color:#6a4a75; font-weight:600; border:1px solid rgba(255, 150, 200, 0.4); font-size:0.9em; cursor:pointer;">📖 Long</button>
-                <button id="au-modal-save-short" style="flex:1; padding:8px 4px; border-radius:8px; background:rgba(255, 150, 200, 0.15); color:#6a4a75; font-weight:600; border:1px solid rgba(255, 150, 200, 0.4); font-size:0.9em; cursor:pointer;">✨ Short</button>
-                <button id="au-modal-regenerate" style="flex:1; padding:8px 4px; border-radius:8px; background:rgba(255, 150, 200, 0.15); color:#6a4a75; font-weight:600; border:1px solid rgba(255, 150, 200, 0.4); font-size:0.9em; cursor:pointer;">🔄 New</button>
+                <button id="au-modal-save-long" style="flex:1; padding:8px 4px; border-radius:8px; background:rgba(255,255,255,0.1); color:#fff; border:1px solid rgba(255,255,255,0.2); font-size:0.9em; cursor:pointer;">📖 Long</button>
+                <button id="au-modal-save-short" style="flex:1; padding:8px 4px; border-radius:8px; background:rgba(255,255,255,0.1); color:#fff; border:1px solid rgba(255,255,255,0.2); font-size:0.9em; cursor:pointer;">✨ Short</button>
+                <button id="au-modal-regenerate" style="flex:1; padding:8px 4px; border-radius:8px; background:rgba(255,255,255,0.1); color:#fff; border:1px solid rgba(255,255,255,0.2); font-size:0.9em; cursor:pointer;">🔄 New</button>
             </div>
         `;
     } else {
@@ -1082,7 +1082,7 @@ function showWelcomeModal() {
                 <span id="au-welcome-close" class="au-modal-close">✕</span>
             </div>
             <div class="au-universal-popup-body" style="padding: 24px; text-align: left;">
-                <h3 style="margin-top:0; margin-bottom:16px; color:#6a4a75;">
+                <h3 style="margin-top:0; margin-bottom:16px; color:var(--SmartThemeBodyColor, #e0d0ff);">
                     ขอบคุณที่ติดตั้ง <strong>Another Universe</strong> 🌌
                 </h3>
                 <p style="font-size:0.95em; line-height:1.6; margin-bottom:12px;">

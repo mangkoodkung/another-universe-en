@@ -8,15 +8,15 @@
     width: 90vw;
     max-width: 620px;
     max-height: 80vh;
-    background: #fdf5f9;
-    border: 1px solid rgba(255, 150, 200, 0.4);
+    background: #110a17;
+    border: 1px solid rgba(255, 180, 230, 0.35);
     border-radius: 16px;
     display: flex;
     flex-direction: column;
     overflow: hidden;
     box-shadow:
-        0 0 30px rgba(255, 150, 230, 0.2),
-        0 15px 40px rgba(0, 0, 0, 0.15);
+        0 0 40px rgba(255, 150, 230, 0.12),
+        0 20px 60px rgba(0, 0, 0, 0.6);
     animation: au-popupEntrance 0.4s ease-out;
 }
 
@@ -25,8 +25,8 @@
     justify-content: space-between;
     align-items: center;
     padding: 16px 20px;
-    border-bottom: 1px solid rgba(255, 160, 220, 0.3);
-    background: linear-gradient(135deg, rgba(255, 200, 240, 0.8), rgba(240, 220, 255, 0.6));
+    border-bottom: 1px solid rgba(255, 180, 230, 0.2);
+    background: linear-gradient(135deg, rgba(255, 160, 230, 0.12), rgba(180, 150, 255, 0.05));
     flex-shrink: 0;
 }
 
@@ -39,19 +39,19 @@
 .au-modal-title {
     font-size: 1.1em;
     font-weight: 600;
-    color: #4a3459;
+    color: #fff2fa;
 }
 
 .au-modal-theme-badge {
     font-size: 0.75em;
-    color: #a46ea1;
+    color: rgba(255, 180, 230, 0.85);
     letter-spacing: 0.5px;
 }
 
 .au-modal-close {
     cursor: pointer;
     font-size: 1.3em;
-    color: #8f74a1;
+    color: #e0d5e8;
     opacity: 0.6;
     transition: opacity 0.2s;
     padding: 4px 8px;
@@ -60,7 +60,7 @@
 
 .au-modal-close:hover {
     opacity: 1;
-    background: rgba(150, 100, 150, 0.1);
+    background: rgba(255, 255, 255, 0.05);
 }
 
 .au-universal-popup-body {
@@ -74,7 +74,7 @@
 .au-story-text {
     font-size: 0.95em;
     line-height: 1.75;
-    color: #4a3a52;
+    color: #efe8f5;
     white-space: pre-wrap;
 }
 
@@ -82,7 +82,7 @@
     display: flex;
     gap: 10px;
     padding: 14px 20px;
-    border-top: 1px solid rgba(230, 180, 220, 0.4);
+    border-top: 1px solid rgba(255, 180, 230, 0.2);
     justify-content: flex-end;
     flex-shrink: 0;
 }
@@ -95,16 +95,16 @@
 .au-gallery-item {
     padding: 12px 14px;
     margin-bottom: 8px;
-    background: rgba(255, 230, 245, 0.5);
-    border: 1px solid rgba(255, 180, 220, 0.4);
+    background: rgba(130, 100, 255, 0.06);
+    border: 1px solid rgba(130, 100, 255, 0.15);
     border-radius: 10px;
     cursor: pointer;
     transition: all 0.2s ease;
 }
 
 .au-gallery-item:hover {
-    background: rgba(255, 215, 235, 0.8);
-    border-color: rgba(255, 150, 200, 0.5);
+    background: rgba(130, 100, 255, 0.12);
+    border-color: rgba(130, 100, 255, 0.35);
     transform: translateY(-1px);
 }
 
@@ -122,25 +122,25 @@
 .au-gallery-item-char {
     font-weight: 600;
     font-size: 0.9em;
-    color: #5a3a65;
+    color: var(--SmartThemeBodyColor, #e0d0ff);
 }
 
 .au-gallery-item-time {
     font-size: 0.7em;
-    color: #9a88a6;
+    color: rgba(180, 160, 255, 0.5);
 }
 
 .au-gallery-item-badge {
     font-size: 0.7em;
-    color: #a46ea1;
+    color: rgba(180, 160, 255, 0.7);
     margin-bottom: 6px;
 }
 
 .au-gallery-item-preview {
     font-size: 0.8em;
     line-height: 1.5;
-    color: #70607a;
-    opacity: 0.8;
+    color: var(--SmartThemeBodyColor, #b0a8d0);
+    opacity: 0.7;
 }
 
 /* ===== Quick Settings Popup ===== */
@@ -165,7 +165,7 @@
 
 .au-quick-row label {
     font-size: 0.8em;
-    color: #886b96;
+    color: rgba(180, 160, 255, 0.7);
 }
 
 .au-quick-row select {
