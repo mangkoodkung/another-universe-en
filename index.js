@@ -807,17 +807,15 @@ function showStoryModal(charName, storyText, themeName, themeId = "random") {
 
         $("body").append(exportHtml);
 
+        // Detect mobile browser
+        const isMobile = /Android|iPhone|iPad|iPod|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
+
         try {
-            await new Promise(resolve => setTimeout(resolve, 300));
+            await new Promise(resolve => setTimeout(resolve, isMobile ? 500 : 200));
             const element = document.getElementById("au-export-container");
-
-            // Reduce scale on mobile to prevent slowness/crashes
-            const isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
-            const canvasScale = isMobile ? 1.5 : 2;
-
             const canvas = await html2canvas(element, {
                 backgroundColor: null,
-                scale: canvasScale,
+                scale: isMobile ? 1.5 : 2, // Lower scale on mobile for speed
                 logging: false,
                 useCORS: true,
                 allowTaint: true
@@ -826,47 +824,38 @@ function showStoryModal(charName, storyText, themeName, themeId = "random") {
             const imgData = canvas.toDataURL("image/png");
 
             if (isMobile) {
-                // Mobile: show image in a preview overlay for long-press saving
-                // (programmatic a.click() is blocked on iOS/Android browsers)
-                const previewOverlay = document.createElement("div");
-                previewOverlay.id = "au-img-preview-overlay";
-                previewOverlay.style.cssText = `
-                    position: fixed; inset: 0; z-index: 99999;
-                    background: rgba(0,0,0,0.92);
-                    display: flex; flex-direction: column;
-                    align-items: center; justify-content: center;
-                    padding: 16px; box-sizing: border-box;
-                `;
-                previewOverlay.innerHTML = `
-                    <div style="color:#fff; font-size:0.9em; margin-bottom:12px; text-align:center; opacity:0.8;">
-                        📱 กดค้างที่รูปเพื่อบันทึกลงเครื่อง
+                // Mobile: Show preview modal (long-press to save)
+                const previewHtml = `
+                <div id="au-image-preview-overlay" style="${getOverlayStyle()}">
+                    <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; padding:20px; box-sizing:border-box;">
+                        <div style="color:#fff; font-size:0.9em; margin-bottom:12px; text-align:center; opacity:0.85; text-shadow:0 2px 8px rgba(0,0,0,0.5);">
+                            📱 กดค้างที่รูปเพื่อบันทึก (Long press to save)
+                        </div>
+                        <img src="${imgData}" style="max-width:95%; max-height:75vh; border-radius:12px; box-shadow:0 8px 30px rgba(0,0,0,0.5);" />
+                        <button id="au-image-preview-close" style="margin-top:16px; padding:10px 32px; background:rgba(255,255,255,0.15); color:#fff; border:1px solid rgba(255,255,255,0.3); border-radius:8px; font-size:1em; cursor:pointer; backdrop-filter:blur(8px);">
+                            ✕ ปิด
+                        </button>
                     </div>
-                    <img src="${imgData}" style="max-width:100%; max-height:75vh; border-radius:12px; box-shadow:0 8px 32px rgba(0,0,0,0.5);" />
-                    <button id="au-img-preview-close" style="margin-top:16px; padding:10px 28px; background:rgba(255,255,255,0.15); color:#fff; border:1px solid rgba(255,255,255,0.3); border-radius:20px; font-size:1em; cursor:pointer;">
-                        ✕ ปิด
-                    </button>
-                `;
-                document.body.appendChild(previewOverlay);
-                document.getElementById("au-img-preview-close").addEventListener("click", () => {
-                    previewOverlay.remove();
+                </div>`;
+                document.body.insertAdjacentHTML('beforeend', previewHtml);
+
+                $("#au-image-preview-close").on("click", () => $("#au-image-preview-overlay").remove());
+                $("#au-image-preview-overlay").on("click", (e) => {
+                    if (e.target === e.currentTarget) $("#au-image-preview-overlay").remove();
                 });
-                previewOverlay.addEventListener("click", (e) => {
-                    if (e.target === previewOverlay) previewOverlay.remove();
-                });
-                toastr.info("กดค้างที่รูปเพื่อบันทึกครับ!", "📱 Another Universe");
+
+                toastr.success("กดค้างที่รูปเพื่อบันทึก!", "🌌 Another Universe");
             } else {
-                // Desktop: direct download works fine
+                // Desktop: Direct download
                 const a = document.createElement("a");
                 a.href = imgData;
                 a.download = `Another_Universe_${type}_${charName.replace(/[^a-z0-9]/gi, '_')}.png`;
-                document.body.appendChild(a);
                 a.click();
-                document.body.removeChild(a);
                 toastr.success("บันทึกภาพเสร็จสิ้น!", "🌌 Another Universe");
             }
         } catch (error) {
             console.error("Failed to generate image:", error);
-            toastr.error("ไม่สามารถสร้างรูปภาพได้", "Error");
+            toastr.error("ไม่สามารถสร้างรูปภาพได้ ลองอีกครั้ง", "Error");
         } finally {
             $("#au-export-container").remove();
             btn.val(originalText).prop("disabled", false);
