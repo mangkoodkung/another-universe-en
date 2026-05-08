@@ -957,23 +957,28 @@ function showStoryModal(charName, storyText, themeName, themeId = "random") {
                 scale: 2, logging: false, useCORS: true, allowTaint: true,
                 x: 0, y: 0, scrollX: 0, scrollY: 0
             });
-            await new Promise((resolve, reject) => {
-                canvas.toBlob(function(blob) {
-                    if (!blob) return reject(new Error("Canvas to Blob failed"));
-                    const url = window.URL.createObjectURL(blob);
-                    const a = document.createElement("a");
-                    a.style.display = "none";
-                    a.href = url;
-                    a.download = `Another_Universe_${type}_${charName.replace(/[^a-z0-9]/gi, '_')}.png`;
-                    document.body.appendChild(a);
-                    a.click();
-                    setTimeout(() => {
-                        document.body.removeChild(a);
-                        window.URL.revokeObjectURL(url);
-                        resolve();
-                    }, 100);
-                }, "image/png");
-            });
+            const imgData = canvas.toDataURL("image/png");
+            if (isMobileDevice) {
+                const popupHtml = `
+                <div id="au-mobile-save-popup" style="position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(10,5,20,0.95); z-index:999999; display:flex; flex-direction:column; justify-content:center; align-items:center; backdrop-filter:blur(10px);">
+                    <img src="${imgData}" style="max-width:90%; max-height:75vh; border-radius:16px; box-shadow:0 10px 40px rgba(0,0,0,0.5);" />
+                    <div style="color:#fff; margin-top:20px; font-size:16px; text-align:center;">
+                        👇 <b>แตะค้างที่รูปภาพ</b> แล้วเลือก <i>บันทึกรูปภาพ</i><br>
+                        <span style="font-size:0.8em; opacity:0.7;">(Long press image to save)</span>
+                    </div>
+                    <button id="au-mobile-save-close" style="margin-top:24px; padding:10px 24px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.3); border-radius:20px; color:#fff; font-size:16px; cursor:pointer;">✕ ปิด (Close)</button>
+                </div>`;
+                document.body.insertAdjacentHTML('beforeend', popupHtml);
+                $("#au-mobile-save-close").on("click", () => $("#au-mobile-save-popup").remove());
+            } else {
+                const a = document.createElement("a");
+                a.style.display = "none";
+                a.href = imgData;
+                a.download = `Another_Universe_${type}_${charName.replace(/[^a-z0-9]/gi, '_')}.png`;
+                document.body.appendChild(a);
+                a.click();
+                setTimeout(() => document.body.removeChild(a), 100);
+            }
             toastr.success("บันทึกภาพเสร็จสิ้น!", "🌌 Another Universe");
         } catch (error) {
             console.error("Failed to generate image:", error);
