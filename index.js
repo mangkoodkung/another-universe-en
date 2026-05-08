@@ -636,7 +636,7 @@ function showMobileCardPopup(type, charName, storyText, themeName, themeId = "ra
     if (isShort) {
         bodyHtml = `
             <div style="text-align:center;padding:12px 4px 0;">
-                <div style="font-size:1.15em;font-style:italic;font-weight:700;line-height:1.6;margin-bottom:20px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:0 8px;">
+                <div style="font-size:1.05em;font-style:italic;font-weight:700;line-height:1.5;margin-bottom:20px;padding:0 8px;word-break:break-word;">
                     ${quote.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
                 </div>
                 <div style="font-size:0.95em;line-height:1.7;opacity:0.75;">
@@ -659,9 +659,9 @@ function showMobileCardPopup(type, charName, storyText, themeName, themeId = "ra
             </div>
             <div class="au-universal-popup-body">
                 ${bodyHtml}
-                <div style="text-align:center;padding-top:16px;font-size:0.8em;opacity:0.5;border-top:1px dashed rgba(180,160,255,0.2);margin-top:20px;">Powered by <b>POPKO</b></div>
+                <div style="text-align:center;padding-top:16px;font-size:0.8em;opacity:0.5;border-top:1px dashed rgba(255,180,230,0.2);margin-top:20px;">Powered by <b>POPKO</b></div>
             </div>
-            <div class="au-universal-popup-footer" style="display:flex; flex-direction:row; justify-content:center; gap:8px; padding:12px; border-top:1px solid rgba(130, 100, 255, 0.2);">
+            <div class="au-universal-popup-footer" style="display:flex; flex-direction:row; justify-content:center; gap:8px; padding:12px; border-top:1px solid rgba(255, 180, 230, 0.2);">
                 <button id="au-mcard-back" style="flex:1; padding:8px 4px; border-radius:8px; background:rgba(255,255,255,0.1); color:#fff; border:1px solid rgba(255,255,255,0.2); font-size:0.9em; cursor:pointer;">◀ Back</button>
                 ${onDownload ? `<button id="au-mcard-download" style="flex:1; padding:8px 4px; border-radius:8px; background:rgba(255,255,255,0.1); color:#fff; border:1px solid rgba(255,255,255,0.2); font-size:0.9em; cursor:pointer;">📥 Save Image</button>` : ''}
             </div>
@@ -713,7 +713,7 @@ function showStoryModal(charName, storyText, themeName, themeId = "random") {
     if (isMobileDevice) {
         // Simple horizontal row for mobile
         footerHtml = `
-            <div class="au-universal-popup-footer" style="display:flex; flex-direction:row; justify-content:center; gap:8px; padding:12px; border-top:1px solid rgba(130, 100, 255, 0.2);">
+            <div class="au-universal-popup-footer" style="display:flex; flex-direction:row; justify-content:center; gap:8px; padding:12px; border-top:1px solid rgba(255, 180, 230, 0.2);">
                 <button id="au-modal-save-long" style="flex:1; padding:8px 4px; border-radius:8px; background:rgba(255,255,255,0.1); color:#fff; border:1px solid rgba(255,255,255,0.2); font-size:0.9em; cursor:pointer;">📖 Long</button>
                 <button id="au-modal-save-short" style="flex:1; padding:8px 4px; border-radius:8px; background:rgba(255,255,255,0.1); color:#fff; border:1px solid rgba(255,255,255,0.2); font-size:0.9em; cursor:pointer;">✨ Short</button>
                 <button id="au-modal-regenerate" style="flex:1; padding:8px 4px; border-radius:8px; background:rgba(255,255,255,0.1); color:#fff; border:1px solid rgba(255,255,255,0.2); font-size:0.9em; cursor:pointer;">🔄 New</button>
@@ -1108,10 +1108,8 @@ function showWelcomeModal() {
                     หากเกิดรอยร้าวระหว่างจักรวาล หรือพบปัญหาในการเดินทางข้ามโลก สามารถติดต่อได้ที่ Discord: <strong>majesty.pop (POPKO)</strong>
                 </p>
                 
-                <div style="margin-top: 28px; font-size: 0.7em; opacity: 0.6; text-align:center; padding-top: 14px; border-top: 1px dashed rgba(130, 100, 255, 0.2);">
-                    ⚠️ Custom License — ดูไฟล์ LICENSE สำหรับรายละเอียดเต็ม<br>
-                    อนุญาตให้ Fork/ดัดแปลงได้ แต่ <strong>ห้ามใช้เพื่อการค้า, ห้ามปิดซอร์สโค้ด, ต้องให้เครดิต</strong><br>
-                    <span style="color: #ff8888;">หากตรวจพบการละเมิด จะดำเนินการแจ้งกับทุกคอมมูนิตี้ที่เกี่ยวข้องทันที</span>
+                <div style="margin-top: 28px; font-size: 0.65em; opacity: 0.6; text-align:center; padding-top: 14px; border-top: 1px dashed rgba(255, 180, 230, 0.2);">
+                    ⚠️ Custom License — ดูไฟล์ LICENSE สำหรับรายละเอียดเต็ม อนุญาตให้ Fork/ดัดแปลงได้ แต่ <strong>ห้ามใช้เพื่อการค้า, ห้ามปิดซอร์สโค้ด, ต้องให้เครดิต</strong> <span style="color: #ff8888;">หากตรวจพบการละเมิด จะดำเนินการแจ้งกับทุกคอมมูนิตี้ที่เกี่ยวข้องทันที</span>
                 </div>
             </div>
             <div class="au-universal-popup-footer" style="justify-content:center;">
