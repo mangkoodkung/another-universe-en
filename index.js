@@ -636,7 +636,7 @@ function showMobileCardPopup(type, charName, storyText, themeName, themeId = "ra
     if (isShort) {
         bodyHtml = `
             <div style="text-align:center;padding:12px 4px 0;">
-                <div style="font-size:1.25em;font-style:italic;font-weight:700;line-height:1.6;margin-bottom:20px;">
+                <div style="font-size:1.15em;font-style:italic;font-weight:700;line-height:1.6;margin-bottom:20px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:0 8px;">
                     ${quote.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
                 </div>
                 <div style="font-size:0.95em;line-height:1.7;opacity:0.75;">
@@ -1091,14 +1091,11 @@ function showWelcomeModal() {
                 </p>
 
                 <p style="font-size:0.95em; line-height:1.6; margin-bottom:12px;">
-                    บางจักรวาล พวกเขาอาจเป็นคนแปลกหน้าที่เดินสวนกันใต้สายฝน<br>
-                    บางจักรวาล อาจเป็นศัตรู คู่หู หรือคนรักที่ถูกโชคชะตาพลัดพราก<br>
-                    แต่ไม่ว่าโลกจะเปลี่ยนไปมากแค่ไหน ความรู้สึกบางอย่างอาจยังคงเดิมเสมอ
+                    บางจักรวาล พวกเขาอาจเป็นคนแปลกหน้าที่เดินสวนกันใต้สายฝน บางจักรวาล อาจเป็นศัตรู คู่หู หรือคนรักที่ถูกโชคชะตาพลัดพราก แต่ไม่ว่าโลกจะเปลี่ยนไปมากแค่ไหน ความรู้สึกบางอย่างอาจยังคงเดิมเสมอ
                 </p>
 
                 <p style="font-size:0.95em; line-height:1.6; margin-bottom:16px;">
-                    Another Universe จะนำบทสนทนา บุคลิก และความสัมพันธ์ของตัวละคร<br>
-                    มาตีความใหม่ในโลกคู่ขนาน ผ่านธีม อารมณ์ และรูปแบบการพบกันที่แตกต่างกันออกไป
+                    Another Universe จะนำบทสนทนา บุคลิก และความสัมพันธ์ของตัวละคร มาตีความใหม่ในโลกคู่ขนาน ผ่านธีม อารมณ์ และรูปแบบการพบกันที่แตกต่างกันออกไป
                 </p>
 
                 <hr style="border-color: rgba(130, 100, 255, 0.15); margin: 16px 0;">
@@ -1108,8 +1105,7 @@ function showWelcomeModal() {
                 </p>
 
                 <p style="font-size: 0.85em; opacity: 0.75; margin:0;">
-                    หากเกิดรอยร้าวระหว่างจักรวาล หรือพบปัญหาในการเดินทางข้ามโลก<br>
-                    สามารถติดต่อได้ที่ Discord: <strong>majesty.pop (POPKO)</strong>
+                    หากเกิดรอยร้าวระหว่างจักรวาล หรือพบปัญหาในการเดินทางข้ามโลก สามารถติดต่อได้ที่ Discord: <strong>majesty.pop (POPKO)</strong>
                 </p>
                 
                 <div style="margin-top: 28px; font-size: 0.7em; opacity: 0.6; text-align:center; padding-top: 14px; border-top: 1px dashed rgba(130, 100, 255, 0.2);">
