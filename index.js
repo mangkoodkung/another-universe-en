@@ -789,14 +789,16 @@ function showStoryModal(charName, storyText, themeName, themeId = "random") {
             `;
         }
 
-        // Vibrant background container
+        // Bake blob effect into CSS radial-gradient (no DOM blur = much faster on mobile)
+        const blobBg = `radial-gradient(circle at 15% 15%, ${p.blob1}cc 0%, transparent 50%),
+                        radial-gradient(circle at 85% 85%, ${p.blob2}cc 0%, transparent 50%),
+                        ${bgGradient}`;
+
+        // Vibrant background container (no filter:blur elements for performance)
         const exportHtml = `
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;600;700&family=Prompt:wght@400;600;700&family=Sarabun:wght@400;600&display=swap" rel="stylesheet">
-        <div id="au-export-container" style="position: absolute; top: -9999px; left: -9999px; width: 680px; padding: 40px; background: ${bgGradient}; border-radius: 24px; box-sizing: border-box; overflow: hidden;">
-            <div style="position: absolute; top: -50px; left: -50px; width: 280px; height: 280px; background: ${p.blob1}; filter: blur(75px); opacity: ${blobOpacity}; border-radius: 50%;"></div>
-            <div style="position: absolute; bottom: -50px; right: -50px; width: 280px; height: 280px; background: ${p.blob2}; filter: blur(75px); opacity: ${blobOpacity}; border-radius: 50%;"></div>
-            
-            <div style="position: relative; background: ${cardBg}; backdrop-filter: blur(16px); padding: 36px; border-radius: 16px; border: 1px solid ${cardBorder}; box-shadow: 0 10px 30px rgba(0,0,0,0.2); text-align: center;">
+        <div id="au-export-container" style="position: absolute; top: -9999px; left: -9999px; width: 680px; padding: 40px; background: ${blobBg}; border-radius: 24px; box-sizing: border-box; overflow: hidden;">
+            <div style="position: relative; background: ${cardBg}; padding: 36px; border-radius: 16px; border: 1px solid ${cardBorder}; box-shadow: 0 10px 30px rgba(0,0,0,0.2); text-align: center;">
                 ${innerContent}
                 <div style="text-align: center; font-size: 0.85em; color: ${poweredColor}; border-top: 1px dashed ${hrColor}; padding-top: 16px; font-family: 'Prompt', 'Noto Sans Thai', sans-serif;">
                     Powered by <b>POPKO</b>
@@ -1053,6 +1055,13 @@ async function initExtension() {
 
         // Set initial chat button visibility
         updateChatButtonVisibility();
+
+        // Preload html2canvas in background so export is instant when user clicks
+        if (typeof html2canvas !== "function") {
+            const s = document.createElement("script");
+            s.src = "https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js";
+            document.head.appendChild(s);
+        }
 
         // Show welcome message on first run
         if (!extension_settings[extensionName].hasSeenWelcome) {
