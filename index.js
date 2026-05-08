@@ -659,9 +659,9 @@ function showMobileCardPopup(type, charName, storyText, themeName, themeId = "ra
             </div>
             <div class="au-universal-popup-body">
                 ${bodyHtml}
-                <div style="text-align:center;padding-top:16px;font-size:0.8em;opacity:0.5;border-top:1px dashed rgba(255,180,230,0.2);margin-top:20px;">Powered by <b>POPKO</b></div>
+                <div style="text-align:center;padding-top:16px;font-size:0.8em;opacity:0.5;border-top:1px dashed rgba(130,160,220,0.2);margin-top:20px;">Powered by <b>POPKO</b></div>
             </div>
-            <div class="au-universal-popup-footer" style="display:flex; flex-direction:row; justify-content:center; gap:8px; padding:12px; border-top:1px solid rgba(255, 180, 230, 0.2);">
+            <div class="au-universal-popup-footer" style="display:flex; flex-direction:row; justify-content:center; gap:8px; padding:12px; border-top:1px solid rgba(130, 160, 220, 0.2);">
                 <button id="au-mcard-back" style="flex:1; padding:8px 4px; border-radius:8px; background:rgba(255,255,255,0.1); color:#fff; border:1px solid rgba(255,255,255,0.2); font-size:0.9em; cursor:pointer;">◀ Back</button>
                 ${onDownload ? `<button id="au-mcard-download" style="flex:1; padding:8px 4px; border-radius:8px; background:rgba(255,255,255,0.1); color:#fff; border:1px solid rgba(255,255,255,0.2); font-size:0.9em; cursor:pointer;">📥 Save Image</button>` : ''}
             </div>
@@ -713,7 +713,7 @@ function showStoryModal(charName, storyText, themeName, themeId = "random") {
     if (isMobileDevice) {
         // Simple horizontal row for mobile
         footerHtml = `
-            <div class="au-universal-popup-footer" style="display:flex; flex-direction:row; justify-content:center; gap:8px; padding:12px; border-top:1px solid rgba(255, 180, 230, 0.2);">
+            <div class="au-universal-popup-footer" style="display:flex; flex-direction:row; justify-content:center; gap:8px; padding:12px; border-top:1px solid rgba(130, 160, 220, 0.2);">
                 <button id="au-modal-save-long" style="flex:1; padding:8px 4px; border-radius:8px; background:rgba(255,255,255,0.1); color:#fff; border:1px solid rgba(255,255,255,0.2); font-size:0.9em; cursor:pointer;">📖 Long</button>
                 <button id="au-modal-save-short" style="flex:1; padding:8px 4px; border-radius:8px; background:rgba(255,255,255,0.1); color:#fff; border:1px solid rgba(255,255,255,0.2); font-size:0.9em; cursor:pointer;">✨ Short</button>
                 <button id="au-modal-regenerate" style="flex:1; padding:8px 4px; border-radius:8px; background:rgba(255,255,255,0.1); color:#fff; border:1px solid rgba(255,255,255,0.2); font-size:0.9em; cursor:pointer;">🔄 New</button>
@@ -1082,7 +1082,7 @@ function showWelcomeModal() {
                 <span id="au-welcome-close" class="au-modal-close">✕</span>
             </div>
             <div class="au-universal-popup-body" style="padding: 24px; text-align: left;">
-                <h3 style="margin-top:0; margin-bottom:16px; color:var(--SmartThemeBodyColor, #e0d0ff);">
+                <h3 style="margin-top:0; margin-bottom:16px; color:#edf2f7;">
                     ขอบคุณที่ติดตั้ง <strong>Another Universe</strong> 🌌
                 </h3>
                 <p style="font-size:0.95em; line-height:1.6; margin-bottom:12px;">
@@ -1098,14 +1098,14 @@ function showWelcomeModal() {
                     Another Universe จะนำบทสนทนา บุคลิก และความสัมพันธ์ของตัวละคร มาตีความใหม่ในโลกคู่ขนาน ผ่านธีม อารมณ์ และรูปแบบการพบกันที่แตกต่างกันออกไป
                 </p>
 
-                <hr style="border-color: rgba(130, 100, 255, 0.15); margin: 16px 0;">
+                <hr style="border-color: rgba(130, 160, 220, 0.15); margin: 16px 0;">
 
 
                 <p style="font-size: 0.85em; opacity: 0.75; margin:0;">
                     หากเกิดรอยร้าวระหว่างจักรวาล หรือพบปัญหาในการเดินทางข้ามโลก สามารถติดต่อได้ที่ Discord: <strong>majesty.pop (POPKO)</strong>
                 </p>
                 
-                <div style="margin-top: 28px; font-size: 0.65em; opacity: 0.6; text-align:center; padding-top: 14px; border-top: 1px dashed rgba(255, 180, 230, 0.2);">
+                <div style="margin-top: 28px; font-size: 0.65em; opacity: 0.6; text-align:center; padding-top: 14px; border-top: 1px dashed rgba(130, 160, 220, 0.2);">
                     ⚠️ Custom License — ดูไฟล์ LICENSE สำหรับรายละเอียดเต็ม<br>
                     อนุญาตให้ดัดแปลงและพัฒนาต่อเพื่อแจกจ่ายคืนคอมมูนิตี้เท่านั้น <strong>ห้ามนำไปปิดซอร์สโค้ด หรือดัดแปลงเพื่อการค้า/ค้ากำไรโดยเด็ดขาด</strong><br>
                     <span style="color: #ff8888;">หากตรวจพบการละเมิด จะดำเนินการแจ้งกับทุกคอมมูนิตี้ที่เกี่ยวข้องทันที</span>
