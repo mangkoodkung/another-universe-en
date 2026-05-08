@@ -5,9 +5,16 @@
 import { extension_settings, getContext, loadExtensionSettings } from "../../../extensions.js";
 import { saveSettingsDebounced, generateQuietPrompt, eventSource, event_types } from "../../../../script.js";
 
-// Extension name MUST match the GitHub repo folder name exactly (case-sensitive on Linux/Android)
-const extensionName = "Another-Universe";
+// Detect actual folder name from script URL (works for any install method / any case)
+// e.g. third-party/another-universe/ OR third-party/Another-Universe/
+const _scriptSrc = document.currentScript?.src
+    || Array.from(document.querySelectorAll('script[src]')).find(s => s.src.includes('another-universe') || s.src.includes('Another-Universe'))?.src
+    || '';
+const _folderMatch = _scriptSrc.match(/third-party\/([^/]+)\//i);
+const extensionName = _folderMatch ? _folderMatch[1] : "Another-Universe";
 const extensionFolderPath = `scripts/extensions/third-party/${extensionName}`;
+console.log(`[Another-Universe] Detected folder name: "${extensionName}"`);
+
 
 // Universe themes
 const universeThemes = {
