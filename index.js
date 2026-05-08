@@ -938,10 +938,20 @@ function showStoryModal(charName, storyText, themeName, themeId = "random") {
 
         // Desktop only — mobile uses showMobileCardPopup instead
 
-        // --- DESKTOP: Use html2canvas ---
+        // --- Render Image ---
         $("body").append(exportHtml);
+
+        // Show loading overlay
+        const loadingHtml = `
+        <div id="au-render-loading" style="position:fixed;top:0;left:0;right:0;bottom:0;z-index:999999;background:rgba(0,0,0,0.85);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;font-family:sans-serif;">
+            <div style="font-size:3.5em;animation:au-spin 1s linear infinite;">⏳</div>
+            <div style="margin-top:24px;font-size:1.1em;font-weight:bold;letter-spacing:1px;color:#d0c8e8;">กำลังวาดรูป...</div>
+            <style>@keyframes au-spin { 100% { transform: rotate(360deg); } }</style>
+        </div>`;
+        document.body.insertAdjacentHTML('beforeend', loadingHtml);
+
         try {
-            await new Promise(resolve => setTimeout(resolve, 200));
+            await new Promise(resolve => setTimeout(resolve, 300)); // give UI time to render loading state
             const element = document.getElementById("au-export-container");
             const canvas = await html2canvas(element, {
                 backgroundColor: isShort ? "#110e17" : "#fdfbfb",
@@ -959,6 +969,7 @@ function showStoryModal(charName, storyText, themeName, themeId = "random") {
             toastr.error("ไม่สามารถสร้างรูปภาพได้ ลองอีกครั้ง", "Error");
         } finally {
             $("#au-export-container").remove();
+            $("#au-render-loading").remove();
             btn.val(originalText).prop("disabled", false);
         }
     };
