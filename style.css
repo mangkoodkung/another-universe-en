@@ -1,0 +1,334 @@
+/* Another Universe - Styles */
+
+/* ===== Universal Popup (works on all screen sizes) ===== */
+/* NOTE: The overlay uses INLINE STYLES in JS for bulletproof positioning */
+/* These styles are for the popup CONTENT only */
+
+.au-universal-popup {
+    width: 90vw;
+    max-width: 620px;
+    max-height: 80vh;
+    background: var(--SmartThemeBlurTintColor, #1a1a2e);
+    border: 1px solid rgba(130, 100, 255, 0.3);
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow:
+        0 0 40px rgba(130, 100, 255, 0.15),
+        0 20px 60px rgba(0, 0, 0, 0.5);
+    animation: au-popupEntrance 0.4s ease-out;
+}
+
+.au-universal-popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    border-bottom: 1px solid rgba(130, 100, 255, 0.2);
+    background: linear-gradient(135deg, rgba(88, 56, 200, 0.15), rgba(130, 100, 255, 0.05));
+    flex-shrink: 0;
+}
+
+.au-card-front-header-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.au-modal-title {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: var(--SmartThemeBodyColor, #e0d0ff);
+}
+
+.au-modal-theme-badge {
+    font-size: 0.75em;
+    color: rgba(180, 160, 255, 0.7);
+    letter-spacing: 0.5px;
+}
+
+.au-modal-close {
+    cursor: pointer;
+    font-size: 1.3em;
+    color: var(--SmartThemeBodyColor, #aaa);
+    opacity: 0.6;
+    transition: opacity 0.2s;
+    padding: 4px 8px;
+    border-radius: 8px;
+}
+
+.au-modal-close:hover {
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.au-universal-popup-body {
+    padding: 20px 24px;
+    overflow-y: auto;
+    flex: 1;
+    min-height: 0;
+    -webkit-overflow-scrolling: touch;
+}
+
+.au-story-text {
+    font-size: 0.95em;
+    line-height: 1.75;
+    color: var(--SmartThemeBodyColor, #d0c8e8);
+    white-space: pre-wrap;
+}
+
+.au-universal-popup-footer {
+    display: flex;
+    gap: 10px;
+    padding: 14px 20px;
+    border-top: 1px solid rgba(130, 100, 255, 0.2);
+    justify-content: flex-end;
+    flex-shrink: 0;
+}
+
+/* ===== Gallery Items ===== */
+.au-gallery-list {
+    padding: 12px 16px !important;
+}
+
+.au-gallery-item {
+    padding: 12px 14px;
+    margin-bottom: 8px;
+    background: rgba(130, 100, 255, 0.06);
+    border: 1px solid rgba(130, 100, 255, 0.15);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.au-gallery-item:hover {
+    background: rgba(130, 100, 255, 0.12);
+    border-color: rgba(130, 100, 255, 0.35);
+    transform: translateY(-1px);
+}
+
+.au-gallery-item:last-child {
+    margin-bottom: 0;
+}
+
+.au-gallery-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+.au-gallery-item-char {
+    font-weight: 600;
+    font-size: 0.9em;
+    color: var(--SmartThemeBodyColor, #e0d0ff);
+}
+
+.au-gallery-item-time {
+    font-size: 0.7em;
+    color: rgba(180, 160, 255, 0.5);
+}
+
+.au-gallery-item-badge {
+    font-size: 0.7em;
+    color: rgba(180, 160, 255, 0.7);
+    margin-bottom: 6px;
+}
+
+.au-gallery-item-preview {
+    font-size: 0.8em;
+    line-height: 1.5;
+    color: var(--SmartThemeBodyColor, #b0a8d0);
+    opacity: 0.7;
+}
+
+/* ===== Quick Settings Popup ===== */
+.au-quick-popup {
+    max-width: 400px;
+}
+
+.au-quick-body {
+    padding: 16px 20px !important;
+}
+
+.au-quick-row {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 12px;
+}
+
+.au-quick-row:last-child {
+    margin-bottom: 0;
+}
+
+.au-quick-row label {
+    font-size: 0.8em;
+    color: rgba(180, 160, 255, 0.7);
+}
+
+.au-quick-row select {
+    width: 100%;
+}
+
+.au-quick-footer {
+    display: flex;
+    gap: 8px;
+}
+
+.au-quick-footer .menu_button {
+    flex: 1;
+    text-align: center;
+}
+
+/* ===== Gallery Actions ===== */
+.au-gallery-item-actions {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+.au-gallery-star,
+.au-gallery-delete {
+    cursor: pointer;
+    font-size: 0.85em;
+    opacity: 0.4;
+    transition: all 0.2s;
+    padding: 2px;
+}
+
+.au-gallery-star:hover { opacity: 1; }
+.au-gallery-delete:hover { opacity: 1; }
+.au-gallery-star.au-star-active { opacity: 1; filter: drop-shadow(0 0 4px gold); }
+
+.au-gallery-item-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+/* ===== Settings Panel ===== */
+.another-universe-settings hr {
+    border-color: rgba(130, 100, 255, 0.15);
+    margin: 10px 0;
+}
+
+.au-theme-selector {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.au-theme-selector select {
+    width: 100%;
+}
+
+/* ===== Floating Chat Button ===== */
+.au-chat-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(88, 56, 200, 0.3), rgba(130, 100, 255, 0.15));
+    border: 1px solid rgba(130, 100, 255, 0.35);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+    order: -1;
+    margin-right: 4px;
+}
+
+.au-chat-btn:hover {
+    background: linear-gradient(135deg, rgba(88, 56, 200, 0.5), rgba(130, 100, 255, 0.3));
+    border-color: rgba(160, 130, 255, 0.6);
+    box-shadow: 0 0 16px rgba(130, 100, 255, 0.3);
+    transform: scale(1.1);
+}
+
+.au-chat-btn:active {
+    transform: scale(0.95);
+}
+
+.au-chat-btn-icon {
+    font-size: 1.15em;
+    line-height: 1;
+}
+
+.au-chat-btn-loading {
+    font-size: 1.15em;
+    line-height: 1;
+    animation: au-btnSpin 1.2s linear infinite;
+}
+
+.au-chat-btn-busy {
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+/* ===== Animations ===== */
+@keyframes au-popupEntrance {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@keyframes au-btnSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* ===== Mobile adjustments ===== */
+@media screen and (max-width: 768px) {
+    .au-universal-popup {
+        width: 95vw;
+        max-height: 75vh;
+        border-radius: 14px;
+    }
+
+    .au-universal-popup-header {
+        padding: 12px 16px;
+    }
+
+    .au-modal-title {
+        font-size: 1em;
+    }
+
+    .au-universal-popup-body {
+        padding: 16px 18px;
+    }
+
+    .au-story-text {
+        font-size: 0.9em;
+        line-height: 1.65;
+    }
+
+    .au-universal-popup-footer {
+        flex-direction: column;
+        padding: 12px 16px;
+        gap: 8px;
+    }
+
+    .au-universal-popup-footer .menu_button {
+        width: 100%;
+        text-align: center;
+    }
+
+    .au-chat-btn {
+        width: 42px;
+        height: 42px;
+    }
+
+    .au-chat-btn-icon,
+    .au-chat-btn-loading {
+        font-size: 1.25em;
+    }
+}
