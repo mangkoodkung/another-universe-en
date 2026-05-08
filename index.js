@@ -957,11 +957,23 @@ function showStoryModal(charName, storyText, themeName, themeId = "random") {
                 scale: 2, logging: false, useCORS: true, allowTaint: true,
                 x: 0, y: 0, scrollX: 0, scrollY: 0
             });
-            const imgData = canvas.toDataURL("image/png");
-            const a = document.createElement("a");
-            a.href = imgData;
-            a.download = `Another_Universe_${type}_${charName.replace(/[^a-z0-9]/gi, '_')}.png`;
-            a.click();
+            await new Promise((resolve, reject) => {
+                canvas.toBlob(function(blob) {
+                    if (!blob) return reject(new Error("Canvas to Blob failed"));
+                    const url = window.URL.createObjectURL(blob);
+                    const a = document.createElement("a");
+                    a.style.display = "none";
+                    a.href = url;
+                    a.download = `Another_Universe_${type}_${charName.replace(/[^a-z0-9]/gi, '_')}.png`;
+                    document.body.appendChild(a);
+                    a.click();
+                    setTimeout(() => {
+                        document.body.removeChild(a);
+                        window.URL.revokeObjectURL(url);
+                        resolve();
+                    }, 100);
+                }, "image/png");
+            });
             toastr.success("บันทึกภาพเสร็จสิ้น!", "🌌 Another Universe");
         } catch (error) {
             console.error("Failed to generate image:", error);
