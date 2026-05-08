@@ -3,7 +3,7 @@
 
 // Import from SillyTavern core
 import { extension_settings, getContext, loadExtensionSettings } from "../../../extensions.js";
-import { saveSettingsDebounced, generateQuietPrompt } from "../../../../script.js";
+import { saveSettingsDebounced, generateQuietPrompt, eventSource, event_types } from "../../../../script.js";
 
 // Extension name MUST match folder name
 const extensionName = "another-universe";
@@ -988,16 +988,17 @@ function showWelcomeModal() {
 }
 
 // Extension initialization
-jQuery(async () => {
+async function initExtension() {
     console.log(`[${extensionName}] Loading...`);
 
     try {
-        const settingsHtml = await $.get(`${extensionFolderPath}/example.html`);
-        // Fallback: try #extensions_settings2 (desktop) then #extensions_settings (mobile)
-        const $container = $("#extensions_settings2").length
-            ? $("#extensions_settings2")
-            : $("#extensions_settings");
-        $container.append(settingsHtml);
+        const context = getContext();
+        // Use renderExtensionTemplateAsync for proper mobile/desktop compatibility
+        const settingsHtml = context.renderExtensionTemplateAsync
+            ? await context.renderExtensionTemplateAsync(`third-party/${extensionName}`, 'example')
+            : await $.get(`${extensionFolderPath}/example.html`);
+
+        $("#extensions_settings2").append(settingsHtml);
 
         // Bind events
         $("#another_universe_enabled").on("input", onEnabledChange);
@@ -1025,4 +1026,10 @@ jQuery(async () => {
     } catch (error) {
         console.error(`[${extensionName}] ❌ Failed to load:`, error);
     }
+}
+
+// Wait for SillyTavern to fully initialize before loading the extension
+// This is the recommended approach for mobile compatibility
+jQuery(() => {
+    eventSource.on(event_types.APP_READY, () => initExtension());
 });
