@@ -604,7 +604,7 @@ function showGalleryModal(showFavOnly = false) {
 
 
 // Mobile Card Popup — uses the same au-universal-popup that works on mobile
-function showMobileCardPopup(type, charName, storyText, themeName, themeId = "random") {
+function showMobileCardPopup(type, charName, storyText, themeName, themeId = "random", onDownload = null) {
     // Remove any existing overlay
     $("#au-mobile-card-overlay").remove();
 
@@ -655,7 +655,8 @@ function showMobileCardPopup(type, charName, storyText, themeName, themeId = "ra
                     <span class="au-modal-title">🌌 ${charName}</span>
                     <span class="au-modal-theme-badge">${themeName}</span>
                 </div>
-                <div style="display:flex; gap:12px; align-items:center;">
+                <div style="display:flex; gap:16px; align-items:center;">
+                    ${onDownload ? `<span id="au-mcard-download" class="au-modal-close" style="font-size:1.3em;" title="โหลดรูป">📥</span>` : ''}
                     <span id="au-mcard-back" class="au-modal-close" style="font-size:1.2em;" title="กลับ">◀</span>
                     <span id="au-mcard-close" class="au-modal-close" style="font-size:1.2em;" title="ปิด">✕</span>
                 </div>
@@ -670,6 +671,14 @@ function showMobileCardPopup(type, charName, storyText, themeName, themeId = "ra
     document.body.insertAdjacentHTML('beforeend', popupHtml);
 
     // Bind events
+    if (onDownload) {
+        $("#au-mcard-download").on("click", async function() {
+            const btn = $(this);
+            btn.css({ opacity: "0.3", pointerEvents: "none" });
+            await onDownload();
+            btn.css({ opacity: "", pointerEvents: "" });
+        });
+    }
     $("#au-mcard-close").on("click", () => $("#au-mobile-card-overlay").remove());
     $("#au-mcard-back").on("click", () => {
         $("#au-mobile-card-overlay").remove();
@@ -701,7 +710,16 @@ function showStoryModal(charName, storyText, themeName, themeId = "random") {
     const isMobileDevice = /Android|iPhone|iPad|iPod|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
 
     let footerHtml = '';
-    if (!isMobileDevice) {
+    if (isMobileDevice) {
+        // Simple horizontal row for mobile
+        footerHtml = `
+            <div class="au-universal-popup-footer" style="display:flex; justify-content:space-around; align-items:center; padding:12px; border-top:1px solid rgba(130, 100, 255, 0.2);">
+                <div id="au-modal-save-long" class="au-modal-close" style="font-size:1.5em; padding:4px 12px; opacity:0.8;" title="Long Card">📖</div>
+                <div id="au-modal-save-short" class="au-modal-close" style="font-size:1.5em; padding:4px 12px; opacity:0.8;" title="Short Card">✨</div>
+                <div id="au-modal-regenerate" class="au-modal-close" style="font-size:1.5em; padding:4px 12px; opacity:0.8;" title="Regenerate">🔄</div>
+            </div>
+        `;
+    } else {
         footerHtml = `
             <div class="au-universal-popup-footer" style="flex-wrap: wrap;">
                 <input id="au-modal-save-long" class="menu_button" type="submit" value="📸 Long Card" title="Save full story" />
@@ -712,14 +730,6 @@ function showStoryModal(charName, storyText, themeName, themeId = "random") {
         `;
     }
 
-    const mobileIcons = isMobileDevice ? `
-        <div style="display:flex; gap:16px; margin-right:12px;">
-            <span id="au-modal-save-long" style="cursor:pointer; font-size:1.1em; opacity:0.8;" title="Long">📖</span>
-            <span id="au-modal-save-short" style="cursor:pointer; font-size:1.1em; opacity:0.8;" title="Short">✨</span>
-            <span id="au-modal-regenerate" style="cursor:pointer; font-size:1.1em; opacity:0.8;" title="Regenerate">🔄</span>
-        </div>
-    ` : '';
-
     const modalHtml = `
     <div id="another-universe-modal-overlay" style="${getOverlayStyle()}">
         <div class="au-universal-popup">
@@ -728,10 +738,7 @@ function showStoryModal(charName, storyText, themeName, themeId = "random") {
                     <span class="au-modal-title">🌌 ${charName}</span>
                     <span class="au-modal-theme-badge">${themeName}</span>
                 </div>
-                <div style="display:flex; align-items:center;">
-                    ${mobileIcons}
-                    <span id="au-modal-close" class="au-modal-close">✕</span>
-                </div>
+                <span id="au-modal-close" class="au-modal-close">✕</span>
             </div>
             <div class="au-universal-popup-body">
                 <div class="au-story-text">${escapedStory}</div>
@@ -747,11 +754,11 @@ function showStoryModal(charName, storyText, themeName, themeId = "random") {
     if (isMobileDevice) {
         $("#au-modal-save-long").off("click").on("click", () => {
             $("#another-universe-modal-overlay").remove();
-            showMobileCardPopup('long', charName, storyText, themeName, themeId);
+            showMobileCardPopup('long', charName, storyText, themeName, themeId, () => renderCard('long'));
         });
         $("#au-modal-save-short").off("click").on("click", () => {
             $("#another-universe-modal-overlay").remove();
-            showMobileCardPopup('short', charName, storyText, themeName, themeId);
+            showMobileCardPopup('short', charName, storyText, themeName, themeId, () => renderCard('short'));
         });
     }
 
