@@ -602,6 +602,85 @@ function showGalleryModal(showFavOnly = false) {
     });
 }
 
+
+// Mobile Card Popup — uses the same au-universal-popup that works on mobile
+function showMobileCardPopup(type, charName, storyText, themeName, themeId = "random") {
+    // Remove any existing overlay
+    $("#au-mobile-card-overlay").remove();
+
+    // Clean story text
+    const cleanText = storyText
+        .replace(/<think>[\s\S]*?<\/think>/gi, '')
+        .replace(/<hook>[\s\S]*?<\/hook>/gi, '')
+        .trim();
+
+    // Extract quote and snippet for short card
+    const quoteMatch = cleanText.match(/["\u201c](.*?)["\u201d]/);
+    let quote = quoteMatch ? `"${quoteMatch[1]}"` : '';
+    if (!quote) {
+        const sentences = cleanText.split(/(?<=[.!?])\s+/);
+        quote = sentences.length > 2 ? `"${sentences[sentences.length - 1].trim()}"` : '"...a different universe, a different us."';
+    }
+    const paragraphs = cleanText.split('\n').filter(p => p.trim().length > 0);
+    let teaser = paragraphs.slice(0, 2).join('\n\n');
+    if (teaser.length > 350) {
+        const t = teaser.substring(0, 350);
+        const lp = Math.max(t.lastIndexOf('.'), t.lastIndexOf('!'), t.lastIndexOf('?'));
+        teaser = lp > 150 ? t.substring(0, lp + 1) : t.substring(0, t.lastIndexOf(' ')) + '...';
+    }
+
+    const isShort = type === 'short';
+    const escapedStory = cleanText.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\n/g, '<br>');
+
+    let bodyHtml = '';
+    if (isShort) {
+        bodyHtml = `
+            <div style="text-align:center;padding:12px 4px 0;">
+                <div style="font-size:1.25em;font-style:italic;font-weight:700;line-height:1.6;margin-bottom:20px;">
+                    ${quote.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+                </div>
+                <div style="font-size:0.95em;line-height:1.7;opacity:0.75;">
+                    ${teaser.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>')}
+                </div>
+            </div>`;
+    } else {
+        bodyHtml = `<div class="au-story-text">${escapedStory}</div>`;
+    }
+
+    const popupHtml = `
+    <div id="au-mobile-card-overlay" style="${getOverlayStyle()}">
+        <div class="au-universal-popup">
+            <div class="au-universal-popup-header">
+                <div class="au-card-front-header-text">
+                    <span class="au-modal-title">🌌 ${charName}</span>
+                    <span class="au-modal-theme-badge">${themeName}</span>
+                </div>
+                <span id="au-mcard-close" class="au-modal-close">✕</span>
+            </div>
+            <div class="au-universal-popup-body">
+                ${bodyHtml}
+            </div>
+            <div class="au-universal-popup-footer">
+                <div style="width:100%;text-align:center;padding-top:8px;font-size:0.8em;opacity:0.6;margin-bottom:8px;">Powered by <b>POPKO</b></div>
+                <input id="au-mcard-back" class="menu_button" type="submit" value="◀ กลับ" />
+                <input id="au-mcard-close-btn" class="menu_button" type="submit" value="Close" />
+            </div>
+        </div>
+    </div>`;
+
+    document.body.insertAdjacentHTML('beforeend', popupHtml);
+
+    // Bind events
+    $("#au-mcard-close, #au-mcard-close-btn").on("click", () => $("#au-mobile-card-overlay").remove());
+    $("#au-mcard-back").on("click", () => {
+        $("#au-mobile-card-overlay").remove();
+        showStoryModal(charName, storyText, themeName, themeId);
+    });
+    $("#au-mobile-card-overlay").on("click", (e) => {
+        if (e.target === e.currentTarget) $("#au-mobile-card-overlay").remove();
+    });
+}
+
 // Show the story modal (works on all screen sizes)
 function showStoryModal(charName, storyText, themeName, themeId = "random") {
     // Remove existing
@@ -643,6 +722,21 @@ function showStoryModal(charName, storyText, themeName, themeId = "random") {
 
     // Append as LAST child of <body> to avoid parent transform issues
     document.body.insertAdjacentHTML('beforeend', modalHtml);
+
+    // Detect mobile
+    const isMobileDevice = /Android|iPhone|iPad|iPod|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
+
+    // On mobile: swap 📸 buttons with 📖/✨ popup buttons
+    if (isMobileDevice) {
+        $("#au-modal-save-long").val("📖 Long").off("click").on("click", () => {
+            $("#another-universe-modal-overlay").remove();
+            showMobileCardPopup('long', charName, storyText, themeName, themeId);
+        });
+        $("#au-modal-save-short").val("✨ Short").off("click").on("click", () => {
+            $("#another-universe-modal-overlay").remove();
+            showMobileCardPopup('short', charName, storyText, themeName, themeId);
+        });
+    }
 
     // Bind close
     $("#au-modal-close, #au-modal-close-btn").on("click", () => {
@@ -818,84 +912,7 @@ function showStoryModal(charName, storyText, themeName, themeId = "random") {
         // Detect mobile browser
         const isMobile = /Android|iPhone|iPad|iPod|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
 
-        if (isMobile) {
-            // --- MOBILE: Beautiful screenshot popup (no library, instant, zero crash) ---
-            const extracted2 = extractQuoteAndSnippet(storyText);
-            const badgeParts2 = themeName.split('·').map(s => s.trim());
-            const badgeHtmlM = badgeParts2.map(b =>
-                `<span style="display:inline-block;padding:5px 14px;margin:3px;background:${p.textAccent};border-radius:20px;font-size:12px;font-weight:700;color:#fff;letter-spacing:0.5px;">${b}</span>`
-            ).join('');
-
-            // Colors
-            const bgM      = isShort ? 'linear-gradient(160deg,#1a1528 0%,#0e0c17 100%)' : `linear-gradient(160deg,${p.bg.match(/#[0-9a-f]{6}/i)?.[0]||'#fdfbfb'} 0%,#f0ecf8 100%)`;
-            const cardBgM  = isShort ? 'rgba(30,26,46,0.9)'   : 'rgba(255,255,255,0.92)';
-            const tMainM   = isShort ? '#f0ecff' : p.textMain;
-            const tAccentM = isShort ? '#c5bced' : p.textAccent;
-            const tMutedM  = isShort ? '#7a7390' : '#888';
-            const tBodyM   = isShort ? '#d8d4f0' : '#3a324d';
-            const borderM  = isShort ? 'rgba(255,255,255,0.08)' : 'rgba(180,160,220,0.3)';
-            const hrM      = isShort ? 'rgba(255,255,255,0.1)'  : 'rgba(0,0,0,0.1)';
-
-            let cardContent = '';
-            if (!isShort) {
-                // LONG: full story, scrollable
-                const fullStory = extracted2.cleanText.replace(/\n/g, '<br>');
-                cardContent = `
-                    <div style="font-size:13px;font-weight:700;color:${tAccentM};letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;">🌌 Another Universe</div>
-                    <div style="font-size:11px;color:${tMutedM};font-style:italic;margin-bottom:16px;">"ถ้าพวกเราเจอกันในอีกจักรวาลหนึ่ง เรื่องราวของเราจะเปลี่ยนไปไหม"</div>
-                    <div style="font-size:24px;font-weight:800;color:${tMainM};margin-bottom:16px;line-height:1.3;">${charName}</div>
-                    <div style="margin-bottom:20px;">${badgeHtmlM}</div>
-                    <div style="font-size:14px;line-height:1.85;text-align:left;color:${tBodyM};margin-bottom:20px;">${fullStory}</div>`;
-            } else {
-                // SHORT: cinematic quote + teaser
-                cardContent = `
-                    <div style="font-size:12px;font-weight:700;color:${tAccentM};letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;">🌌 Another Universe</div>
-                    <div style="font-size:11px;color:${tMutedM};font-style:italic;margin-bottom:16px;">"ถ้าพวกเราเจอกันในอีกจักรวาลหนึ่ง เรื่องราวของเราจะเปลี่ยนไปไหม"</div>
-                    <div style="font-size:22px;font-weight:800;color:${tMainM};margin-bottom:16px;line-height:1.3;">${charName}</div>
-                    <div style="margin-bottom:24px;">${badgeHtmlM}</div>
-                    <div style="margin:8px 0 28px;padding:0 8px;">
-                        <div style="font-size:20px;font-style:italic;font-weight:700;color:${tMainM};line-height:1.6;">${extracted2.quote}</div>
-                        <div style="margin-top:20px;font-size:14px;color:${tMutedM};line-height:1.7;">${extracted2.teaser}</div>
-                    </div>`;
-            }
-
-            const scrollStyle = !isShort ? 'overflow-y:auto;max-height:80vh;' : '';
-            const mobilePopupHtml = `
-            <div id="au-mobile-card-overlay" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:99999;background:${bgM};display:flex;flex-direction:column;align-items:center;justify-content:${isShort?'center':'flex-start'};padding:${isShort?'20px':'0'};box-sizing:border-box;">
-                <!-- Hint bar -->
-                <div id="au-mobile-card-hint" style="position:absolute;top:0;left:0;right:0;padding:10px 16px;background:rgba(0,0,0,0.5);display:flex;justify-content:space-between;align-items:center;z-index:1;">
-                    <span style="color:rgba(255,255,255,0.7);font-size:11px;">📸 แคปหน้าจอเพื่อบันทึก</span>
-                    <div style="display:flex;gap:8px;">
-                        <button id="au-mobile-card-hide-ui" style="padding:4px 12px;background:rgba(255,255,255,0.15);color:#fff;border:1px solid rgba(255,255,255,0.25);border-radius:6px;font-size:11px;cursor:pointer;">ซ่อน UI</button>
-                        <button id="au-mobile-card-close" style="padding:4px 12px;background:rgba(255,255,255,0.15);color:#fff;border:1px solid rgba(255,255,255,0.25);border-radius:6px;font-size:11px;cursor:pointer;">✕ ปิด</button>
-                    </div>
-                </div>
-                <!-- Card -->
-                <div style="width:100%;min-height:0;${isShort?'max-width:420px;':''}padding:${isShort?'0':'60px 0 24px'};${scrollStyle}box-sizing:border-box;">
-                    <div style="margin:0 ${isShort?'0':'16px'};padding:28px 24px;background:${cardBgM};border-radius:20px;border:1px solid ${borderM};box-shadow:0 12px 40px rgba(0,0,0,0.3);">
-                        ${cardContent}
-                        <div style="border-top:1px dashed ${hrM};padding-top:14px;font-size:11px;color:${tMutedM};text-align:center;">Powered by <b>POPKO</b></div>
-                    </div>
-                </div>
-            </div>`;
-
-            document.body.insertAdjacentHTML('beforeend', mobilePopupHtml);
-            btn.val(originalText).prop("disabled", false);
-
-            // Hide UI button — lets user screenshot just the card
-            $("#au-mobile-card-hide-ui").on("click", function() {
-                const hint = document.getElementById("au-mobile-card-hint");
-                if (hint.style.display === 'none') {
-                    hint.style.display = '';
-                    $(this).text("ซ่อน UI");
-                } else {
-                    hint.style.display = 'none';
-                    $(this).closest('#au-mobile-card-overlay').style && null; // no-op
-                }
-            });
-            $("#au-mobile-card-close").on("click", () => $("#au-mobile-card-overlay").remove());
-            return;
-        }
+        // Desktop only — mobile uses showMobileCardPopup instead
 
         // --- DESKTOP: Use html2canvas ---
         $("body").append(exportHtml);
