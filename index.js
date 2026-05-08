@@ -655,15 +655,15 @@ function showMobileCardPopup(type, charName, storyText, themeName, themeId = "ra
                     <span class="au-modal-title">🌌 ${charName}</span>
                     <span class="au-modal-theme-badge">${themeName}</span>
                 </div>
-                <div style="display:flex; gap:16px; align-items:center;">
-                    ${onDownload ? `<span id="au-mcard-download" class="au-modal-close" style="font-size:1.3em;" title="โหลดรูป">📥</span>` : ''}
-                    <span id="au-mcard-back" class="au-modal-close" style="font-size:1.2em;" title="กลับ">◀</span>
-                    <span id="au-mcard-close" class="au-modal-close" style="font-size:1.2em;" title="ปิด">✕</span>
-                </div>
+                <span id="au-mcard-close" class="au-modal-close" style="font-size:1.2em;" title="ปิด">✕</span>
             </div>
             <div class="au-universal-popup-body">
                 ${bodyHtml}
                 <div style="text-align:center;padding-top:16px;font-size:0.8em;opacity:0.5;border-top:1px dashed rgba(180,160,255,0.2);margin-top:20px;">Powered by <b>POPKO</b></div>
+            </div>
+            <div class="au-universal-popup-footer" style="display:flex; flex-direction:row; justify-content:center; gap:8px; padding:12px; border-top:1px solid rgba(130, 100, 255, 0.2);">
+                <button id="au-mcard-back" style="flex:1; padding:8px 4px; border-radius:8px; background:rgba(255,255,255,0.1); color:#fff; border:1px solid rgba(255,255,255,0.2); font-size:0.9em; cursor:pointer;">◀ Back</button>
+                ${onDownload ? `<button id="au-mcard-download" style="flex:1; padding:8px 4px; border-radius:8px; background:rgba(255,255,255,0.1); color:#fff; border:1px solid rgba(255,255,255,0.2); font-size:0.9em; cursor:pointer;">📥 Save Image</button>` : ''}
             </div>
         </div>
     </div>`;
@@ -943,9 +943,9 @@ function showStoryModal(charName, storyText, themeName, themeId = "random") {
 
         // Show loading overlay
         const loadingHtml = `
-        <div id="au-render-loading" style="position:fixed;top:0;left:0;right:0;bottom:0;z-index:999999;background:rgba(0,0,0,0.85);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;font-family:sans-serif;">
+        <div id="au-render-loading" style="${getOverlayStyle()}; z-index:999999; flex-direction:column; background:rgba(0,0,0,0.85);">
             <div style="font-size:3.5em;animation:au-spin 1s linear infinite;">⏳</div>
-            <div style="margin-top:24px;font-size:1.1em;font-weight:bold;letter-spacing:1px;color:#d0c8e8;">กำลังวาดรูป...</div>
+            <div style="margin-top:24px;font-size:1.1em;font-weight:bold;letter-spacing:1px;color:#d0c8e8;">กำลังบันทึกความทรงจำ...</div>
             <style>@keyframes au-spin { 100% { transform: rotate(360deg); } }</style>
         </div>`;
         document.body.insertAdjacentHTML('beforeend', loadingHtml);
