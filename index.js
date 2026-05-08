@@ -993,7 +993,11 @@ jQuery(async () => {
 
     try {
         const settingsHtml = await $.get(`${extensionFolderPath}/example.html`);
-        $("#extensions_settings2").append(settingsHtml);
+        // Fallback: try #extensions_settings2 (desktop) then #extensions_settings (mobile)
+        const $container = $("#extensions_settings2").length
+            ? $("#extensions_settings2")
+            : $("#extensions_settings");
+        $container.append(settingsHtml);
 
         // Bind events
         $("#another_universe_enabled").on("input", onEnabledChange);
