@@ -688,13 +688,13 @@ function showMobileCardPopup(type, charName, storyText, themeName, themeId = "ra
     });
 }
 
-// Mobile Screenshot View — shows a clean, fullscreen card that the user can screenshot
+// Mobile Screenshot View — opens a NEW TAB with a clean card page for screenshotting
 // This replaces html2canvas on mobile (which crashes Safari/Chrome due to memory usage)
 function showMobileScreenshotView(type, charName, storyText, themeName, themeId = "random") {
     // Remove other overlays
     $("#au-mobile-card-overlay").remove();
 
-    console.log("[Another-Universe] 📱 Showing screenshot-ready view");
+    console.log("[Another-Universe] 📱 Opening screenshot page in new tab");
 
     // Clean story text
     const cleanText = storyText
@@ -746,28 +746,59 @@ function showMobileScreenshotView(type, charName, storyText, themeName, themeId 
             <div style="font-size:0.9em;line-height:1.75;color:#e8edf2;text-align:left;">${escapedStory}</div>`;
     }
 
-    const viewHtml = `
-    <div id="au-screenshot-overlay" style="position:fixed;top:0;left:0;right:0;bottom:0;width:100vw;height:100vh;background:#110e17;z-index:999999;overflow-y:auto;-webkit-overflow-scrolling:touch;">
-        <div id="au-screenshot-close-top" style="position:fixed;top:16px;right:16px;width:36px;height:36px;background:rgba(255,255,255,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;cursor:pointer;z-index:1000001;backdrop-filter:blur(4px);">✕</div>
-        <div style="padding:24px 20px;text-align:center;max-width:480px;margin:0 auto;padding-top:40px;">
-            ${cardContent}
-            <div style="text-align:center;font-size:0.75em;color:rgba(130,120,160,0.5);border-top:1px dashed rgba(130,160,220,0.15);padding-top:14px;margin-top:24px;">
-                Powered by <b>POPKO</b>
-            </div>
-        </div>
-        <div id="au-screenshot-hint" style="position:fixed;bottom:0;left:0;right:0;text-align:center;padding:16px;background:linear-gradient(transparent, rgba(17,14,23,0.95));z-index:1000000;">
-            <div style="color:rgba(200,180,255,0.8);font-size:0.85em;margin-bottom:8px;">📱 กดสกรีนช็อตเพื่อบันทึก</div>
-            <button type="button" id="au-screenshot-close" style="padding:8px 20px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:16px;color:#fff;font-size:0.85em;cursor:pointer;">✕ ปิด</button>
-        </div>
-    </div>`;
+    // Build a complete standalone HTML page
+    const pageHtml = `<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌌 Another Universe — ${charName}</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #110e17;
+            color: #f4f0ff;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            padding: 24px 20px 40px;
+        }
+        .card {
+            max-width: 480px;
+            width: 100%;
+            text-align: center;
+        }
+        .footer {
+            text-align: center;
+            font-size: 0.75em;
+            color: rgba(130,120,160,0.5);
+            border-top: 1px dashed rgba(130,160,220,0.15);
+            padding-top: 14px;
+            margin-top: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        ${cardContent}
+        <div class="footer">Powered by <b>POPKO</b></div>
+    </div>
+</body>
+</html>`;
 
-    document.body.insertAdjacentHTML('beforeend', viewHtml);
-
-    // Bind close
-    $("#au-screenshot-close, #au-screenshot-close-top").on("click", () => {
-        console.log("[Another-Universe] 📱 Screenshot view closed");
-        $("#au-screenshot-overlay").remove();
-    });
+    // Open in a new tab
+    const newTab = window.open('', '_blank');
+    if (newTab) {
+        newTab.document.write(pageHtml);
+        newTab.document.close();
+        console.log("[Another-Universe] 📱 Screenshot page opened in new tab");
+        toastr.success("เปิดการ์ดในแท็บใหม่แล้ว — กดสกรีนช็อตเพื่อบันทึก!", "🌌 Another Universe");
+    } else {
+        // Popup blocked — fallback: show inline
+        console.warn("[Another-Universe] ⚠️ Popup blocked, showing inline fallback");
+        toastr.warning("บราวเซอร์บล็อก popup — กรุณาอนุญาต popup แล้วลองใหม่", "⚠️ Another Universe");
+    }
 }
 
 // Show the story modal (works on all screen sizes)
