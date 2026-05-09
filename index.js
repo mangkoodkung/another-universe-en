@@ -1064,18 +1064,41 @@ function saveToGallery(charName, storyText, themeBadge, themeId) {
 
   // Keep max 50 entries, but NEVER delete favorites
   const MAX_ITEMS = 50;
+  const MAX_FAVORITES = 100; // Hard limit for favorites to prevent storage overflow
+
   if (gallery.length > MAX_ITEMS) {
+    const favoriteCount = gallery.filter(item => item.isFavorite).length;
+
+    // Warn if too many favorites
+    if (favoriteCount >= MAX_FAVORITES) {
+      toastr.warning('คุณมี favorites เยอะมาก (100+) กรุณาลบบางเรื่องเพื่อประสิทธิภาพที่ดีขึ้น', '⚠️ Gallery Full');
+    }
+
+    // Remove oldest non-favorite
     for (let i = gallery.length - 1; i >= 0; i--) {
       if (!gallery[i].isFavorite) {
         gallery.splice(i, 1);
-        break; // Remove only one non-favorite per save
+        break;
       }
     }
   }
 
   extension_settings[extensionName].gallery = gallery;
-  saveSettingsDebounced();
-  console.log(`[${extensionName}] 📚 Saved to gallery (${gallery.length} entries)`);
+
+  try {
+    saveSettingsDebounced();
+    console.log(`[${extensionName}] 📚 Saved to gallery (${gallery.length} entries)`);
+  } catch (error) {
+    // Handle localStorage quota exceeded
+    if (error.name === 'QuotaExceededError' || error.message.includes('quota')) {
+      console.error(`[${extensionName}] ❌ Storage quota exceeded`);
+      toastr.error('พื้นที่จัดเก็บเต็ม! กรุณาลบเรื่องเก่าใน Gallery', '🌌 Another Universe');
+      // Remove the entry we just added since it couldn't be saved
+      gallery.shift();
+    } else {
+      throw error;
+    }
+  }
 }
 
 // Delete a gallery item
@@ -2202,7 +2225,17 @@ function showStoryModal(charName, storyText, themeName, themeId = 'random') {
       toastr.success('บันทึกภาพเสร็จสิ้น!', '🌌 Another Universe');
     } catch (error) {
       console.error('Failed to generate image:', error);
-      toastr.error('ไม่สามารถสร้างรูปภาพได้ ลองอีกครั้ง', 'Error');
+      let errorMsg = 'ไม่สามารถสร้างรูปภาพได้ ลองอีกครั้ง';
+
+      if (error.message && error.message.includes('canvas')) {
+        errorMsg = 'ไม่สามารถสร้าง canvas ได้ รูปภาพอาจใหญ่เกินไป';
+      } else if (error.message && error.message.includes('blob')) {
+        errorMsg = 'ไม่สามารถแปลงรูปภาพได้ กรุณาลองใหม่';
+      } else if (error.message && error.message.includes('font')) {
+        errorMsg = 'ฟอนต์โหลดไม่สำเร็จ กรุณารอสักครู่แล้วลองใหม่';
+      }
+
+      toastr.error(errorMsg, '🌌 Another Universe');
     } finally {
       $('#au-export-container').remove();
       $('#au-render-loading').remove();
@@ -2286,6 +2319,12 @@ async function onOpenUniverseClick() {
     return;
   }
 
+  // Prevent multiple simultaneous generations
+  if (generationAbortController) {
+    toastr.warning('กำลังสร้างเรื่องราวอยู่ กรุณารอสักครู่', '🌌 Another Universe');
+    return;
+  }
+
   const context = getContext();
   if (!context.characterId && context.characterId !== 0) {
     toastr.warning('กรุณาเลือกตัวละครก่อนนะ!', '🌌 Another Universe');
@@ -2339,8 +2378,14 @@ async function onOpenUniverseClick() {
     if (error.name === 'AbortError') {
       toastr.info('ยกเลิกการสร้างเรื่องราวแล้ว', '🌌 Another Universe');
       console.log(`[${extensionName}] ⚠️ Generation cancelled by user`);
+    } else if (error.message && error.message.includes('network')) {
+      toastr.error('เกิดปัญหาการเชื่อมต่อ กรุณาตรวจสอบ API และลองใหม่อีกครั้ง', '🌌 Another Universe');
+      console.error(`[${extensionName}] ❌ Network error:`, error);
+    } else if (error.message && error.message.includes('rate limit')) {
+      toastr.error('API rate limit exceeded กรุณารอสักครู่แล้วลองใหม่', '🌌 Another Universe');
+      console.error(`[${extensionName}] ❌ Rate limit error:`, error);
     } else {
-      toastr.error(`เกิดข้อผิดพลาด: ${error.message}`, '🌌 Another Universe');
+      toastr.error(`เกิดข้อผิดพลาด: ${error.message || 'Unknown error'}`, '🌌 Another Universe');
       console.error(`[${extensionName}] ❌ Generation failed:`, error);
     }
   } finally {
