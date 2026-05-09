@@ -8,7 +8,7 @@ import { saveSettingsDebounced, generateQuietPrompt, eventSource, event_types } 
 // Detect actual folder name from ES module URL (reliable for case-sensitive environments)
 const _scriptUrl = import.meta.url || '';
 const _folderMatch = _scriptUrl.match(/\/third-party\/([^/]+)\//i);
-const extensionName = _folderMatch ? _folderMatch[1] : "Another-Universe";
+const extensionName = _folderMatch ? _folderMatch[1] : "another-universe";
 const extensionFolderPath = `scripts/extensions/third-party/${extensionName}`;
 console.log(`[Another-Universe] Detected folder name: "${extensionName}"`);
 
