@@ -746,7 +746,7 @@ function showMobileScreenshotView(type, charName, storyText, themeName, themeId 
             <div style="font-size:0.9em;line-height:1.75;color:#e8edf2;text-align:left;">${escapedStory}</div>`;
     }
 
-    // Build a complete standalone HTML page
+    // Build a complete standalone HTML page with tap-to-reveal close bar
     const pageHtml = `<!DOCTYPE html>
 <html lang="th">
 <head>
@@ -763,6 +763,7 @@ function showMobileScreenshotView(type, charName, storyText, themeName, themeId 
             display: flex;
             justify-content: center;
             padding: 24px 20px 40px;
+            -webkit-tap-highlight-color: transparent;
         }
         .card {
             max-width: 480px;
@@ -777,6 +778,41 @@ function showMobileScreenshotView(type, charName, storyText, themeName, themeId 
             padding-top: 14px;
             margin-top: 24px;
         }
+        /* Tap-to-reveal close bar */
+        .close-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            text-align: center;
+            padding: 16px 20px 24px;
+            background: linear-gradient(transparent, rgba(17,14,23,0.97));
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+            z-index: 10;
+        }
+        .close-bar.visible {
+            transform: translateY(0);
+        }
+        .close-btn {
+            padding: 10px 28px;
+            background: rgba(180,160,255,0.2);
+            border: 1px solid rgba(180,160,255,0.4);
+            border-radius: 20px;
+            color: #e0d0ff;
+            font-size: 0.9em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .close-btn:active {
+            background: rgba(180,160,255,0.4);
+        }
+        .close-hint {
+            color: rgba(200,180,255,0.5);
+            font-size: 0.75em;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
@@ -784,6 +820,41 @@ function showMobileScreenshotView(type, charName, storyText, themeName, themeId 
         ${cardContent}
         <div class="footer">Powered by <b>POPKO</b></div>
     </div>
+    <div class="close-bar" id="closeBar">
+        <div class="close-hint">กดสกรีนช็อตเพื่อบันทึก</div>
+        <button class="close-btn" id="closeBtn">✕ ปิดแท็บนี้</button>
+    </div>
+    <script>
+        let hideTimer = null;
+        const bar = document.getElementById('closeBar');
+        const btn = document.getElementById('closeBtn');
+
+        // Tap anywhere to toggle the bar
+        document.body.addEventListener('click', function(e) {
+            if (e.target === btn || btn.contains(e.target)) return;
+            if (bar.classList.contains('visible')) {
+                bar.classList.remove('visible');
+                clearTimeout(hideTimer);
+            } else {
+                bar.classList.add('visible');
+                // Auto-hide after 3 seconds
+                clearTimeout(hideTimer);
+                hideTimer = setTimeout(function() {
+                    bar.classList.remove('visible');
+                }, 3000);
+            }
+        });
+
+        // Close tab button
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            window.close();
+            // Fallback if window.close() doesn't work
+            setTimeout(function() {
+                document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100vh;color:#e0d0ff;font-size:1.1em;text-align:center;padding:20px;">ปิดแท็บนี้ได้เลยนะ! 👋</div>';
+            }, 300);
+        });
+    <\\/script>
 </body>
 </html>`;
 
