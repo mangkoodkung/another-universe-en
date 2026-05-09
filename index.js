@@ -662,7 +662,7 @@ function showMobileCardPopup(type, charName, storyText, themeName, themeId = "ra
             </div>
             <div class="au-universal-popup-footer" style="display:flex; flex-direction:row; justify-content:center; gap:8px; padding:12px; border-top:1px solid rgba(130, 160, 220, 0.2);">
                 <button id="au-mcard-back" style="flex:1; padding:8px 4px; border-radius:8px; background:rgba(255,255,255,0.1); color:#fff; border:1px solid rgba(255,255,255,0.2); font-size:0.9em; cursor:pointer;">◀ Back</button>
-                ${onDownload ? `<button id="au-mcard-download" style="flex:1; padding:8px 4px; border-radius:8px; background:rgba(255,255,255,0.1); color:#fff; border:1px solid rgba(255,255,255,0.2); font-size:0.9em; cursor:pointer;">📥 Save Image</button>` : ''}
+                ${onDownload ? `<button id="au-mcard-download" style="flex:1; padding:8px 4px; border-radius:8px; background:rgba(255,255,255,0.1); color:#fff; border:1px solid rgba(255,255,255,0.2); font-size:0.9em; cursor:pointer;">📸 ดูการ์ดเต็มจอ</button>` : ''}
             </div>
         </div>
     </div>`;
@@ -748,7 +748,8 @@ function showMobileScreenshotView(type, charName, storyText, themeName, themeId 
 
     const viewHtml = `
     <div id="au-screenshot-overlay" style="position:fixed;top:0;left:0;right:0;bottom:0;width:100vw;height:100vh;background:#110e17;z-index:999999;overflow-y:auto;-webkit-overflow-scrolling:touch;">
-        <div style="padding:24px 20px;text-align:center;max-width:480px;margin:0 auto;">
+        <div id="au-screenshot-close-top" style="position:fixed;top:16px;right:16px;width:36px;height:36px;background:rgba(255,255,255,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;cursor:pointer;z-index:1000001;backdrop-filter:blur(4px);">✕</div>
+        <div style="padding:24px 20px;text-align:center;max-width:480px;margin:0 auto;padding-top:40px;">
             ${cardContent}
             <div style="text-align:center;font-size:0.75em;color:rgba(130,120,160,0.5);border-top:1px dashed rgba(130,160,220,0.15);padding-top:14px;margin-top:24px;">
                 Powered by <b>POPKO</b>
@@ -763,7 +764,7 @@ function showMobileScreenshotView(type, charName, storyText, themeName, themeId 
     document.body.insertAdjacentHTML('beforeend', viewHtml);
 
     // Bind close
-    $("#au-screenshot-close").on("click", () => {
+    $("#au-screenshot-close, #au-screenshot-close-top").on("click", () => {
         console.log("[Another-Universe] 📱 Screenshot view closed");
         $("#au-screenshot-overlay").remove();
     });
