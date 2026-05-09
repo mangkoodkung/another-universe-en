@@ -746,7 +746,7 @@ function showMobileScreenshotView(type, charName, storyText, themeName, themeId 
             <div style="font-size:0.9em;line-height:1.75;color:#e8edf2;text-align:left;">${escapedStory}</div>`;
     }
 
-    // Build a complete standalone HTML page with tap-to-reveal close bar
+    // Build standalone HTML page — NO script tags (mobile browsers block them in document.write)
     const pageHtml = `<!DOCTYPE html>
 <html lang="th">
 <head>
@@ -756,75 +756,43 @@ function showMobileScreenshotView(type, charName, storyText, themeName, themeId 
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            background: #110e17;
-            color: #f4f0ff;
+            background: #110e17; color: #f4f0ff;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            padding: 24px 20px 40px;
-            -webkit-tap-highlight-color: transparent;
+            min-height: 100vh; display: flex; justify-content: center;
+            padding: 24px 20px 40px; -webkit-tap-highlight-color: transparent;
         }
-        .card {
-            max-width: 480px;
-            width: 100%;
-            text-align: center;
-        }
+        .card { max-width: 480px; width: 100%; text-align: center; }
         .footer {
-            text-align: center;
-            font-size: 0.75em;
-            color: rgba(130,120,160,0.5);
-            border-top: 1px dashed rgba(130,160,220,0.15);
-            padding-top: 14px;
-            margin-top: 24px;
+            text-align: center; font-size: 0.75em; color: rgba(130,120,160,0.5);
+            border-top: 1px dashed rgba(130,160,220,0.15); padding-top: 14px; margin-top: 24px;
         }
+        .back-page {
+            display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: #110e17; z-index: 999;
+            justify-content: center; align-items: center; flex-direction: column;
+        }
+        .back-page.active { display: flex; }
         .back-btn {
-            position: fixed; top: 50%; left: 50%;
-            transform: translate(-50%, -50%) scale(0.9);
-            padding: 14px 32px;
-            background: rgba(30, 24, 50, 0.92);
-            border: 1px solid rgba(180,160,255,0.35);
-            border-radius: 24px; color: #e0d0ff;
-            font-size: 1em; font-weight: 600; cursor: pointer;
-            z-index: 100; opacity: 0; pointer-events: none;
-            transition: opacity 0.25s ease, transform 0.25s ease;
+            padding: 16px 36px; background: rgba(30, 24, 50, 0.92);
+            border: 1px solid rgba(180,160,255,0.35); border-radius: 24px;
+            color: #e0d0ff; font-size: 1.1em; font-weight: 600; cursor: pointer;
             backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
             box-shadow: 0 4px 20px rgba(0,0,0,0.5);
         }
-        .back-btn.show { opacity: 1; pointer-events: auto; transform: translate(-50%, -50%) scale(1); }
+        .back-hint {
+            margin-top: 16px; color: rgba(200,180,255,0.4); font-size: 0.8em;
+        }
     </style>
 </head>
 <body>
-    <div class="card">
+    <div class="card" id="cardView">
         ${cardContent}
         <div class="footer">Powered by <b>POPKO</b></div>
     </div>
-    <button class="back-btn" id="backBtn">◀ ย้อนกลับ</button>
-    <script>
-        var hideTimer = null;
-        var btn = document.getElementById('backBtn');
-        document.body.addEventListener('click', function(e) {
-            if (e.target === btn) return;
-            if (btn.classList.contains('show')) {
-                btn.classList.remove('show');
-                clearTimeout(hideTimer);
-            } else {
-                btn.classList.add('show');
-                clearTimeout(hideTimer);
-                hideTimer = setTimeout(function() { btn.classList.remove('show'); }, 3000);
-            }
-        });
-        btn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            if (window.history.length > 1) { window.history.back(); }
-            else {
-                window.close();
-                setTimeout(function() {
-                    document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100vh;color:#e0d0ff;font-size:1.1em;text-align:center;padding:20px;">ปิดแท็บนี้ได้เลยนะ! 👋</div>';
-                }, 300);
-            }
-        });
-    <\\/script>
+    <div class="back-page" id="backPage">
+        <button class="back-btn" id="backBtn">◀ ย้อนกลับ</button>
+        <div class="back-hint">กลับไปยัง SillyTavern</div>
+    </div>
 </body>
 </html>`;
 
@@ -834,10 +802,43 @@ function showMobileScreenshotView(type, charName, storyText, themeName, themeId 
         newTab.document.write(pageHtml);
         newTab.document.close();
         console.log("[Another-Universe] 📱 Screenshot page opened in new tab");
+
+        // Attach event listeners from parent window (avoids mobile script execution issues)
+        const attachEvents = () => {
+            const doc = newTab.document;
+            const cardView = doc.getElementById('cardView');
+            const backPage = doc.getElementById('backPage');
+            const backBtn = doc.getElementById('backBtn');
+
+            if (!cardView || !backPage || !backBtn) {
+                console.warn("[Another-Universe] ⚠️ Could not find elements in new tab");
+                return;
+            }
+
+            // Tap the card → show back page
+            doc.body.addEventListener('click', function(e) {
+                if (backPage.classList.contains('active')) return;
+                if (e.target === backBtn) return;
+                cardView.style.display = 'none';
+                backPage.classList.add('active');
+            });
+
+            // Back button → go back or close
+            backBtn.addEventListener('click', function() {
+                if (newTab.history.length > 1) {
+                    newTab.history.back();
+                } else {
+                    newTab.close();
+                }
+            });
+        };
+
+        // Small delay to ensure DOM is ready in the new tab
+        setTimeout(attachEvents, 200);
+
         toastr.success("เปิดการ์ดในแท็บใหม่แล้ว — กดสกรีนช็อตเพื่อบันทึก!", "🌌 Another Universe");
     } else {
-        // Popup blocked — fallback: show inline
-        console.warn("[Another-Universe] ⚠️ Popup blocked, showing inline fallback");
+        console.warn("[Another-Universe] ⚠️ Popup blocked");
         toastr.warning("บราวเซอร์บล็อก popup — กรุณาอนุญาต popup แล้วลองใหม่", "⚠️ Another Universe");
     }
 }
