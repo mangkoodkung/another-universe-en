@@ -957,11 +957,21 @@ function showStoryModal(charName, storyText, themeName, themeId = "random") {
                 scale: 2, logging: false, useCORS: true, allowTaint: true,
                 x: 0, y: 0, scrollX: 0, scrollY: 0
             });
-            const imgData = canvas.toDataURL("image/png");
+            console.log(`[Another-Universe] 📸 Rendering ${type} card image...`);
+
+            // Convert canvas to Blob (avoids data URL navigation issues)
+            const blob = await new Promise(resolve => canvas.toBlob(resolve, "image/png"));
+            if (!blob) {
+                throw new Error("Failed to convert canvas to blob");
+            }
+            console.log(`[Another-Universe] 📸 Blob created: ${(blob.size / 1024).toFixed(1)} KB`);
+
             if (isMobileDevice) {
+                // Mobile: show image for long-press save
+                const blobUrl = URL.createObjectURL(blob);
                 const popupHtml = `
                 <div id="au-mobile-save-popup" style="position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(10,5,20,0.95); z-index:999999; display:flex; flex-direction:column; justify-content:center; align-items:center; backdrop-filter:blur(10px);">
-                    <img src="${imgData}" style="max-width:90%; max-height:75vh; border-radius:16px; box-shadow:0 10px 40px rgba(0,0,0,0.5);" />
+                    <img src="${blobUrl}" style="max-width:90%; max-height:75vh; border-radius:16px; box-shadow:0 10px 40px rgba(0,0,0,0.5);" />
                     <div style="color:#fff; margin-top:20px; font-size:16px; text-align:center;">
                         👇 <b>แตะค้างที่รูปภาพ</b> แล้วเลือก <i>บันทึกรูปภาพ</i><br>
                         <span style="font-size:0.8em; opacity:0.7;">(Long press image to save)</span>
@@ -969,15 +979,25 @@ function showStoryModal(charName, storyText, themeName, themeId = "random") {
                     <button id="au-mobile-save-close" style="margin-top:24px; padding:10px 24px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.3); border-radius:20px; color:#fff; font-size:16px; cursor:pointer;">✕ ปิด (Close)</button>
                 </div>`;
                 document.body.insertAdjacentHTML('beforeend', popupHtml);
-                $("#au-mobile-save-close").on("click", () => $("#au-mobile-save-popup").remove());
+                $("#au-mobile-save-close").on("click", () => {
+                    $("#au-mobile-save-popup").remove();
+                    URL.revokeObjectURL(blobUrl);
+                });
             } else {
+                // Desktop: trigger file download via blob URL (NOT data URL — data URLs cause page reload)
+                const blobUrl = URL.createObjectURL(blob);
                 const a = document.createElement("a");
                 a.style.display = "none";
-                a.href = imgData;
+                a.href = blobUrl;
                 a.download = `Another_Universe_${type}_${charName.replace(/[^a-z0-9]/gi, '_')}.png`;
                 document.body.appendChild(a);
                 a.click();
-                setTimeout(() => document.body.removeChild(a), 100);
+                // Clean up after a short delay
+                setTimeout(() => {
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(blobUrl);
+                }, 200);
+                console.log(`[Another-Universe] 📸 Download triggered for ${a.download}`);
             }
             toastr.success("บันทึกภาพเสร็จสิ้น!", "🌌 Another Universe");
         } catch (error) {
