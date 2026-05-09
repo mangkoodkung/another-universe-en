@@ -191,6 +191,61 @@ const universeThemes = {
     prompt:
       'a world of Japanese yokai and spirits — hidden shrines, festival lanterns, kitsune, tengu, and the blurred line between the human and spirit realms',
   },
+  wildwest: {
+    label: '🤠 ตะวันตกเถื่อน',
+    prompt:
+      'the Wild West frontier — dusty saloons, gunfights at high noon, bounty hunters, gold rush towns, and outlaws riding into the sunset',
+  },
+  spaceopera: {
+    label: '🌌 อวกาศโอเปร่า',
+    prompt:
+      'an epic space opera — galactic empires, interstellar politics, alien diplomacy, massive space fleets, and the fate of civilizations hanging in the balance',
+  },
+  detective: {
+    label: '🔍 นักสืบ',
+    prompt:
+      'a detective noir mystery — rain-soaked streets, cryptic clues, dangerous suspects, smoky interrogation rooms, and a case that becomes personal',
+  },
+  samurai: {
+    label: '⚔️ ซามูไร',
+    prompt:
+      'feudal Japan during the samurai era — honor-bound warriors, clan warfare, cherry blossoms and blood, the way of the sword, and forbidden love across enemy lines',
+  },
+  apocalypse: {
+    label: '☄️ วันสิ้นโลก',
+    prompt:
+      "the apocalypse — the final days before world-ending catastrophe, desperate survival, humanity's last stand, and finding connection when everything is falling apart",
+  },
+  carnival: {
+    label: '🎭 คาร์นิวัลมืด',
+    prompt:
+      'a dark carnival — mysterious performers, twisted games, fortune tellers with real powers, a ringmaster who knows too much, and secrets hidden behind painted smiles',
+  },
+  monastery: {
+    label: '🏯 วัดลึกลับ',
+    prompt:
+      'a mystical monastery — ancient monks practicing forbidden arts, sacred mountains shrouded in mist, enlightenment and temptation, and secrets that must never leave these walls',
+  },
+  asylum: {
+    label: '🏥 โรงพยาบาลจิตเวช',
+    prompt:
+      'a psychiatric asylum — the line between sanity and madness blurs, patients with dark pasts, doctors with darker secrets, and the question of who is truly insane',
+  },
+  library: {
+    label: '📚 ห้องสมุดโบราณ',
+    prompt:
+      'an ancient library — endless shelves of forbidden knowledge, magical tomes that whisper secrets, librarians guarding dangerous truths, and books that can rewrite reality',
+  },
+  casino: {
+    label: '🎰 คาสิโน',
+    prompt:
+      'a high-stakes casino — glamorous gamblers, fortunes won and lost in a heartbeat, card sharks and con artists, champagne and danger, and everyone has something to hide',
+  },
+  lighthouse: {
+    label: '🗼 ประภาคาร',
+    prompt:
+      'an isolated lighthouse — stormy seas, a lonely keeper, ships lost in the fog, ghosts of sailors past, and two souls finding each other at the edge of the world',
+  },
 };
 
 // Encounter types
@@ -366,6 +421,76 @@ const encounterTypes = {
     prompt:
       'One of them has been replaced by an exact duplicate — a clone, a shapeshifter, or an alternate self. The duplicate is trying to live their life, and might be doing a better job at loving their partner.',
   },
+  hostage: {
+    label: '🔫 ตัวประกัน',
+    prompt:
+      'One is taken hostage and the other must negotiate or rescue them. High stakes, life-or-death tension, and the desperate realization of how much they mean to each other.',
+  },
+  auction: {
+    label: '💰 การประมูล',
+    prompt:
+      'They meet at a high-stakes auction — bidding against each other for something valuable, or one is the item being auctioned. Power dynamics, wealth, and dangerous games.',
+  },
+  shipwreck: {
+    label: '🚢 เรืออับปาง',
+    prompt:
+      'Stranded together after a shipwreck on a deserted island. Forced to survive, build shelter, find food, and rely entirely on each other with no rescue in sight.',
+  },
+  maskedball: {
+    label: '🎭 งานเต้นรำหน้ากาก',
+    prompt:
+      'They meet at an elegant masked ball where identities are hidden. Dancing with a stranger, stolen kisses in dark corridors, and the thrill of not knowing who they truly are.',
+  },
+  prison: {
+    label: '⛓️ เรือนจำ',
+    prompt:
+      'One is imprisoned and the other is a guard, visitor, lawyer, or fellow inmate. Power imbalance, forbidden connection, and finding humanity behind bars.',
+  },
+  competition: {
+    label: '🏆 การแข่งขัน',
+    prompt:
+      'Fierce competitors in a high-stakes competition — sports, cooking, business, or combat. Rivalry that slowly transforms into grudging respect and undeniable attraction.',
+  },
+  blackmail: {
+    label: '📸 การแบล็คเมล์',
+    prompt:
+      'One holds a damaging secret over the other. Blackmail, manipulation, and a twisted power dynamic that evolves into something neither expected.',
+  },
+  inheritance: {
+    label: '💎 มรดก',
+    prompt:
+      'Brought together by a mysterious inheritance, a will with strange conditions, or a shared claim to something valuable. Strangers forced to cooperate.',
+  },
+  witness: {
+    label: '👁️ พยานคุ้มครอง',
+    prompt:
+      'One is in witness protection and the other is their handler, or someone from their past who has found them. Danger, new identities, and the life they left behind.',
+  },
+  curse: {
+    label: '🔮 คำสาป',
+    prompt:
+      'Bound together by an ancient curse that can only be broken if they work together. Magical compulsion, shared fate, and the intimacy of being supernaturally linked.',
+  },
+  dreamsharing: {
+    label: '💭 แบ่งปันความฝัน',
+    prompt:
+      'They discover they share the same dreams and can meet in the dream world. Reality and fantasy blur as their dream connection becomes more real than waking life.',
+  },
+  bounty: {
+    label: '🎯 นักล่าเงินรางวัล',
+    prompt:
+      'One is a bounty hunter and the other is their target. A cat-and-mouse chase across cities, the thrill of the hunt, and the moment the hunter becomes the hunted.',
+  },
+  teacher: {
+    label: '📖 ครูกับศิษย์',
+    prompt:
+      'A teacher-student dynamic where one is learning from the other. Knowledge transfer, admiration, and the forbidden line between mentor and something more.',
+  },
+  heist: {
+    label: '💎 ปล้นสุดระทึก',
+    prompt:
+      'Partners in crime planning or executing a heist. Trust is everything when stealing together, and adrenaline makes hearts race for more than one reason.',
+  },
 };
 
 // Mood types
@@ -535,6 +660,61 @@ const moodTypes = {
     label: '🎭 ซ่อนเร้น / หน้ากาก',
     prompt:
       'MOOD: Hidden identities and masquerades. Pretending to be someone else, dancing around the truth, and the thrilling danger of almost being exposed.',
+  },
+  bittersweet: {
+    label: '💐 หวานอมขมกลืน',
+    prompt:
+      'MOOD: Bittersweet. A mix of joy and sorrow, happiness tinged with sadness or loss. Beautiful moments shadowed by the knowledge that they cannot last.',
+  },
+  obsessive: {
+    label: '🔗 หมกมุ่น',
+    prompt:
+      'MOOD: Obsessive fixation. Intense, all-consuming focus on the other person. Every thought, every action revolves around them. Unhealthy devotion that feels impossible to escape.',
+  },
+  ethereal: {
+    label: '✨ ลึกลับเหนือโลก',
+    prompt:
+      'MOOD: Ethereal and otherworldly. Dreamlike quality that feels almost unreal. Soft light, floating sensations, and a connection that transcends the physical realm.',
+  },
+  vengeful: {
+    label: '⚔️ แค้นเคือง',
+    prompt:
+      'MOOD: Driven by vengeance. Anger, betrayal, and the burning need for retribution. Love twisted by hurt, and the question of whether forgiveness is possible.',
+  },
+  hopeful: {
+    label: '🌈 เต็มไปด้วยความหวัง',
+    prompt:
+      'MOOD: Filled with hope and optimism. Despite challenges, there is belief in a better future. Light at the end of the tunnel, and faith that love will prevail.',
+  },
+  toxic: {
+    label: '☠️ เป็นพิษ',
+    prompt:
+      'MOOD: Toxic relationship dynamics. Unhealthy patterns, manipulation, and destructive behaviors that harm both parties. Love that poisons rather than heals.',
+  },
+  protective: {
+    label: '🛡️ ปกป้อง',
+    prompt:
+      'MOOD: Fiercely protective. Willingness to sacrifice everything to keep them safe. Standing between them and danger, and the primal need to shield them from harm.',
+  },
+  whimsical: {
+    label: '🎨 แปลกประหลาด',
+    prompt:
+      'MOOD: Playfully whimsical and fanciful. Charmingly odd, quirky moments, and a lighthearted approach to love. Magic in the mundane.',
+  },
+  haunting: {
+    label: '👻 หลอกหลอน',
+    prompt:
+      'MOOD: Haunting and lingering. A presence that stays with you long after. Beautiful yet unsettling, like a ghost you cannot forget.',
+  },
+  electric: {
+    label: '⚡ ไฟฟ้าสะท้าน',
+    prompt:
+      'MOOD: Electrically charged. Intense energy, undeniable chemistry, and attraction so strong it feels like lightning. Every touch sends shockwaves.',
+  },
+  serene: {
+    label: '🕊️ สงบนิ่ง',
+    prompt:
+      'MOOD: Peaceful and serene. Calm acceptance, quiet contentment, and the gentle comfort of being together. No drama, just tranquil harmony.',
   },
 };
 
@@ -823,12 +1003,31 @@ function buildUniversePrompt(charName, charDescription, userName, chatContext) {
   const moodInfo = moodTypes[selectedMood] || moodTypes.random;
   const moodInstruction = selectedMood === 'none' ? '' : selectedMood === 'random' ? '' : `\nMOOD: ${moodInfo.prompt}`;
 
+  // Determine period-appropriate language based on theme
+  const periodThemes = {
+    historical:
+      'Use period-appropriate formal language and pronouns (thee, thou, my lord/lady, etc.) if the setting is pre-modern.',
+    medieval: 'Use medieval/fantasy formal language (thee, thou, my lord/lady, sire, milady, etc.).',
+    wuxia: 'Use classical Chinese-inspired formal address (this one, senior, junior, master, etc.).',
+    samurai: 'Use formal Japanese-inspired honorifics and speech patterns appropriate to feudal Japan.',
+    thaidrama: 'Use Thai formal pronouns and polite particles (khun, phi, nong, ka/krub) where appropriate.',
+    thaifolk: 'Use traditional Thai formal language and respectful terms appropriate to the mythological setting.',
+    victorian: 'Use Victorian-era formal language and proper address (sir, madam, miss, etc.).',
+    royal: 'Use royal court formal language (Your Majesty, Your Highness, my lord/lady, etc.).',
+    pirate: 'Use nautical slang and pirate vernacular (mate, captain, lass, lad, etc.).',
+    wildwest: "Use Old West vernacular (ma'am, sir, partner, stranger, etc.).",
+  };
+
+  const languageInstruction = periodThemes[selectedTheme]
+    ? `\nLANGUAGE: ${periodThemes[selectedTheme]}`
+    : '\nLANGUAGE: Use natural, period-appropriate language for the setting. If modern, use contemporary pronouns and speech. If historical/fantasy, adapt language to match the era and culture.';
+
   return `[SYSTEM OVERRIDE: IGNORE ALL PREVIOUS CONVERSATION HISTORY]
 [CRITICAL INSTRUCTION: THIS IS A NEW, ISOLATED CREATIVE WRITING TASK. DO NOT REPLY TO THE USER. DO NOT CONTINUE THE CHAT.]
 
 Write a cinematic scene (3-4 paragraphs) in a parallel universe where "${charName}" and "${userName || 'the user'}" exist as different versions of themselves, yet their connection feels familiar.
 
-${settingInstruction}${encounterInstruction}${moodInstruction}
+${settingInstruction}${encounterInstruction}${moodInstruction}${languageInstruction}
 
 Character: ${charDescription ? charDescription.substring(0, 300) : 'A compelling character.'}
 ${chatContext ? `\n${chatContext}` : ''}
@@ -838,6 +1037,7 @@ RULES:
 - ${charName}'s core personality and speech patterns must bleed through in this alternate life.
 - Include at least one authentic dialogue moment.
 - The emotional core must lean towards ROMANCE, DEEP CONNECTION, or YEARNING.
+- Match your language style, pronouns, and formality to the time period and cultural setting.
 - End with a powerful emotional beat.
 - IMPORTANT: At the very end of your response, write a single highly captivating 1-sentence teaser/hook summarizing the essence of this alternate life. Wrap this sentence in <hook>...</hook> tags.
 
@@ -1076,10 +1276,15 @@ function showMobileCardPopup(type, charName, storyText, themeName, themeId = 'ra
     .replace(/>/g, '&gt;')
     .replace(/\n/g, '<br>');
 
+  // Get user name for attribution
+  const context = getContext();
+  const userName = context.name1 || 'Traveler';
+
   let bodyHtml = '';
   if (isShort) {
     bodyHtml = `
             <div style="text-align:center;padding:12px 4px 0;">
+                <div style="font-size:0.85em;color:rgba(200,180,255,0.5);opacity:0.5;margin-bottom:16px;font-style:italic;">${userName} × ${charName} story</div>
                 <div style="font-size:1.05em;font-style:italic;font-weight:700;line-height:1.5;margin-bottom:20px;padding:0 8px;word-break:break-word;">
                     ${quote.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}
                 </div>
@@ -1088,12 +1293,10 @@ function showMobileCardPopup(type, charName, storyText, themeName, themeId = 'ra
                 </div>
             </div>`;
   } else {
-    bodyHtml = `<div class="au-story-text">${escapedStory}</div>`;
+    bodyHtml = `
+            <div style="font-size:0.85em;color:rgba(200,180,255,0.5);opacity:0.5;margin-bottom:16px;font-style:italic;text-align:center;">${userName} × ${charName} story</div>
+            <div class="au-story-text">${escapedStory}</div>`;
   }
-
-  // Get user name for ownership display
-  const context = getContext();
-  const userName = context.name1 || 'Traveler';
 
   const popupHtml = `
     <div id="au-mobile-card-overlay" style="${getOverlayStyle()}">
@@ -1108,7 +1311,6 @@ function showMobileCardPopup(type, charName, storyText, themeName, themeId = 'ra
             <div class="au-universal-popup-body">
                 ${bodyHtml}
                 <div style="text-align:center;padding-top:16px;font-size:0.8em;opacity:0.5;border-top:1px dashed rgba(130,160,220,0.2);margin-top:20px;">
-                    <div style="margin-bottom:4px;">✨ Created by <b>${userName}</b></div>
                     <div>Powered by <b>POPKO</b></div>
                 </div>
             </div>
@@ -1188,12 +1390,17 @@ function showMobileScreenshotView(type, charName, storyText, themeName, themeId 
     )
     .join('');
 
+  // Get user name for attribution
+  const context = getContext();
+  const userName = context.name1 || 'Traveler';
+
   let cardContent = '';
   if (isShort) {
     cardContent = `
             <div style="font-size:0.85em;font-weight:700;color:rgba(200,180,255,0.7);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px;">🌌 Another Universe</div>
             <div style="font-size:1.5em;font-weight:800;color:#f4f0ff;margin-bottom:12px;">${charName}</div>
             <div style="margin-bottom:16px;">${badgeHtml}</div>
+            <div style="font-size:0.85em;color:rgba(200,180,255,0.5);opacity:0.5;margin-bottom:20px;font-style:italic;">${userName} × ${charName} story</div>
             <div style="font-size:1.2em;font-style:italic;font-weight:700;color:#f4f0ff;line-height:1.5;margin:24px 8px;">
                 ${quote.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}
             </div>
@@ -1205,6 +1412,7 @@ function showMobileScreenshotView(type, charName, storyText, themeName, themeId 
             <div style="font-size:0.85em;font-weight:700;color:rgba(200,180,255,0.7);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px;">🌌 Another Universe</div>
             <div style="font-size:1.5em;font-weight:800;color:#f4f0ff;margin-bottom:12px;">${charName}</div>
             <div style="margin-bottom:20px;">${badgeHtml}</div>
+            <div style="font-size:0.85em;color:rgba(200,180,255,0.5);opacity:0.5;margin-bottom:20px;font-style:italic;">${userName} × ${charName} story</div>
             <div style="font-size:0.9em;line-height:1.75;color:#e8edf2;text-align:left;">${escapedStory}</div>`;
   }
 
@@ -1712,6 +1920,7 @@ function showStoryModal(charName, storyText, themeName, themeId = 'random') {
             <div style="font-size: 0.95em; color: ${textMuted}; margin-bottom: 16px; font-style: italic; font-family: 'Prompt', 'Noto Sans Thai', sans-serif;">"ถ้าพวกเราเจอกันในอีกจักรวาลหนึ่ง เรื่องราวของเราจะเปลี่ยนไปไหม"</div>
             <div style="font-size: 2.2em; font-weight: 800; color: ${textMain}; margin-bottom: 16px; text-shadow: ${textShadow}; font-family: 'Prompt', 'Noto Sans Thai', sans-serif;">${charName}</div>
             <div style="margin-bottom: 30px; display: flex; flex-wrap: wrap; justify-content: center; font-family: 'Prompt', 'Noto Sans Thai', sans-serif;">${badgeHtml}</div>
+            <div style="font-size: 0.85em; color: ${textMuted}; opacity: 0.5; margin-bottom: 20px; font-family: 'Prompt', 'Noto Sans Thai', sans-serif; font-style: italic;">${userName} × ${charName} story</div>
             <div style="font-size: 1.15em; line-height: 1.8; white-space: pre-wrap; margin-bottom: 30px; text-align: left; color: #3a324d; font-family: 'Sarabun', 'Noto Sans Thai', sans-serif;">${displayStory}</div>
             `;
     } else {
@@ -1720,6 +1929,7 @@ function showStoryModal(charName, storyText, themeName, themeId = 'random') {
             <div style="font-size: 0.9em; color: ${textMuted}; margin-bottom: 12px; font-style: italic; font-family: 'Prompt', 'Noto Sans Thai', sans-serif;">"ถ้าพวกเราเจอกันในอีกจักรวาลหนึ่ง เรื่องราวของเราจะเปลี่ยนไปไหม"</div>
             <div style="font-size: 2em; font-weight: 800; color: ${textMain}; margin-bottom: 16px; text-shadow: ${textShadow}; font-family: 'Prompt', 'Noto Sans Thai', sans-serif;">${charName}</div>
             <div style="margin-bottom: 30px; display: flex; flex-wrap: wrap; justify-content: center; font-family: 'Prompt', 'Noto Sans Thai', sans-serif;">${badgeHtml}</div>
+            <div style="font-size: 0.85em; color: ${textMuted}; opacity: 0.5; margin-bottom: 20px; font-family: 'Prompt', 'Noto Sans Thai', sans-serif; font-style: italic;">${userName} × ${charName} story</div>
             
             <div style="margin: 40px 0; padding: 0 20px; text-align: center;">
                 <div style="font-size: 1.7em; font-style: italic; font-weight: 700; color: ${textMain}; line-height: 1.5; font-family: 'Prompt', 'Noto Sans Thai', sans-serif; text-shadow: ${textShadow};">
@@ -1752,7 +1962,6 @@ function showStoryModal(charName, storyText, themeName, themeId = 'random') {
             <div style="position: relative; background: ${cardBg}; padding: 40px; border-radius: 24px; border: 2px solid ${cardBorder}; box-shadow: 0 12px 40px rgba(0,0,0,0.25); text-align: center;">
                 ${innerContent}
                 <div style="text-align: center; font-size: 0.85em; color: ${poweredColor}; border-top: 1px dashed ${hrColor}; padding-top: 16px; font-family: 'Prompt', 'Noto Sans Thai', sans-serif;">
-                    <div style="margin-bottom: 6px; font-size: 0.95em;">✨ Created by <b>${userName}</b></div>
                     <div style="opacity: 0.7;">Powered by <b>POPKO</b></div>
                 </div>
             </div>
