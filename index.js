@@ -746,19 +746,20 @@ function showMobileScreenshotView(type, charName, storyText, themeName, themeId 
             <div style="font-size:0.9em;line-height:1.75;color:#e8edf2;text-align:left;">${escapedStory}</div>`;
     }
 
-    // Build standalone HTML page — NO script tags (mobile browsers block them in document.write)
+    // Build standalone HTML page — NO script tags in document.write (we inject them later)
     const pageHtml = `<!DOCTYPE html>
 <html lang="th">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🌌 Another Universe — ${charName}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;600;700&family=Prompt:wght@400;600;700&family=Sarabun:wght@400;600&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             background: #110e17; color: #f4f0ff;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-            min-height: 100vh; display: flex; justify-content: center;
+            min-height: 100vh; display: flex; justify-content: center; align-items: flex-start;
             padding: 24px 20px 40px; -webkit-tap-highlight-color: transparent;
         }
         .card { max-width: 480px; width: 100%; text-align: center; }
@@ -777,17 +778,40 @@ function showMobileScreenshotView(type, charName, storyText, themeName, themeId 
             border: 1px solid rgba(180,160,255,0.35); border-radius: 24px;
             color: #e0d0ff; font-size: 1.1em; font-weight: 600; cursor: pointer;
             backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5); margin-top: 24px;
         }
         .back-hint {
             margin-top: 16px; color: rgba(200,180,255,0.4); font-size: 0.8em;
         }
+        #loadingOverlay {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: #110e17; z-index: 1000;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+        }
+        .spinner { font-size: 3.5em; animation: spin 1s linear infinite; margin-bottom: 24px; }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+        #imageContainer { display: none; text-align: center; width: 100%; max-width: 480px; }
+        #imageContainer img { width: 100%; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
     </style>
 </head>
 <body>
+    <div id="loadingOverlay">
+        <div class="spinner">⏳</div>
+        <div style="color: #d0c8e8; font-weight: bold; letter-spacing: 1px;">กำลังสร้างรูปภาพ...</div>
+    </div>
     <div class="card" id="cardView">
         ${cardContent}
         <div class="footer">Powered by <b>POPKO</b></div>
+    </div>
+    <div id="imageContainer">
+        <img id="renderedImage" src="" />
+        <div style="margin-top: 24px; font-size: 1.1em; color: #fff; font-weight: bold;">
+            👇 แตะค้างที่รูปภาพ แล้วเลือก "บันทึกรูปภาพ"
+        </div>
+        <div style="margin-top: 8px; font-size: 0.8em; color: rgba(200,180,255,0.7);">
+            (Long press image to save)
+        </div>
+        <button class="back-btn" id="imgBackBtn">◀ ย้อนกลับ</button>
     </div>
     <div class="back-page" id="backPage">
         <button class="back-btn" id="backBtn">◀ ย้อนกลับ</button>
@@ -804,43 +828,82 @@ function showMobileScreenshotView(type, charName, storyText, themeName, themeId 
         console.log("[Another-Universe] 📱 Screenshot page opened in new tab");
 
         // Attach event listeners from parent window (avoids mobile script execution issues)
-        const attachEvents = () => {
+        const attachEvents = async () => {
             const doc = newTab.document;
             const cardView = doc.getElementById('cardView');
             const backPage = doc.getElementById('backPage');
             const backBtn = doc.getElementById('backBtn');
+            const imgBackBtn = doc.getElementById('imgBackBtn');
+            const loadingOverlay = doc.getElementById('loadingOverlay');
+            const imageContainer = doc.getElementById('imageContainer');
+            const renderedImage = doc.getElementById('renderedImage');
 
-            if (!cardView || !backPage || !backBtn) {
+            if (!cardView) {
                 console.warn("[Another-Universe] ⚠️ Could not find elements in new tab");
                 return;
             }
 
-            // Tap the card → show back page
+            // Back button handlers
+            const goBack = () => {
+                if (newTab.history.length > 1) { newTab.history.back(); }
+                else { newTab.close(); }
+            };
+            if (backBtn) backBtn.addEventListener('click', goBack);
+            if (imgBackBtn) imgBackBtn.addEventListener('click', goBack);
+
+            // Tap the card → show back page (only used if fallback)
             doc.body.addEventListener('click', function(e) {
                 if (backPage.classList.contains('active')) return;
-                if (e.target === backBtn) return;
+                if (e.target === backBtn || e.target === imgBackBtn || e.target === renderedImage) return;
+                if (imageContainer.style.display === 'block') return; // Don't trigger if image is showing
                 cardView.style.display = 'none';
                 backPage.classList.add('active');
             });
 
-            // Back button → go back or close
-            backBtn.addEventListener('click', function() {
-                if (newTab.history.length > 1) {
-                    newTab.history.back();
-                } else {
-                    newTab.close();
+            try {
+                // Wait a bit for fonts to load in the new tab
+                await new Promise(resolve => setTimeout(resolve, 600));
+
+                // Dynamically load html2canvas
+                if (!newTab.html2canvas) {
+                    await new Promise((resolve, reject) => {
+                        const script = doc.createElement('script');
+                        script.src = "https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js";
+                        script.onload = resolve;
+                        script.onerror = reject;
+                        doc.head.appendChild(script);
+                    });
                 }
-            });
+
+                // Render the card using html2canvas inside the new tab
+                const canvas = await newTab.html2canvas(cardView, {
+                    backgroundColor: "#110e17",
+                    scale: 2, logging: false, useCORS: true, allowTaint: true
+                });
+
+                // Convert to blob
+                const blob = await new Promise(resolve => canvas.toBlob(resolve, "image/png"));
+                const blobUrl = newTab.URL.createObjectURL(blob);
+
+                // Show image
+                renderedImage.src = blobUrl;
+                cardView.style.display = 'none';
+                loadingOverlay.style.display = 'none';
+                imageContainer.style.display = 'block';
+                console.log("[Another-Universe] 📸 Image rendered successfully in new tab!");
+
+            } catch (err) {
+                console.error("[Another-Universe] ❌ Failed to render image in new tab", err);
+                // Fallback: hide loading, show HTML card, user can screenshot
+                loadingOverlay.style.display = 'none';
+                toastr.warning("สร้างรูปภาพไม่สำเร็จ แตะที่หน้าจอเพื่อย้อนกลับ หรือแคปหน้าจอแทน", "Another Universe");
+            }
         };
 
-        // Small delay to ensure DOM is ready in the new tab
-        setTimeout(attachEvents, 200);
+        // Start the rendering process
+        setTimeout(attachEvents, 100);
 
-        toastr.success("เปิดการ์ดในแท็บใหม่แล้ว — กดสกรีนช็อตเพื่อบันทึก!", "🌌 Another Universe");
-    } else {
-        console.warn("[Another-Universe] ⚠️ Popup blocked");
-        toastr.warning("บราวเซอร์บล็อก popup — กรุณาอนุญาต popup แล้วลองใหม่", "⚠️ Another Universe");
-    }
+        toastr.success("เปิดแท็บใหม่แล้ว กำลังสร้างรูปภาพ...", "🌌 Another Universe");
 }
 
 // Show the story modal (works on all screen sizes)
