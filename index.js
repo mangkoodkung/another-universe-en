@@ -1381,12 +1381,150 @@ function showMobileScreenshotView(type, charName, storyText, themeName, themeId 
     .replace(/>/g, '&gt;')
     .replace(/\n/g, '<br>');
 
-  // Theme badge pills
+  // Get theme palette (same as desktop)
+  const getThemePalette = tId => {
+    const map = {
+      scifi: 'tech',
+      cyberpunk: 'tech',
+      virtualworld: 'tech',
+      mecha: 'tech',
+      spaceopera: 'tech',
+      medieval: 'warm',
+      thaidrama: 'warm',
+      thaifolk: 'warm',
+      wuxia: 'warm',
+      desert: 'warm',
+      pirate: 'warm',
+      historical: 'warm',
+      steampunk: 'warm',
+      mythology: 'warm',
+      samurai: 'warm',
+      wildwest: 'warm',
+      cooking: 'warm',
+      horror: 'dark',
+      postapoc: 'dark',
+      zombie: 'dark',
+      mafia: 'dark',
+      noir: 'dark',
+      vampire: 'dark',
+      apocalypse: 'dark',
+      asylum: 'dark',
+      kemono: 'nature',
+      prehistoric: 'nature',
+      underwater: 'nature',
+      spiritworld: 'nature',
+      school: 'pastel',
+      idol: 'pastel',
+      fairytale: 'pastel',
+      carnival: 'pastel',
+      isekai: 'fantasy',
+      dream: 'fantasy',
+      timeloop: 'fantasy',
+      omegaverse: 'fantasy',
+      monastery: 'fantasy',
+      library: 'fantasy',
+      superhero: 'vibrant',
+      circus: 'vibrant',
+      yokai: 'vibrant',
+      royal: 'vibrant',
+      detective: 'vibrant',
+      casino: 'vibrant',
+      lighthouse: 'vibrant',
+    };
+    const category = map[tId] || 'default';
+    const palettes = {
+      default: {
+        bg: 'linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%)',
+        blob1: '#d8b4fe',
+        blob2: '#f0abfc',
+        badge: 'linear-gradient(120deg, #a855f7 0%, #ec4899 100%)',
+        textMain: '#581c87',
+        textAccent: '#7e22ce',
+        border: '#c084fc',
+        cardBg: 'rgba(250, 245, 255, 0.95)',
+      },
+      tech: {
+        bg: 'linear-gradient(135deg, #ecfeff 0%, #cffafe 100%)',
+        blob1: '#67e8f9',
+        blob2: '#5eead4',
+        badge: 'linear-gradient(120deg, #06b6d4 0%, #14b8a6 100%)',
+        textMain: '#164e63',
+        textAccent: '#0e7490',
+        border: '#22d3ee',
+        cardBg: 'rgba(236, 254, 255, 0.95)',
+      },
+      warm: {
+        bg: 'linear-gradient(135deg, #fff7ed 0%, #fed7aa 100%)',
+        blob1: '#fdba74',
+        blob2: '#fbbf24',
+        badge: 'linear-gradient(120deg, #f59e0b 0%, #ea580c 100%)',
+        textMain: '#7c2d12',
+        textAccent: '#c2410c',
+        border: '#fb923c',
+        cardBg: 'rgba(255, 247, 237, 0.95)',
+      },
+      dark: {
+        bg: 'linear-gradient(135deg, #fce7f3 0%, #f3e8ff 100%)',
+        blob1: '#f9a8d4',
+        blob2: '#c084fc',
+        badge: 'linear-gradient(120deg, #db2777 0%, #9333ea 100%)',
+        textMain: '#831843',
+        textAccent: '#a21caf',
+        border: '#e879f9',
+        cardBg: 'rgba(252, 231, 243, 0.95)',
+      },
+      nature: {
+        bg: 'linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%)',
+        blob1: '#6ee7b7',
+        blob2: '#34d399',
+        badge: 'linear-gradient(120deg, #10b981 0%, #059669 100%)',
+        textMain: '#064e3b',
+        textAccent: '#047857',
+        border: '#34d399',
+        cardBg: 'rgba(236, 253, 245, 0.95)',
+      },
+      pastel: {
+        bg: 'linear-gradient(135deg, #fef3c7 0%, #fde68a 100%)',
+        blob1: '#fde047',
+        blob2: '#fbbf24',
+        badge: 'linear-gradient(120deg, #eab308 0%, #f59e0b 100%)',
+        textMain: '#713f12',
+        textAccent: '#a16207',
+        border: '#facc15',
+        cardBg: 'rgba(254, 243, 199, 0.95)',
+      },
+      fantasy: {
+        bg: 'linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%)',
+        blob1: '#c4b5fd',
+        blob2: '#a78bfa',
+        badge: 'linear-gradient(120deg, #8b5cf6 0%, #7c3aed 100%)',
+        textMain: '#4c1d95',
+        textAccent: '#6d28d9',
+        border: '#a78bfa',
+        cardBg: 'rgba(237, 233, 254, 0.95)',
+      },
+      vibrant: {
+        bg: 'linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%)',
+        blob1: '#fca5a5',
+        blob2: '#f87171',
+        badge: 'linear-gradient(120deg, #ef4444 0%, #dc2626 100%)',
+        textMain: '#7f1d1d',
+        textAccent: '#b91c1c',
+        border: '#f87171',
+        cardBg: 'rgba(254, 242, 242, 0.95)',
+      },
+    };
+    return palettes[category];
+  };
+
+  const p = getThemePalette(themeId);
+
+  // Theme badge pills with dynamic palette
   const badgeParts = themeName.split('·').map(s => s.trim());
   const badgeHtml = badgeParts
     .map(
       part =>
-        `<div style="display:inline-block;padding:4px 10px;margin:2px;background:rgba(180,160,255,0.25);border-radius:12px;font-size:0.75em;font-weight:600;color:#e0d0ff;">${part}</div>`,
+        `<div style="display:inline-block;padding:8px 18px;margin:4px;background:${p.badge};border-radius:28px;font-size:0.85em;font-weight:600;color:#fff;box-shadow:0 4px 14px rgba(0,0,0,0.2);">${part}</div>`,
     )
     .join('');
 
@@ -1394,26 +1532,34 @@ function showMobileScreenshotView(type, charName, storyText, themeName, themeId 
   const context = getContext();
   const userName = context.name1 || 'Traveler';
 
+  // Dynamic styling based on card type
+  const bgGradient = isShort ? `linear-gradient(135deg, #1e1b26 0%, #110e17 100%)` : p.bg;
+  const cardBg = isShort ? `rgba(25, 23, 30, 0.85)` : p.cardBg;
+  const cardBorder = isShort ? `rgba(255, 255, 255, 0.12)` : p.border;
+  const textMain = isShort ? `#f4f0ff` : p.textMain;
+  const textAccent = isShort ? `#c5bced` : p.textAccent;
+  const textMuted = isShort ? `rgba(200,180,255,0.5)` : `rgba(0,0,0,0.5)`;
+
   let cardContent = '';
   if (isShort) {
     cardContent = `
-            <div style="font-size:0.85em;font-weight:700;color:rgba(200,180,255,0.7);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px;">🌌 Another Universe</div>
-            <div style="font-size:1.5em;font-weight:800;color:#f4f0ff;margin-bottom:12px;">${charName}</div>
+            <div style="font-size:0.85em;font-weight:700;color:${textAccent};letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px;opacity:0.8;">🌌 Another Universe</div>
+            <div style="font-size:1.5em;font-weight:800;color:${textMain};margin-bottom:12px;">${charName}</div>
             <div style="margin-bottom:16px;">${badgeHtml}</div>
-            <div style="font-size:0.85em;color:rgba(200,180,255,0.5);opacity:0.5;margin-bottom:20px;font-style:italic;">${userName} × ${charName} story</div>
-            <div style="font-size:1.2em;font-style:italic;font-weight:700;color:#f4f0ff;line-height:1.5;margin:24px 8px;">
+            <div style="font-size:0.85em;color:${textMuted};opacity:0.5;margin-bottom:20px;font-style:italic;">${userName} × ${charName} story</div>
+            <div style="font-size:1.2em;font-style:italic;font-weight:700;color:${textMain};line-height:1.5;margin:24px 8px;">
                 ${quote.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}
             </div>
-            <div style="font-size:0.9em;color:rgba(200,190,220,0.7);line-height:1.6;margin-top:16px;">
+            <div style="font-size:0.9em;color:${textAccent};line-height:1.6;margin-top:16px;opacity:0.85;">
                 ${teaser.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\n/g, '<br>')}
             </div>`;
   } else {
     cardContent = `
-            <div style="font-size:0.85em;font-weight:700;color:rgba(200,180,255,0.7);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px;">🌌 Another Universe</div>
-            <div style="font-size:1.5em;font-weight:800;color:#f4f0ff;margin-bottom:12px;">${charName}</div>
+            <div style="font-size:0.85em;font-weight:700;color:${textAccent};letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px;opacity:0.8;">🌌 Another Universe</div>
+            <div style="font-size:1.5em;font-weight:800;color:${textMain};margin-bottom:12px;">${charName}</div>
             <div style="margin-bottom:20px;">${badgeHtml}</div>
-            <div style="font-size:0.85em;color:rgba(200,180,255,0.5);opacity:0.5;margin-bottom:20px;font-style:italic;">${userName} × ${charName} story</div>
-            <div style="font-size:0.9em;line-height:1.75;color:#e8edf2;text-align:left;">${escapedStory}</div>`;
+            <div style="font-size:0.85em;color:${textMuted};opacity:0.5;margin-bottom:20px;font-style:italic;">${userName} × ${charName} story</div>
+            <div style="font-size:0.9em;line-height:1.75;color:${textMain};text-align:left;">${escapedStory}</div>`;
   }
 
   // Build standalone HTML page — NO script tags in document.write (we inject them later)
@@ -1427,25 +1573,25 @@ function showMobileScreenshotView(type, charName, storyText, themeName, themeId 
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            background: linear-gradient(135deg, #1e1b26 0%, #110e17 100%);
-            color: #f4f0ff;
+            background: ${bgGradient};
+            color: ${textMain};
             font-family: 'Prompt', 'Noto Sans Thai', 'Sarabun', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
             min-height: 100vh; display: flex; justify-content: center; align-items: flex-start;
             padding: 24px 16px 40px; -webkit-tap-highlight-color: transparent;
         }
         .card {
             max-width: 480px; width: 100%; text-align: center;
-            background: rgba(25, 23, 30, 0.85);
+            background: ${cardBg};
             padding: 32px 24px;
             border-radius: 24px;
-            border: 1px solid rgba(255, 255, 255, 0.12);
+            border: 1px solid ${cardBorder};
             box-shadow: 0 12px 40px rgba(0,0,0,0.5);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
         }
         .footer {
-            text-align: center; font-size: 0.75em; color: rgba(130,120,160,0.5);
-            border-top: 1px dashed rgba(130,160,220,0.15); padding-top: 16px; margin-top: 28px;
+            text-align: center; font-size: 0.75em; color: ${textMuted};
+            border-top: 1px dashed ${cardBorder}; padding-top: 16px; margin-top: 28px;
         }
         .back-page {
             display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
@@ -2082,7 +2228,9 @@ function showStoryModal(charName, storyText, themeName, themeId = 'random') {
   );
 }
 
-// Show loading state
+// Show loading state with cancel button
+let generationAbortController = null;
+
 function showLoadingState(show) {
   if (show) {
     $('#another_universe_open_btn').prop('disabled', true).val('🌀 กำลังเปิดประตูจักรวาล...');
@@ -2090,12 +2238,42 @@ function showLoadingState(show) {
     $('#au-chat-btn').addClass('au-chat-btn-busy');
     $('#au-chat-btn .au-chat-btn-icon').hide();
     $('#au-chat-btn .au-chat-btn-loading').show();
+
+    // Show loading overlay with cancel button
+    const loadingHtml = `
+      <div id="au-generation-loading" style="${getOverlayStyle()}; z-index: 999999; background: rgba(0,0,0,0.85); backdrop-filter: blur(10px);">
+        <div style="text-align: center;">
+          <div style="font-size: 4em; animation: au-spin 2s linear infinite; margin-bottom: 24px;">🌀</div>
+          <div style="font-size: 1.3em; font-weight: bold; color: #d0c8e8; margin-bottom: 12px; letter-spacing: 1px;">กำลังเปิดประตูจักรวาล...</div>
+          <div style="font-size: 0.9em; color: rgba(200,180,255,0.7); margin-bottom: 32px;">กำลังสร้างเรื่องราวในโลกคู่ขนาน</div>
+          <button id="au-cancel-generation" style="padding: 12px 32px; background: rgba(255,100,100,0.2); border: 1px solid rgba(255,100,100,0.5); border-radius: 20px; color: #ffaaaa; font-size: 1em; cursor: pointer; transition: all 0.3s;">
+            ✕ ยกเลิก
+          </button>
+        </div>
+        <style>
+          @keyframes au-spin { 100% { transform: rotate(360deg); } }
+          #au-cancel-generation:hover { background: rgba(255,100,100,0.3); border-color: rgba(255,100,100,0.7); }
+        </style>
+      </div>`;
+    document.body.insertAdjacentHTML('beforeend', loadingHtml);
+
+    $('#au-cancel-generation').on('click', () => {
+      if (generationAbortController) {
+        generationAbortController.abort();
+        generationAbortController = null;
+      }
+      $('#au-generation-loading').remove();
+      showLoadingState(false);
+      toastr.info('ยกเลิกการสร้างเรื่องราวแล้ว', '🌌 Another Universe');
+    });
   } else {
     $('#another_universe_open_btn').prop('disabled', false).val('✨ Open Another Universe');
     // Chat button normal state
     $('#au-chat-btn').removeClass('au-chat-btn-busy');
     $('#au-chat-btn .au-chat-btn-icon').show();
     $('#au-chat-btn .au-chat-btn-loading').hide();
+    $('#au-generation-loading').remove();
+    generationAbortController = null;
   }
 }
 
@@ -2137,8 +2315,11 @@ async function onOpenUniverseClick() {
   context.chat.splice(0, context.chat.length);
 
   try {
+    // Create AbortController for this generation
+    generationAbortController = new AbortController();
+
     const prompt = buildUniversePrompt(charName, charDescription, userName, chatContext);
-    const result = await generateQuietPrompt(prompt);
+    const result = await generateQuietPrompt(prompt, false, false, '', '', generationAbortController.signal);
 
     if (result) {
       let badgeParts = [themeLabel];
@@ -2155,11 +2336,17 @@ async function onOpenUniverseClick() {
       console.log(`[${extensionName}] ❌ Empty result from LLM`);
     }
   } catch (error) {
-    toastr.error(`เกิดข้อผิดพลาด: ${error.message}`, '🌌 Another Universe');
-    console.error(`[${extensionName}] ❌ Generation failed:`, error);
+    if (error.name === 'AbortError') {
+      toastr.info('ยกเลิกการสร้างเรื่องราวแล้ว', '🌌 Another Universe');
+      console.log(`[${extensionName}] ⚠️ Generation cancelled by user`);
+    } else {
+      toastr.error(`เกิดข้อผิดพลาด: ${error.message}`, '🌌 Another Universe');
+      console.error(`[${extensionName}] ❌ Generation failed:`, error);
+    }
   } finally {
     // Always restore the chat history immediately after generation
     context.chat.push(...originalChat);
+    generationAbortController = null;
     showLoadingState(false);
   }
 }
