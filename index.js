@@ -904,6 +904,10 @@ function showMobileScreenshotView(type, charName, storyText, themeName, themeId 
         setTimeout(attachEvents, 100);
 
         toastr.success("เปิดแท็บใหม่แล้ว กำลังสร้างรูปภาพ...", "🌌 Another Universe");
+    } else {
+        console.warn("[Another-Universe] ⚠️ Popup blocked");
+        toastr.warning("บราวเซอร์บล็อก popup — กรุณาอนุญาต popup แล้วลองใหม่", "⚠️ Another Universe");
+    }
 }
 
 // Show the story modal (works on all screen sizes)
