@@ -1427,15 +1427,25 @@ function showMobileScreenshotView(type, charName, storyText, themeName, themeId 
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            background: #110e17; color: #f4f0ff;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            background: linear-gradient(135deg, #1e1b26 0%, #110e17 100%);
+            color: #f4f0ff;
+            font-family: 'Prompt', 'Noto Sans Thai', 'Sarabun', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
             min-height: 100vh; display: flex; justify-content: center; align-items: flex-start;
-            padding: 24px 20px 40px; -webkit-tap-highlight-color: transparent;
+            padding: 24px 16px 40px; -webkit-tap-highlight-color: transparent;
         }
-        .card { max-width: 480px; width: 100%; text-align: center; }
+        .card {
+            max-width: 480px; width: 100%; text-align: center;
+            background: rgba(25, 23, 30, 0.85);
+            padding: 32px 24px;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
         .footer {
             text-align: center; font-size: 0.75em; color: rgba(130,120,160,0.5);
-            border-top: 1px dashed rgba(130,160,220,0.15); padding-top: 14px; margin-top: 24px;
+            border-top: 1px dashed rgba(130,160,220,0.15); padding-top: 16px; margin-top: 28px;
         }
         .back-page {
             display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
