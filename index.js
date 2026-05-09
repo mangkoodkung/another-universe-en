@@ -688,6 +688,87 @@ function showMobileCardPopup(type, charName, storyText, themeName, themeId = "ra
     });
 }
 
+// Mobile Screenshot View — shows a clean, fullscreen card that the user can screenshot
+// This replaces html2canvas on mobile (which crashes Safari/Chrome due to memory usage)
+function showMobileScreenshotView(type, charName, storyText, themeName, themeId = "random") {
+    // Remove other overlays
+    $("#au-mobile-card-overlay").remove();
+
+    console.log("[Another-Universe] 📱 Showing screenshot-ready view");
+
+    // Clean story text
+    const cleanText = storyText
+        .replace(/<think>[\s\S]*?<\/think>/gi, '')
+        .replace(/<hook>[\s\S]*?<\/hook>/gi, '')
+        .trim();
+
+    // Extract quote and snippet for short card
+    const quoteMatch = cleanText.match(/["\u201c](.*?)["\u201d]/);
+    let quote = quoteMatch ? `"${quoteMatch[1]}"` : '';
+    if (!quote) {
+        const sentences = cleanText.split(/(?<=[.!?])\s+/);
+        quote = sentences.length > 2 ? `"${sentences[sentences.length - 1].trim()}"` : '"...a different universe, a different us."';
+    }
+    const paragraphs = cleanText.split('\n').filter(p => p.trim().length > 0);
+    let teaser = paragraphs.slice(0, 2).join('\n\n');
+    if (teaser.length > 350) {
+        const t = teaser.substring(0, 350);
+        const lp = Math.max(t.lastIndexOf('.'), t.lastIndexOf('!'), t.lastIndexOf('?'));
+        teaser = lp > 150 ? t.substring(0, lp + 1) : t.substring(0, t.lastIndexOf(' ')) + '...';
+    }
+
+    const isShort = type === 'short';
+    const escapedStory = cleanText.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\n/g, '<br>');
+
+    // Theme badge pills
+    const badgeParts = themeName.split('·').map(s => s.trim());
+    const badgeHtml = badgeParts.map(part =>
+        `<div style="display:inline-block;padding:4px 10px;margin:2px;background:rgba(180,160,255,0.25);border-radius:12px;font-size:0.75em;font-weight:600;color:#e0d0ff;">${part}</div>`
+    ).join('');
+
+    let cardContent = '';
+    if (isShort) {
+        cardContent = `
+            <div style="font-size:0.85em;font-weight:700;color:rgba(200,180,255,0.7);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px;">🌌 Another Universe</div>
+            <div style="font-size:1.5em;font-weight:800;color:#f4f0ff;margin-bottom:12px;">${charName}</div>
+            <div style="margin-bottom:16px;">${badgeHtml}</div>
+            <div style="font-size:1.2em;font-style:italic;font-weight:700;color:#f4f0ff;line-height:1.5;margin:24px 8px;">
+                ${quote.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}
+            </div>
+            <div style="font-size:0.9em;color:rgba(200,190,220,0.7);line-height:1.6;margin-top:16px;">
+                ${teaser.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\n/g, '<br>')}
+            </div>`;
+    } else {
+        cardContent = `
+            <div style="font-size:0.85em;font-weight:700;color:rgba(200,180,255,0.7);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px;">🌌 Another Universe</div>
+            <div style="font-size:1.5em;font-weight:800;color:#f4f0ff;margin-bottom:12px;">${charName}</div>
+            <div style="margin-bottom:20px;">${badgeHtml}</div>
+            <div style="font-size:0.9em;line-height:1.75;color:#e8edf2;text-align:left;">${escapedStory}</div>`;
+    }
+
+    const viewHtml = `
+    <div id="au-screenshot-overlay" style="position:fixed;top:0;left:0;right:0;bottom:0;width:100vw;height:100vh;background:#110e17;z-index:999999;overflow-y:auto;-webkit-overflow-scrolling:touch;">
+        <div style="padding:24px 20px;text-align:center;max-width:480px;margin:0 auto;">
+            ${cardContent}
+            <div style="text-align:center;font-size:0.75em;color:rgba(130,120,160,0.5);border-top:1px dashed rgba(130,160,220,0.15);padding-top:14px;margin-top:24px;">
+                Powered by <b>POPKO</b>
+            </div>
+        </div>
+        <div id="au-screenshot-hint" style="position:fixed;bottom:0;left:0;right:0;text-align:center;padding:16px;background:linear-gradient(transparent, rgba(17,14,23,0.95));z-index:1000000;">
+            <div style="color:rgba(200,180,255,0.8);font-size:0.85em;margin-bottom:8px;">📱 กดสกรีนช็อตเพื่อบันทึก</div>
+            <button type="button" id="au-screenshot-close" style="padding:8px 20px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:16px;color:#fff;font-size:0.85em;cursor:pointer;">✕ ปิด</button>
+        </div>
+    </div>`;
+
+    document.body.insertAdjacentHTML('beforeend', viewHtml);
+
+    // Bind close
+    $("#au-screenshot-close").on("click", () => {
+        console.log("[Another-Universe] 📱 Screenshot view closed");
+        $("#au-screenshot-overlay").remove();
+    });
+}
+
 // Show the story modal (works on all screen sizes)
 function showStoryModal(charName, storyText, themeName, themeId = "random") {
     // Remove existing
@@ -750,14 +831,22 @@ function showStoryModal(charName, storyText, themeName, themeId = "random") {
     document.body.insertAdjacentHTML('beforeend', modalHtml);
 
     // On mobile: bind the new popup buttons
+    // NOTE: We do NOT use html2canvas on mobile — it crashes Safari/Chrome due to memory usage.
+    // Instead, we show a clean fullscreen card view for the user to screenshot.
     if (isMobileDevice) {
         $("#au-modal-save-long").off("click").on("click", () => {
             $("#another-universe-modal-overlay").remove();
-            showMobileCardPopup('long', charName, storyText, themeName, themeId, () => renderCard('long'));
+            showMobileCardPopup('long', charName, storyText, themeName, themeId, () => {
+                console.log("[Another-Universe] 📱 Mobile save: showing screenshot-ready view (long)");
+                showMobileScreenshotView('long', charName, storyText, themeName, themeId);
+            });
         });
         $("#au-modal-save-short").off("click").on("click", () => {
             $("#another-universe-modal-overlay").remove();
-            showMobileCardPopup('short', charName, storyText, themeName, themeId, () => renderCard('short'));
+            showMobileCardPopup('short', charName, storyText, themeName, themeId, () => {
+                console.log("[Another-Universe] 📱 Mobile save: showing screenshot-ready view (short)");
+                showMobileScreenshotView('short', charName, storyText, themeName, themeId);
+            });
         });
     }
 
