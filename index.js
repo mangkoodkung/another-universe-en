@@ -1307,17 +1307,17 @@ function showMobileCardPopup(type, charName, storyText, themeName, themeId = 'ra
   if (isShort) {
     bodyHtml = `
             <div style="text-align:center;padding:12px 4px 0;">
-                <div style="font-size:0.85em;color:rgba(200,180,255,0.5);opacity:0.5;margin-bottom:16px;font-style:italic;">${userName} × ${charName} story</div>
-                <div style="font-size:1.05em;font-style:italic;font-weight:700;line-height:1.5;margin-bottom:20px;padding:0 8px;word-break:break-word;">
+                <div style="font-size:0.85em;color:#9090b0;margin-bottom:16px;font-style:italic;">${userName} × ${charName} story</div>
+                <div style="font-size:1.05em;font-style:italic;font-weight:700;line-height:1.5;margin-bottom:20px;padding:0 8px;word-break:break-word;color:#e8edf2;">
                     ${quote.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}
                 </div>
-                <div style="font-size:0.95em;line-height:1.7;opacity:0.75;">
+                <div style="font-size:0.95em;line-height:1.7;color:#d0d8e0;">
                     ${teaser.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\n/g, '<br>')}
                 </div>
             </div>`;
   } else {
     bodyHtml = `
-            <div style="font-size:0.85em;color:rgba(200,180,255,0.5);opacity:0.5;margin-bottom:16px;font-style:italic;text-align:center;">${userName} × ${charName} story</div>
+            <div style="font-size:0.85em;color:#9090b0;margin-bottom:16px;font-style:italic;text-align:center;">${userName} × ${charName} story</div>
             <div class="au-story-text">${escapedStory}</div>`;
   }
 
@@ -1333,7 +1333,7 @@ function showMobileCardPopup(type, charName, storyText, themeName, themeId = 'ra
             </div>
             <div class="au-universal-popup-body">
                 ${bodyHtml}
-                <div style="text-align:center;padding-top:16px;font-size:0.8em;opacity:0.5;border-top:1px dashed rgba(130,160,220,0.2);margin-top:20px;">
+                <div style="text-align:center;padding-top:16px;font-size:0.8em;color:#9090b0;border-top:1px dashed rgba(130,160,220,0.2);margin-top:20px;">
                     <div>Powered by <b>POPKO</b></div>
                 </div>
             </div>
@@ -1566,22 +1566,22 @@ function showMobileScreenshotView(type, charName, storyText, themeName, themeId 
   let cardContent = '';
   if (isShort) {
     cardContent = `
-            <div style="font-size:0.85em;font-weight:700;color:${textAccent};letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px;opacity:0.8;">🌌 Another Universe</div>
+            <div style="font-size:0.85em;font-weight:700;color:${textAccent};letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px;">🌌 Another Universe</div>
             <div style="font-size:1.5em;font-weight:800;color:${textMain};margin-bottom:12px;">${charName}</div>
             <div style="margin-bottom:16px;">${badgeHtml}</div>
-            <div style="font-size:0.85em;color:${textMuted};opacity:0.5;margin-bottom:20px;font-style:italic;">${userName} × ${charName} story</div>
+            <div style="font-size:0.85em;color:#9090b0;margin-bottom:20px;font-style:italic;">${userName} × ${charName} story</div>
             <div style="font-size:1.2em;font-style:italic;font-weight:700;color:${textMain};line-height:1.5;margin:24px 8px;">
                 ${quote.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}
             </div>
-            <div style="font-size:0.9em;color:${textAccent};line-height:1.6;margin-top:16px;opacity:0.85;">
+            <div style="font-size:0.9em;color:${textAccent};line-height:1.6;margin-top:16px;">
                 ${teaser.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\n/g, '<br>')}
             </div>`;
   } else {
     cardContent = `
-            <div style="font-size:0.85em;font-weight:700;color:${textAccent};letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px;opacity:0.8;">🌌 Another Universe</div>
+            <div style="font-size:0.85em;font-weight:700;color:${textAccent};letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px;">🌌 Another Universe</div>
             <div style="font-size:1.5em;font-weight:800;color:${textMain};margin-bottom:12px;">${charName}</div>
             <div style="margin-bottom:20px;">${badgeHtml}</div>
-            <div style="font-size:0.85em;color:${textMuted};opacity:0.5;margin-bottom:20px;font-style:italic;">${userName} × ${charName} story</div>
+            <div style="font-size:0.85em;color:#9090b0;margin-bottom:20px;font-style:italic;">${userName} × ${charName} story</div>
             <div style="font-size:0.9em;line-height:1.75;color:${textMain};text-align:left;">${escapedStory}</div>`;
   }
 
@@ -2110,7 +2110,7 @@ function showStoryModal(charName, storyText, themeName, themeId = 'random') {
             <div style="font-size: 0.95em; color: ${textMuted}; margin-bottom: 16px; font-style: italic; font-family: 'Prompt', 'Noto Sans Thai', sans-serif;">"ถ้าพวกเราเจอกันในอีกจักรวาลหนึ่ง เรื่องราวของเราจะเปลี่ยนไปไหม"</div>
             <div style="font-size: 2.2em; font-weight: 800; color: ${textMain}; margin-bottom: 16px; text-shadow: ${textShadow}; font-family: 'Prompt', 'Noto Sans Thai', sans-serif;">${charName}</div>
             <div style="margin-bottom: 30px; display: flex; flex-wrap: wrap; justify-content: center; font-family: 'Prompt', 'Noto Sans Thai', sans-serif;">${badgeHtml}</div>
-            <div style="font-size: 0.85em; color: ${textMuted}; opacity: 0.5; margin-bottom: 20px; font-family: 'Prompt', 'Noto Sans Thai', sans-serif; font-style: italic;">${userName} × ${charName} story</div>
+            <div style="font-size: 0.85em; color: #9090b0; margin-bottom: 20px; font-family: 'Prompt', 'Noto Sans Thai', sans-serif; font-style: italic;">${userName} × ${charName} story</div>
             <div style="font-size: 1.15em; line-height: 1.8; white-space: pre-wrap; margin-bottom: 30px; text-align: left; color: #3a324d; font-family: 'Sarabun', 'Noto Sans Thai', sans-serif;">${displayStory}</div>
             `;
     } else {
@@ -2119,7 +2119,7 @@ function showStoryModal(charName, storyText, themeName, themeId = 'random') {
             <div style="font-size: 0.9em; color: ${textMuted}; margin-bottom: 12px; font-style: italic; font-family: 'Prompt', 'Noto Sans Thai', sans-serif;">"ถ้าพวกเราเจอกันในอีกจักรวาลหนึ่ง เรื่องราวของเราจะเปลี่ยนไปไหม"</div>
             <div style="font-size: 2em; font-weight: 800; color: ${textMain}; margin-bottom: 16px; text-shadow: ${textShadow}; font-family: 'Prompt', 'Noto Sans Thai', sans-serif;">${charName}</div>
             <div style="margin-bottom: 30px; display: flex; flex-wrap: wrap; justify-content: center; font-family: 'Prompt', 'Noto Sans Thai', sans-serif;">${badgeHtml}</div>
-            <div style="font-size: 0.85em; color: ${textMuted}; opacity: 0.5; margin-bottom: 20px; font-family: 'Prompt', 'Noto Sans Thai', sans-serif; font-style: italic;">${userName} × ${charName} story</div>
+            <div style="font-size: 0.85em; color: #9090b0; margin-bottom: 20px; font-family: 'Prompt', 'Noto Sans Thai', sans-serif; font-style: italic;">${userName} × ${charName} story</div>
             
             <div style="margin: 40px 0; padding: 0 20px; text-align: center;">
                 <div style="font-size: 1.7em; font-style: italic; font-weight: 700; color: ${textMain}; line-height: 1.5; font-family: 'Prompt', 'Noto Sans Thai', sans-serif; text-shadow: ${textShadow};">
@@ -2152,7 +2152,7 @@ function showStoryModal(charName, storyText, themeName, themeId = 'random') {
             <div style="position: relative; background: ${cardBg}; padding: 40px; border-radius: 24px; border: 2px solid ${cardBorder}; box-shadow: 0 12px 40px rgba(0,0,0,0.25); text-align: center;">
                 ${innerContent}
                 <div style="text-align: center; font-size: 0.85em; color: ${poweredColor}; border-top: 1px dashed ${hrColor}; padding-top: 16px; font-family: 'Prompt', 'Noto Sans Thai', sans-serif;">
-                    <div style="opacity: 0.7;">Powered by <b>POPKO</b></div>
+                    <div style="color: #b8c0d0;">Powered by <b>POPKO</b></div>
                 </div>
             </div>
         </div>
@@ -2208,7 +2208,7 @@ function showStoryModal(charName, storyText, themeName, themeId = 'random') {
                     <img src="${blobUrl}" style="max-width:90%; max-height:75vh; border-radius:16px; box-shadow:0 10px 40px rgba(0,0,0,0.5);" />
                     <div style="color:#fff; margin-top:20px; font-size:16px; text-align:center;">
                         👇 <b>แตะค้างที่รูปภาพ</b> แล้วเลือก <i>บันทึกรูปภาพ</i><br>
-                        <span style="font-size:0.8em; opacity:0.7;">(Long press image to save)</span>
+                        <span style="font-size:0.8em; color:#d0d8e0;">(Long press image to save)</span>
                     </div>
                     <button id="au-mobile-save-close" style="margin-top:24px; padding:10px 24px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.3); border-radius:20px; color:#fff; font-size:16px; cursor:pointer;">✕ ปิด (Close)</button>
                 </div>`;
@@ -2289,7 +2289,7 @@ function showLoadingState(show) {
         <div style="text-align: center;">
           <div style="font-size: 4em; animation: au-spin 2s linear infinite; margin-bottom: 24px;">🌀</div>
           <div style="font-size: 1.3em; font-weight: bold; color: #d0c8e8; margin-bottom: 12px; letter-spacing: 1px;">กำลังเปิดประตูจักรวาล...</div>
-          <div style="font-size: 0.9em; color: rgba(200,180,255,0.7); margin-bottom: 32px;">กำลังสร้างเรื่องราวในโลกคู่ขนาน</div>
+          <div style="font-size: 0.9em; color: #b8b0d0; margin-bottom: 32px;">กำลังสร้างเรื่องราวในโลกคู่ขนาน</div>
           <button id="au-cancel-generation" style="padding: 12px 32px; background: rgba(255,100,100,0.2); border: 1px solid rgba(255,100,100,0.5); border-radius: 20px; color: #ffaaaa; font-size: 1em; cursor: pointer; transition: all 0.3s;">
             ✕ ยกเลิก
           </button>
