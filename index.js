@@ -14,235 +14,235 @@ console.log(`[Another-Universe] Detected folder name: "${extensionName}"`);
 
 // Universe themes
 const universeThemes = {
-  random: { label: '🎲 สุ่ม', prompt: 'any creative setting you can imagine' }, // Random
+  random: { label: '🎲 Random', prompt: 'any creative setting you can imagine' },
   // --- Classic ---
   medieval: {
-    label: '🏰 แฟนตาซียุคกลาง',
+    label: '🏰 Medieval Fantasy',
     prompt: 'a medieval fantasy kingdom with magic, castles, and ancient legends',
   },
   scifi: {
-    label: '🚀 ไซไฟ / อวกาศ',
+    label: '🚀 Sci-Fi / Space',
     prompt: 'a futuristic sci-fi setting — a space station, distant planet, or starship among the stars',
   },
   cyberpunk: {
-    label: '🌆 ไซเบอร์พังค์',
+    label: '🌆 Cyberpunk',
     prompt: 'a neon-lit cyberpunk metropolis with holograms, augmented reality, and rain-soaked streets',
   },
   modern: {
-    label: '☕ ชีวิตประจำวัน',
+    label: '☕ Modern Life',
     prompt:
       'a cozy modern-day setting — a quiet café, a bookstore, a rainy city street, or a chance encounter in everyday life',
   },
   postapoc: {
-    label: '🏚️ โลกหลังหายนะ',
+    label: '🏚️ Post-Apocalyptic',
     prompt: 'a post-apocalyptic wasteland where survivors cling to hope among the ruins',
   },
   historical: {
-    label: '🎭 ย้อนยุค',
+    label: '🎭 Historical',
     prompt: 'a historical setting — 1920s Paris, ancient Rome, Edo-period Japan, or Victorian London',
   },
   horror: {
-    label: '🌑 สยองขวัญ',
+    label: '🌑 Horror',
     prompt: 'a dark, eerie setting — a haunted mansion, a cursed forest, or a town where something is terribly wrong',
   },
   dream: {
-    label: '💫 โลกความฝัน',
+    label: '💫 Dreamscape',
     prompt:
       'a surreal dreamscape where reality bends — floating islands, shifting landscapes, and impossible architecture',
   },
   // --- Wild & Unique ---
   thaidrama: {
-    label: '📺 ละครไทย',
+    label: '📺 Thai Drama',
     prompt:
       'a Thai lakorn drama — jealous rivals, scheming families, slap-kiss moments, dramatic confrontations at a mansion, and forbidden love between social classes',
   },
   thaifolk: {
-    label: '🐍 ตำนานไทย',
+    label: '🐍 Thai Folklore',
     prompt:
       "a Thai mythological setting — Naga serpents in the Mekong, a Kinnari's forest, spirits of the Phi Fa, or the golden city of Ayutthaya blessed by the gods",
   },
   kemono: {
-    label: '🐾 ครึ่งสัตว์',
+    label: '🐾 Beast-Folk',
     prompt:
       'a world where people have animal ears, tails, and instincts — fox spirits, wolf guardians, cat café workers, or rabbit merchants in a whimsical beast-folk society',
   },
   prehistoric: {
-    label: '🦕 ดึกดำบรรพ์',
+    label: '🦕 Prehistoric',
     prompt:
       'a prehistoric world of dinosaurs, volcanoes, and primal survival — cave dwellers, ancient rituals, and the raw untamed beauty of a world before civilization',
   },
   wuxia: {
-    label: '⚔️ จีนกำลังภายใน',
+    label: '⚔️ Wuxia',
     prompt:
       'an ancient Chinese martial arts world — sword cultivators on misty mountains, hidden sects, qi energy battles, forbidden techniques, and star-crossed lovers across rival clans',
   },
   pirate: {
-    label: '🏴‍☠️ โจรสลัดทะเล',
+    label: '🏴‍☠️ Pirate Era',
     prompt:
       "the golden age of piracy — treasure maps, sea battles, cursed islands, a pirate captain's ship under moonlight, and the thrill of freedom on the open ocean",
   },
   underwater: {
-    label: '🧜 ใต้มหาสมุทร',
+    label: '🧜 Underwater Kingdom',
     prompt:
       'a bioluminescent underwater kingdom — merfolk politics, coral palaces, deep-sea leviathans, and the haunting silence of the abyss',
   },
   zombie: {
-    label: '🧟 ซอมบี้',
+    label: '🧟 Zombie Apocalypse',
     prompt:
       'a zombie apocalypse — barricaded safe houses, supply runs through infected cities, moral dilemmas, and finding love when the world is ending',
   },
   isekai: {
-    label: '🌀 ต่างโลก',
+    label: '🌀 Isekai',
     prompt:
       'an isekai adventure — suddenly transported to a fantasy world with game-like stats, guilds, demon lords, and the bewildering realization that this world plays by different rules',
   },
   mafia: {
-    label: '🔫 มาเฟีย',
+    label: '🔫 Mafia',
     prompt:
       'the criminal underworld — mob families, secret deals in smoky back rooms, loyalty tested by blood, luxury hiding darkness, and a dangerous romance that could get them both killed',
   },
   steampunk: {
-    label: '⚙️ สตีมพังค์',
+    label: '⚙️ Steampunk',
     prompt:
       'a steampunk world of brass gears, airships, Victorian-era inventors, clockwork automata, and adventure in a city powered by steam and ambition',
   },
   fairytale: {
-    label: '👑 เทพนิยาย',
+    label: '👑 Fairy Tale',
     prompt:
       'a fairy tale world — enchanted forests, cursed royalty, talking animals, a magic mirror, and a love that breaks all spells',
   },
   mythology: {
-    label: '⚡ เทพปกรณัม',
+    label: '⚡ Mythology',
     prompt:
       'the realm of gods and mythology — Mount Olympus, Valhalla, or the celestial heavens where divine beings meddle in mortal affairs and forbidden love shakes the cosmos',
   },
   school: {
-    label: '🎒 โรงเรียน',
+    label: '🎒 School Life',
     prompt:
       'a school or university setting — rooftop confessions, festival preparations, study sessions that become something more, rivalry between clubs, and the bittersweet end of youth',
   },
   idol: {
-    label: '🎤 ไอดอล',
+    label: '🎤 Idol',
     prompt:
       'the world of idols and celebrities — secret relationships behind the spotlight, fan meetings that change everything, tabloid scandals, and the loneliness of fame',
   },
   vampire: {
-    label: '🧛 แวมไพร์',
+    label: '🧛 Vampire',
     prompt:
       'a gothic vampire world — ancient bloodlines, moonlit castles, eternal life and eternal loneliness, the intoxication of the bite, and a mortal who changes everything',
   },
   mecha: {
-    label: '🤖 หุ่นยนต์ยักษ์',
+    label: '🤖 Mecha',
     prompt:
       "a mecha warfare setting — giant robot pilots bonded by neural link, defending humanity's last cities, the weight of being chosen, and stolen moments between battles",
   },
   noir: {
-    label: '🕵️ นักสืบฟิล์มนัวร์',
+    label: '🕵️ Film Noir',
     prompt:
       'a 1940s film noir detective story — rain-slicked streets, femme fatales, whiskey and cigarettes, a case that gets personal, and shadows hiding dangerous truths',
   },
   timeloop: {
-    label: '⏳ วนลูปเวลา',
+    label: '⏳ Time Loop',
     prompt:
       'a time loop — reliving the same day endlessly, each iteration revealing something new about the other person, desperate attempts to break free, and the realization that this one person is the key',
   },
   virtualworld: {
-    label: '🎮 โลกในเกม',
+    label: '🎮 Virtual World',
     prompt:
       'inside a virtual game world — MMORPG guilds, NPC that seems too real, glitches revealing hidden truths, raid bosses, and a connection that transcends the digital boundary',
   },
   spiritworld: {
-    label: '👻 โลกวิญญาณ',
+    label: '👻 Spirit World',
     prompt:
       'the spirit world between life and death — wandering souls, a ferryman of the afterlife, unfinished business, memories fading like mist, and a love that refuses to let go even after death',
   },
   desert: {
-    label: '🏜️ ทะเลทรายมหัศจรรย์',
+    label: '🏜️ Mystic Desert',
     prompt:
       'a vast mystic desert — nomadic caravans, ancient buried cities, djinn granting twisted wishes, oasis mirages, and starlit nights where the sand whispers secrets',
   },
   cooking: {
-    label: '🍳 สงครามอาหาร',
+    label: '🍳 Cooking Battle',
     prompt:
       'a competitive cooking world — rival chefs, high-stakes cook-offs, secret family recipes, a tiny restaurant fighting against a food empire, and love simmering between kitchen rivals',
   },
   circus: {
-    label: '🎪 คณะละครสัตว์',
+    label: '🎪 Magical Circus',
     prompt:
       'a magical traveling circus that appears only at midnight — trapeze artists defying gravity, fortune tellers who see too much, a ringmaster with secrets, and two performers whose act becomes dangerously real',
   },
   omegaverse: {
-    label: '🐺 โอเมก้าเวิร์ส',
+    label: '🐺 Omegaverse',
     prompt:
       'an omegaverse setting — alpha/beta/omega dynamics, deeply ingrained instincts, scent markers, and a society built around these primary natures',
   },
   superhero: {
-    label: '🦸 ซูเปอร์ฮีโร่',
+    label: '🦸 Superhero',
     prompt:
       'a world of superheroes and villains — secret identities, superpowers, city-destroying battles, and the line between heroism and vigilantism',
   },
   royal: {
-    label: '👑 ราชวงศ์ / วังหลวง',
+    label: '👑 Royal Court',
     prompt:
       'a royal court setting — kings, queens, elaborate ballrooms, political marriages, hidden daggers, and whispers behind silk fans',
   },
   yokai: {
-    label: '🦊 ภูตผีญี่ปุ่น',
+    label: '🦊 Yokai',
     prompt:
       'a world of Japanese yokai and spirits — hidden shrines, festival lanterns, kitsune, tengu, and the blurred line between the human and spirit realms',
   },
   wildwest: {
-    label: '🤠 ตะวันตกเถื่อน',
+    label: '🤠 Wild West',
     prompt:
       'the Wild West frontier — dusty saloons, gunfights at high noon, bounty hunters, gold rush towns, and outlaws riding into the sunset',
   },
   spaceopera: {
-    label: '🌌 อวกาศโอเปร่า',
+    label: '🌌 Space Opera',
     prompt:
       'an epic space opera — galactic empires, interstellar politics, alien diplomacy, massive space fleets, and the fate of civilizations hanging in the balance',
   },
   detective: {
-    label: '🔍 นักสืบ',
+    label: '🔍 Detective',
     prompt:
       'a detective noir mystery — rain-soaked streets, cryptic clues, dangerous suspects, smoky interrogation rooms, and a case that becomes personal',
   },
   samurai: {
-    label: '⚔️ ซามูไร',
+    label: '⚔️ Samurai',
     prompt:
       'feudal Japan during the samurai era — honor-bound warriors, clan warfare, cherry blossoms and blood, the way of the sword, and forbidden love across enemy lines',
   },
   apocalypse: {
-    label: '☄️ วันสิ้นโลก',
+    label: '☄️ Apocalypse',
     prompt:
       "the apocalypse — the final days before world-ending catastrophe, desperate survival, humanity's last stand, and finding connection when everything is falling apart",
   },
   carnival: {
-    label: '🎭 คาร์นิวัลมืด',
+    label: '🎭 Dark Carnival',
     prompt:
       'a dark carnival — mysterious performers, twisted games, fortune tellers with real powers, a ringmaster who knows too much, and secrets hidden behind painted smiles',
   },
   monastery: {
-    label: '🏯 วัดลึกลับ',
+    label: '🏯 Mystical Monastery',
     prompt:
       'a mystical monastery — ancient monks practicing forbidden arts, sacred mountains shrouded in mist, enlightenment and temptation, and secrets that must never leave these walls',
   },
   asylum: {
-    label: '🏥 โรงพยาบาลจิตเวช',
+    label: '🏥 Asylum',
     prompt:
       'a psychiatric asylum — the line between sanity and madness blurs, patients with dark pasts, doctors with darker secrets, and the question of who is truly insane',
   },
   library: {
-    label: '📚 ห้องสมุดโบราณ',
+    label: '📚 Ancient Library',
     prompt:
       'an ancient library — endless shelves of forbidden knowledge, magical tomes that whisper secrets, librarians guarding dangerous truths, and books that can rewrite reality',
   },
   casino: {
-    label: '🎰 คาสิโน',
+    label: '🎰 Casino',
     prompt:
       'a high-stakes casino — glamorous gamblers, fortunes won and lost in a heartbeat, card sharks and con artists, champagne and danger, and everyone has something to hide',
   },
   lighthouse: {
-    label: '🗼 ประภาคาร',
+    label: '🗼 Lighthouse',
     prompt:
       'an isolated lighthouse — stormy seas, a lonely keeper, ships lost in the fog, ghosts of sailors past, and two souls finding each other at the edge of the world',
   },
@@ -250,244 +250,244 @@ const universeThemes = {
 
 // Encounter types
 const encounterTypes = {
-  none: { label: '❌ ไม่ระบุ', prompt: '' }, // None / Unspecified
-  random: { label: '🎲 สุ่ม', prompt: 'Choose any type of encounter that feels natural and compelling.' }, // Random
+  none: { label: '❌ None', prompt: '' },
+  random: { label: '🎲 Random', prompt: 'Choose any type of encounter that feels natural and compelling.' },
   // --- Classic ---
   firstMeet: {
-    label: '💫 พบกันครั้งแรก',
+    label: '💫 First Meeting',
     prompt:
       'They are meeting for the very first time. There is curiosity, tension, and the electricity of a new connection. Neither knows the other, yet something feels inexplicably familiar.',
   },
   reunion: {
-    label: '🔄 กลับมาพบกันอีกครั้ง',
+    label: '🔄 Reunion',
     prompt:
       'They knew each other once — perhaps long ago. Now they meet again after years apart. Memories surface, unspoken words hang in the air, and time collapses between them.',
   },
   rivals: {
-    label: '⚔️ คู่แข่ง / ศัตรู',
+    label: '⚔️ Rivals / Enemies',
     prompt:
       'They stand on opposite sides — enemies, competitors, or reluctant adversaries. Yet beneath the conflict, there is a grudging respect, a dangerous fascination, or an undeniable pull toward each other.',
   },
   allies: {
-    label: '🤝 พันธมิตร',
+    label: '🤝 Allies',
     prompt:
       'They are thrown together by circumstance — partners, teammates, or unlikely allies. They must rely on each other, and through shared struggle, something deeper begins to emerge.',
   },
   bittersweet: {
-    label: '💔 รักที่ต้องพราก',
+    label: '💔 Bittersweet Love',
     prompt:
       'Their connection is real but cannot last. Something — duty, fate, circumstance — keeps them apart. This is a meeting colored by the knowledge that it is fleeting, precious, and possibly the only one they will ever have.',
   },
   mistaken: {
-    label: '🎭 จำผิดคน',
+    label: '🎭 Mistaken Identity',
     prompt:
       'One of them mistakes the other for someone else, or they meet under false pretenses. The truth is hidden beneath masks, roles, or misunderstandings — but the genuine connection that forms is undeniably real.',
   },
   fated: {
-    label: '🌙 พรหมลิขิต',
+    label: '🌙 Fated',
     prompt:
       'The universe conspired to bring them together. Against all odds, through impossible coincidences and cosmic alignment, they find each other. It feels like destiny, like the multiverse itself wanted this moment to exist.',
   },
   // --- New ---
   protector: {
-    label: '🛡️ ผู้พิทักษ์',
+    label: '🛡️ Protector',
     prompt:
       'One of them is sworn to protect the other — a bodyguard, a knight, a guardian angel. Duty demands distance, but proximity breeds something neither expected. Every threat brings them closer.',
   },
   forbidden: {
-    label: '🚫 รักต้องห้าม',
+    label: '🚫 Forbidden Love',
     prompt:
       'Everything about this connection is forbidden — different worlds, opposing factions, taboo by law or tradition. They know the cost of being caught, yet they cannot stop reaching for each other.',
   },
   childhood: {
-    label: '🌟 เพื่อนวัยเด็ก',
+    label: '🌟 Childhood Friends',
     prompt:
       'They grew up together — sharing secrets, scraped knees, and pinky promises. Now as adults, the innocent bond has evolved into something neither dares to name. The familiarity is both comforting and terrifying.',
   },
   master_servant: {
-    label: '👑 นาย-บ่าว',
+    label: '👑 Master & Servant',
     prompt:
       'One holds power, the other serves — but the dynamic is more complex than it appears. Loyalty blurs into devotion, commands soften into whispers, and the line between duty and desire disappears.',
   },
   savior: {
-    label: '🩺 ช่วยชีวิต',
+    label: '🩺 Life Saver',
     prompt:
       "One of them saved the other's life — from danger, from darkness, from themselves. Now there is a debt that cannot be repaid, a bond forged in a moment of vulnerability, and a gratitude that has grown into something much deeper.",
   },
   reincarnation: {
-    label: '🔮 ชาติที่แล้ว',
+    label: '🔮 Reincarnation',
     prompt:
       'They have met before — in another life, another century, another world. Fragments of memories bleed through: a familiar scent, a déjà vu smile, dreams of a face they have never seen yet somehow know by heart.',
   },
   strangers_night: {
-    label: '🌃 คืนเดียว',
+    label: '🌃 Strangers in the Night',
     prompt:
       'Two strangers cross paths in the dead of night — at a bar, on a rooftop, in an empty train station. No names, no past, no future. Just this one night where two souls collide and create something unforgettable.',
   },
   accidental: {
-    label: '💥 บังเอิญชนกัน',
+    label: '💥 Accidental Meeting',
     prompt:
       "A literal or metaphorical collision — bumping into each other, crashing into each other's lives through a comedy of errors. Spilled coffee, wrong apartment, switched luggage. Chaos that leads to chemistry.",
   },
   // --- Extended / Extra ---
   fakeDating: {
-    label: '💍 แฟนกำมะลอ',
+    label: '💍 Fake Dating',
     prompt:
       'They are forced to fake a relationship — holding hands for the cameras, sharing a bed out of necessity, pretending to be in love until the lines blur and the fake feelings become terrifyingly real.',
   },
   arrangedMarriage: {
-    label: '📜 คลุมถุงชน',
+    label: '📜 Arranged Marriage',
     prompt:
       'An arranged marriage between strangers or rivals. A cold bedroom, political alliances, duty over desire, but slowly discovering the person behind the mask.',
   },
   roommates: {
-    label: '🏠 เพื่อนร่วมห้อง',
+    label: '🏠 Roommates',
     prompt:
       'Forced proximity as roommates. Thin walls, sharing a kitchen in the middle of the night, accidental touches, and the agonizing tension of living so close to someone you want.',
   },
   amnesia: {
-    label: '🧠 ความจำเสื่อม',
+    label: '🧠 Amnesia',
     prompt:
       'One of them has lost their memory. The other must bear the weight of their shared history. Relearning how to love, flashes of familiarity, and the tragedy of forgetting.',
   },
   betrayal: {
-    label: '🔪 การทรยศหักหลัง',
+    label: '🔪 Betrayal',
     prompt:
       'A profound betrayal has occurred. Swords drawn, broken trust, tears of rage. Loving someone who hurt you, or being the one who had to hold the knife.',
   },
   soulmates: {
-    label: '✨ โซลเมท',
+    label: '✨ Soulmates',
     prompt:
       'A universe where soulmates are real — marked by a tattoo, a red thread, or shared pain. The magnetic, inescapable pull toward the one person meant for you.',
   },
   timeTravel: {
-    label: '⏳ ข้ามเวลา',
+    label: '⏳ Time Travel',
     prompt:
       'One of them has traveled through time to be here. A connection that defies centuries, the tragedy of outliving the one you love, or changing history to save them.',
   },
   penPals: {
-    label: '✉️ จดหมายลึกลับ',
+    label: '✉️ Pen Pals',
     prompt:
       "They fell in love through letters, texts, or anonymous messages without ever seeing each other's faces. Now, they finally meet in person, and the reality exceeds the fantasy.",
   },
   // --- Wild & Spicy ---
   bodySwap: {
-    label: '🧬 สลับร่าง',
+    label: '🧬 Body Swap',
     prompt:
       "They have inexplicably swapped bodies. Waking up in the wrong bed, living each other's lives, discovering each other's deepest secrets, and the bizarre intimacy of knowing exactly how the other feels.",
   },
   experiment: {
-    label: '🧪 หนูทดลอง',
+    label: '🧪 Experiment Subject',
     prompt:
       'A dark laboratory setting. One is the scientist, the other is the experiment. Or perhaps they are both subjects trying to escape. Testing limits, breaking rules, and finding humanity in the dark.',
   },
   vampireBlood: {
-    label: '🩸 แหล่งเลือด',
+    label: '🩸 Blood Source',
     prompt:
       'A dynamic of pure necessity and dark addiction. One is a vampire, the other is their willing (or unwilling) blood source. The bite is euphoric, the dependency is absolute.',
   },
   ghostHuman: {
-    label: '👻 คนกับผี',
+    label: '👻 Ghost & Human',
     prompt:
       'One is alive, one is a restless spirit. A haunting that turns into companionship. Longing to touch but passing through each other, existing on the fragile border between life and death.',
   },
   demonPact: {
-    label: '😈 สัญญากับปีศาจ',
+    label: '😈 Demon Pact',
     prompt:
       'A desperate human summons a demon and makes a pact. The price is their soul. The demon intends to collect, but finds themselves fascinated by the mortal instead.',
   },
   stalker: {
-    label: '👁️ คนแอบตาม',
+    label: '👁️ Stalker',
     prompt:
       "A dark obsession. One is watching from the shadows, knowing every detail of the other's life. The other might be terrified, or they might secretly invite it.",
   },
   sugarDaddy: {
-    label: '💸 สายเปย์ / เด็กเลี้ยง',
+    label: '💸 Sugar Daddy/Baby',
     prompt:
       'A transactional relationship built on money and power. Expensive gifts, luxury hotels, and the slow realization that they want more than what money can buy.',
   },
   identityReveal: {
-    label: '🎭 ความลับแตก',
+    label: '🎭 Identity Reveal',
     prompt:
       "They've known each other for years, but one has been hiding a massive secret (superhero, spy, royalty, villain). Tonight, the mask falls off, and everything changes.",
   },
   multiverseGlitch: {
-    label: '🌌 มิติพังทลาย',
+    label: '🌌 Multiverse Glitch',
     prompt:
       'The multiverse is collapsing. Two different versions of the same person, or lovers from different timelines, are trapped in the same room as reality tears itself apart around them.',
   },
   doppelganger: {
-    label: '🪞 ร่างโคลน',
+    label: '🪞 Doppelganger',
     prompt:
       'One of them has been replaced by an exact duplicate — a clone, a shapeshifter, or an alternate self. The duplicate is trying to live their life, and might be doing a better job at loving their partner.',
   },
   hostage: {
-    label: '🔫 ตัวประกัน',
+    label: '🔫 Hostage',
     prompt:
       'One is taken hostage and the other must negotiate or rescue them. High stakes, life-or-death tension, and the desperate realization of how much they mean to each other.',
   },
   auction: {
-    label: '💰 การประมูล',
+    label: '💰 Auction',
     prompt:
       'They meet at a high-stakes auction — bidding against each other for something valuable, or one is the item being auctioned. Power dynamics, wealth, and dangerous games.',
   },
   shipwreck: {
-    label: '🚢 เรืออับปาง',
+    label: '🚢 Shipwreck',
     prompt:
       'Stranded together after a shipwreck on a deserted island. Forced to survive, build shelter, find food, and rely entirely on each other with no rescue in sight.',
   },
   maskedball: {
-    label: '🎭 งานเต้นรำหน้ากาก',
+    label: '🎭 Masked Ball',
     prompt:
       'They meet at an elegant masked ball where identities are hidden. Dancing with a stranger, stolen kisses in dark corridors, and the thrill of not knowing who they truly are.',
   },
   prison: {
-    label: '⛓️ เรือนจำ',
+    label: '⛓️ Prison',
     prompt:
       'One is imprisoned and the other is a guard, visitor, lawyer, or fellow inmate. Power imbalance, forbidden connection, and finding humanity behind bars.',
   },
   competition: {
-    label: '🏆 การแข่งขัน',
+    label: '🏆 Competition',
     prompt:
       'Fierce competitors in a high-stakes competition — sports, cooking, business, or combat. Rivalry that slowly transforms into grudging respect and undeniable attraction.',
   },
   blackmail: {
-    label: '📸 การแบล็คเมล์',
+    label: '📸 Blackmail',
     prompt:
       'One holds a damaging secret over the other. Blackmail, manipulation, and a twisted power dynamic that evolves into something neither expected.',
   },
   inheritance: {
-    label: '💎 มรดก',
+    label: '💎 Inheritance',
     prompt:
       'Brought together by a mysterious inheritance, a will with strange conditions, or a shared claim to something valuable. Strangers forced to cooperate.',
   },
   witness: {
-    label: '👁️ พยานคุ้มครอง',
+    label: '👁️ Witness Protection',
     prompt:
       'One is in witness protection and the other is their handler, or someone from their past who has found them. Danger, new identities, and the life they left behind.',
   },
   curse: {
-    label: '🔮 คำสาป',
+    label: '🔮 Curse',
     prompt:
       'Bound together by an ancient curse that can only be broken if they work together. Magical compulsion, shared fate, and the intimacy of being supernaturally linked.',
   },
   dreamsharing: {
-    label: '💭 แบ่งปันความฝัน',
+    label: '💭 Dream Sharing',
     prompt:
       'They discover they share the same dreams and can meet in the dream world. Reality and fantasy blur as their dream connection becomes more real than waking life.',
   },
   bounty: {
-    label: '🎯 นักล่าเงินรางวัล',
+    label: '🎯 Bounty Hunter',
     prompt:
       'One is a bounty hunter and the other is their target. A cat-and-mouse chase across cities, the thrill of the hunt, and the moment the hunter becomes the hunted.',
   },
   teacher: {
-    label: '📖 ครูกับศิษย์',
+    label: '📖 Teacher & Student',
     prompt:
       'A teacher-student dynamic where one is learning from the other. Knowledge transfer, admiration, and the forbidden line between mentor and something more.',
   },
   heist: {
-    label: '💎 ปล้นสุดระทึก',
+    label: '💎 Heist',
     prompt:
       'Partners in crime planning or executing a heist. Trust is everything when stealing together, and adrenaline makes hearts race for more than one reason.',
   },
@@ -495,224 +495,224 @@ const encounterTypes = {
 
 // Mood types
 const moodTypes = {
-  none: { label: '❌ ไม่ระบุ', prompt: '' }, // None / Unspecified
-  random: { label: '🎲 สุ่ม', prompt: 'Choose the mood that best fits the scene naturally.' }, // Random
+  none: { label: '❌ None', prompt: '' }, // None / Unspecified
+  random: { label: '🎲 Random', prompt: 'Choose the mood that best fits the scene naturally.' }, // Random
   // --- Classic ---
   romantic: {
-    label: '💕 โรแมนติกหวานซึ้ง',
+    label: '💕 Romantic & Sweet',
     prompt:
       'MOOD: Deeply romantic. Lingering gazes, racing hearts, unspoken desire. The air between them is electric with attraction. Every accidental touch sends sparks.',
   },
   comedic: {
-    label: '😂 ตลกเฮฮา',
+    label: '😂 Comedic & Fun',
     prompt:
       'MOOD: Lighthearted and funny. Witty banter, awkward mishaps, and genuine laughter. The connection forms through humor and playful chaos.',
   },
   dark: {
-    label: '🖤 เข้มข้น / ดุดัน',
+    label: '🖤 Dark & Intense',
     prompt:
       'MOOD: Dark and intense. Shadows, secrets, danger lurking beneath the surface. Their connection is forged in fire — desperate, raw, and consuming.',
   },
   melancholic: {
-    label: '🌧️ เศร้าหมอง / โหยหา',
+    label: '🌧️ Melancholic',
     prompt:
       "MOOD: Melancholic and wistful. A sense of loss, nostalgia, or longing pervades the scene. Beauty mixed with sadness — like a song you can't forget.",
   },
   mysterious: {
-    label: '🔮 ลึกลับซับซ้อน',
+    label: '🔮 Mysterious',
     prompt:
       'MOOD: Mysterious and enigmatic. Unanswered questions, hidden motives, and an atmosphere thick with intrigue. Nothing is quite what it seems.',
   },
   wholesome: {
-    label: '🌻 อบอุ่นหัวใจ',
+    label: '🌻 Wholesome',
     prompt:
       "MOOD: Warm and wholesome. Gentle kindness, quiet comfort, and genuine human connection. A scene that makes the reader's heart feel full.",
   },
   // --- New ---
   chaotic: {
-    label: '🌪️ วุ่นวาย / เคออส',
+    label: '🌪️ Chaotic',
     prompt:
       'MOOD: Pure chaos. Everything is going wrong in the best possible way. Explosions, misunderstandings, running from something, laughing while the world burns. Chaotic energy that somehow makes their bond stronger.',
   },
   sensual: {
-    label: '🔥 เย้ายวน',
+    label: '🔥 Sensual',
     prompt:
       'MOOD: Sensual and intoxicating. Charged glances, whispered words, the electricity of almost-touching. Every sense is heightened — the warmth of breath, the brush of fingers, the ache of wanting.',
   },
   epic: {
-    label: '🌋 มหากาพย์',
+    label: '🌋 Epic',
     prompt:
       'MOOD: Grand and epic. Sweeping landscapes, dramatic declarations, the weight of history and destiny. Their love story is written in the stars and echoes across ages. Think cinematic, orchestral, monumental.',
   },
   playful: {
-    label: '😜 ขี้เล่นแหย่',
+    label: '😜 Playful',
     prompt:
       "MOOD: Playful and teasing. Smirks, winks, inside jokes, and deliberate provocations. They flirt like it's an art form — each exchange a game where both players know exactly what they're doing.",
   },
   nostalgic: {
-    label: '🌅 คิดถึง',
+    label: '🌅 Nostalgic',
     prompt:
       'MOOD: Warm nostalgia. The golden haze of memory — summer sunsets, childhood places, songs that take you back. A bittersweet longing for something beautiful that once was and might never be again.',
   },
   suspenseful: {
-    label: '😨 ลุ้นระทึก',
+    label: '😨 Suspenseful',
     prompt:
       'MOOD: Heart-pounding suspense. Something is wrong, time is running out, danger is closing in. Their connection becomes an anchor in the storm — the one thing that feels real when everything else is falling apart.',
   },
   dreamy: {
-    label: '🌙 ฝันหวาน',
+    label: '🌙 Dreamy',
     prompt:
       'MOOD: Soft and dreamlike. Everything feels slightly unreal — soft focus, muted colors, the floaty feeling of being half-asleep. Gentle, quiet, intimate moments that feel like they exist outside of time.',
   },
   angsty: {
-    label: '😭 เจ็บปวด',
+    label: '😭 Angsty',
     prompt:
       "MOOD: Raw emotional anguish. Tears, raised voices, things said that can't be unsaid. The pain of loving someone when everything is working against you. Hurt that cuts deep precisely because the love is real.",
   },
   // --- Extended / Extra ---
   fluff: {
-    label: '☁️ นุ่มฟูละมุนละไม',
+    label: '☁️ Fluffy',
     prompt:
       'MOOD: Pure fluff and sweetness. No drama, no high stakes. Just soft smiles, blushing cheeks, gentle hugs, and a feeling of absolute safety with each other.',
   },
   passionate: {
-    label: '💋 เร่าร้อน / ดุเดือด',
+    label: '💋 Passionate',
     prompt:
       "MOOD: Fiercely passionate. They can't keep their hands off each other. Pinned against walls, breathless kisses, and a consuming, fiery intensity that blocks out the rest of the world.",
   },
   yandere: {
-    label: '🔪 ยันเดเระ / คลั่งรัก',
+    label: '🔪 Yandere',
     prompt:
       'MOOD: Obsessive, dark, and dangerously possessive (Yandere). A love so deep it becomes terrifying. Extreme jealousy, locked doors, and a willingness to burn the world down to keep them safe.',
   },
   tragic: {
-    label: '🥀 โศกนาฏกรรม',
+    label: '🥀 Tragic',
     prompt:
       'MOOD: Deeply tragic. Heart-wrenching sorrow, impossible choices, and the devastating realization that love is not enough to save them. The beautiful agony of a doomed romance.',
   },
   tsundere: {
-    label: '😤 ปากแข็ง (ซึนเดเระ)',
+    label: '😤 Tsundere',
     prompt:
       "MOOD: Tsundere dynamics. Denying their feelings, looking away with a blush, harsh words hiding a soft heart. 'It's not like I did this for you!', followed by genuine acts of care.",
   },
   healing: {
-    label: '🩹 เยียวยาหัวใจ',
+    label: '🩹 Healing',
     prompt:
       "MOOD: Healing and comforting. Tending to wounds (physical or emotional), brushing away tears, and the quiet realization that they don't have to be strong all the time when they are together.",
   },
   jealousy: {
-    label: '😒 หึงหวง',
+    label: '😒 Jealousy',
     prompt:
       'MOOD: Green-eyed jealousy. Watching from across the room as someone else talks to them. Clenched fists, possessive touches, and the breaking point where they finally stake their claim.',
   },
   unrequited: {
-    label: '💔 รักเขาข้างเดียว',
+    label: '💔 Unrequited Love',
     prompt:
       'MOOD: The ache of unrequited or unacknowledged love. Stolen glances, loving them from afar, the painful joy of just being near them, and hiding the true depth of their feelings.',
   },
   // --- Wild & Dark ---
   morallyGrey: {
-    label: '🎭 เทาๆ / ผิดศีลธรรม',
+    label: '🎭 Morally Grey',
     prompt:
       "MOOD: Morally grey and twisted. Doing terrible things for love. Enabling each other's worst impulses, and realizing they are perfectly toxic together.",
   },
   gore: {
-    label: '🩸 เลือดสาด / รุนแรง',
+    label: '🩸 Gore',
     prompt:
       'MOOD: Macabre and bloody. Violence, gore, and survival. Love amidst carnage, wiping blood from a cheek, and finding beauty in the horrific.',
   },
   mindbreak: {
-    label: '🧠 ปั่นหัว / พังทลาย',
+    label: '🧠 Mindbreak',
     prompt:
       "MOOD: Psychological manipulation and mindbreak. Gaslighting, completely breaking the other's will until they are entirely dependent. A love that destroys the mind.",
   },
   pureDevotion: {
-    label: '💖 ภักดีสุดหัวใจ',
+    label: '💖 Pure Devotion',
     prompt:
       'MOOD: Unconditional, almost religious devotion. Worshipping the ground they walk on. Absolute submission and the profound peace of belonging entirely to someone else.',
   },
   trapped: {
-    label: '🕸️ ถูกขัง / ไร้ทางหนี',
+    label: '🕸️ Trapped',
     prompt:
       'MOOD: Claustrophobic and trapped. Locked in a room, unable to leave. The Stockholm syndrome kicks in, and the cage begins to feel like a home.',
   },
   decadent: {
-    label: '🍷 หรูหรา / ฟุ้งเฟ้อ',
+    label: '🍷 Decadent',
     prompt:
       'MOOD: Luxurious, decadent, and hedonistic. Silk sheets, expensive wine, indulgence without limits. Losing themselves in physical pleasure and material wealth.',
   },
   starving: {
-    label: '🤤 หิวโหยในตัวอีกฝ่าย',
+    label: '🤤 Starving',
     prompt:
       'MOOD: Feral starvation and thirst. Not just physical hunger, but a desperate, consuming need to devour the other person — metaphorically or literally.',
   },
   domestic: {
-    label: '🧸 ใช้ชีวิตคู่',
+    label: '🧸 Domestic',
     prompt:
       'MOOD: Completely domestic. Doing laundry, cooking breakfast, arguing over which movie to watch. The profound intimacy of a boring, beautiful, everyday married life.',
   },
   outOfTime: {
-    label: '⏳ เวลาเหลือน้อย',
+    label: '⏳ Out of Time',
     prompt:
       "MOOD: Desperate urgency. The clock is ticking, the world is ending, or someone is dying. Saying everything that needs to be said before it's too late.",
   },
   masquerade: {
-    label: '🎭 ซ่อนเร้น / หน้ากาก',
+    label: '🎭 Masquerade',
     prompt:
       'MOOD: Hidden identities and masquerades. Pretending to be someone else, dancing around the truth, and the thrilling danger of almost being exposed.',
   },
   bittersweet: {
-    label: '💐 หวานอมขมกลืน',
+    label: '💐 Bittersweet',
     prompt:
       'MOOD: Bittersweet. A mix of joy and sorrow, happiness tinged with sadness or loss. Beautiful moments shadowed by the knowledge that they cannot last.',
   },
   obsessive: {
-    label: '🔗 หมกมุ่น',
+    label: '🔗 Obsessive',
     prompt:
       'MOOD: Obsessive fixation. Intense, all-consuming focus on the other person. Every thought, every action revolves around them. Unhealthy devotion that feels impossible to escape.',
   },
   ethereal: {
-    label: '✨ ลึกลับเหนือโลก',
+    label: '✨ Ethereal',
     prompt:
       'MOOD: Ethereal and otherworldly. Dreamlike quality that feels almost unreal. Soft light, floating sensations, and a connection that transcends the physical realm.',
   },
   vengeful: {
-    label: '⚔️ แค้นเคือง',
+    label: '⚔️ Vengeful',
     prompt:
       'MOOD: Driven by vengeance. Anger, betrayal, and the burning need for retribution. Love twisted by hurt, and the question of whether forgiveness is possible.',
   },
   hopeful: {
-    label: '🌈 เต็มไปด้วยความหวัง',
+    label: '🌈 Hopeful',
     prompt:
       'MOOD: Filled with hope and optimism. Despite challenges, there is belief in a better future. Light at the end of the tunnel, and faith that love will prevail.',
   },
   toxic: {
-    label: '☠️ เป็นพิษ',
+    label: '☠️ Toxic',
     prompt:
       'MOOD: Toxic relationship dynamics. Unhealthy patterns, manipulation, and destructive behaviors that harm both parties. Love that poisons rather than heals.',
   },
   protective: {
-    label: '🛡️ ปกป้อง',
+    label: '🛡️ Protective',
     prompt:
       'MOOD: Fiercely protective. Willingness to sacrifice everything to keep them safe. Standing between them and danger, and the primal need to shield them from harm.',
   },
   whimsical: {
-    label: '🎨 แปลกประหลาด',
+    label: '🎨 Whimsical',
     prompt:
       'MOOD: Playfully whimsical and fanciful. Charmingly odd, quirky moments, and a lighthearted approach to love. Magic in the mundane.',
   },
   haunting: {
-    label: '👻 หลอกหลอน',
+    label: '👻 Haunting',
     prompt:
       'MOOD: Haunting and lingering. A presence that stays with you long after. Beautiful yet unsettling, like a ghost you cannot forget.',
   },
   electric: {
-    label: '⚡ ไฟฟ้าสะท้าน',
+    label: '⚡ Electric',
     prompt:
       'MOOD: Electrically charged. Intense energy, undeniable chemistry, and attraction so strong it feels like lightning. Every touch sends shockwaves.',
   },
   serene: {
-    label: '🕊️ สงบนิ่ง',
+    label: '🕊️ Serene',
     prompt:
       'MOOD: Peaceful and serene. Calm acceptance, quiet contentment, and the gentle comfort of being together. No drama, just tranquil harmony.',
   },
@@ -831,7 +831,7 @@ function getOverlayStyle() {
 function showQuickSettings() {
   const isEnabled = extension_settings[extensionName].enabled;
   if (!isEnabled) {
-    toastr.warning('กรุณาเปิดใช้งาน Extension ก่อนนะ!', '🌌 Another Universe'); // Please enable the extension first!
+    toastr.warning('Please enable the Extension first!', '🌌 Another Universe');
     return;
   }
   $('#another-universe-modal-overlay').remove();
@@ -856,10 +856,10 @@ function showQuickSettings() {
             <div class="au-universal-popup-header">
                 <div class="au-card-front-header-text">
                     <span class="au-modal-title">🌌 Another Universe</span>
-                    <span class="au-modal-theme-badge">เลือกการตั้งค่าแล้วกด Generate</span> <!-- Select settings and press Generate -->
+                    <span class="au-modal-theme-badge">Select settings and press Generate</span>
                 </div>
                 <div style="display: flex; gap: 4px; align-items: center;">
-                    <span id="au-quick-info" class="au-modal-close" title="เกี่ยวกับโปรเจกต์ (About)">ℹ️</span> <!-- About the project -->
+                    <span id="au-quick-info" class="au-modal-close" title="About the project">ℹ️</span>
                     <span id="au-modal-close" class="au-modal-close">✕</span>
                 </div>
             </div>
@@ -876,7 +876,7 @@ function showQuickSettings() {
                     <label>🎨 Mood</label>
                     <select id="au-quick-mood" class="text_pole">${moodOpts}</select>
                 </div>
-                <div style="font-size:0.75em; color:#9090b0; text-align:center; padding-top:8px; border-top:1px dashed rgba(130,100,255,0.15);">💡 ผลลัพธ์อาจแตกต่างกันตาม AI model และ preset ที่ใช้</div> <!-- Results may vary depending on AI model and preset used -->
+                <div style="font-size:0.75em; color:#9090b0; text-align:center; padding-top:8px; border-top:1px dashed rgba(130,100,255,0.15);">💡 Results may vary depending on AI model and preset used</div>
             </div>
             <div class="au-universal-popup-footer au-quick-footer">
                 <input id="au-quick-gallery" class="menu_button" type="submit" value="📚 Gallery" />
@@ -1071,7 +1071,10 @@ function saveToGallery(charName, storyText, themeBadge, themeId) {
 
     // Warn if too many favorites
     if (favoriteCount >= MAX_FAVORITES) {
-      toastr.warning('คุณมี favorites เยอะมาก (100+) กรุณาลบบางเรื่องเพื่อประสิทธิภาพที่ดีขึ้น', '⚠️ Gallery Full');
+      toastr.warning(
+        'You have too many favorites (100+). Please delete some stories for better performance',
+        '⚠️ Gallery Full',
+      );
     }
 
     // Remove oldest non-favorite
@@ -1092,7 +1095,7 @@ function saveToGallery(charName, storyText, themeBadge, themeId) {
     // Handle localStorage quota exceeded
     if (error.name === 'QuotaExceededError' || error.message.includes('quota')) {
       console.error(`[${extensionName}] ❌ Storage quota exceeded`);
-      toastr.error('พื้นที่จัดเก็บเต็ม! กรุณาลบเรื่องเก่าใน Gallery', '🌌 Another Universe');
+      toastr.error('Storage full! Please delete old stories in Gallery', '🌌 Another Universe');
       // Remove the entry we just added since it couldn't be saved
       gallery.shift();
     } else {
@@ -1136,8 +1139,8 @@ function showGalleryModal(showFavOnly = false) {
   let listHtml = '';
   if (filtered.length === 0) {
     const msg = showFavOnly
-      ? 'ยังไม่มีเรื่องโปรด<br><small>กด ⭐ เพื่อเพิ่ม!</small>' // No favorites yet. Press ⭐ to add!
-      : 'ยังไม่มีเรื่องราวในแกลเลอรี<br><small>กด Generate เพื่อสร้างเรื่องแรก!</small>'; // No stories in gallery yet. Press Generate to create your first!
+      ? 'No favorites yet<br><small>Press ⭐ to add!</small>'
+      : 'No stories in gallery yet<br><small>Press Generate to create your first!</small>';
     listHtml = `<div style="text-align:center;padding:40px 20px;color:rgba(180,160,255,0.5);">${msg}</div>`;
   } else {
     listHtml = filtered
@@ -1165,14 +1168,14 @@ function showGalleryModal(showFavOnly = false) {
   }
 
   const favBtnLabel = showFavOnly ? '📚 All' : '⭐ Favorites';
-  const countLabel = showFavOnly ? `${filtered.length} favorites` : `${gallery.length} เรื่องราว`; // stories
+  const countLabel = showFavOnly ? `${filtered.length} favorites` : `${gallery.length} stories`;
 
   const modalHtml = `
     <div id="another-universe-modal-overlay" style="${getOverlayStyle()}">
         <div class="au-universal-popup">
             <div class="au-universal-popup-header">
                 <div class="au-card-front-header-text">
-                    <span class="au-modal-title">📚 แกลเลอรีจักรวาลคู่ขนาน</span> <!-- Parallel Universe Gallery -->
+                    <span class="au-modal-title">📚 Parallel Universe Gallery</span>
                     <span class="au-modal-theme-badge">${countLabel}</span>
                 </div>
                 <span id="au-modal-close" class="au-modal-close">✕</span>
@@ -1220,7 +1223,7 @@ function showGalleryModal(showFavOnly = false) {
 
   // Backup to TXT
   $('#au-gallery-backup').on('click', () => {
-    if (gallery.length === 0) return toastr.info('ไม่มีเรื่องราวให้บันทึก', '🌌 Another Universe'); // No stories to backup
+    if (gallery.length === 0) return toastr.info('No stories to backup', '🌌 Another Universe');
 
     let content = '🌌 ANOTHER UNIVERSE - GALLERY BACKUP 🌌\n';
     content += 'Generated on: ' + new Date().toLocaleString() + '\n\n';
@@ -1242,13 +1245,12 @@ function showGalleryModal(showFavOnly = false) {
     a.download = `Another_Universe_Backup_${new Date().toISOString().slice(0, 10)}.txt`;
     a.click();
     URL.revokeObjectURL(url);
-    toastr.success('สำรองข้อมูลเรียบร้อยแล้ว!', '🌌 Another Universe'); // Backup completed successfully!
+    toastr.success('Backup completed successfully!', '🌌 Another Universe');
   });
 
   // Clear all
   $('#au-gallery-clear').on('click', () => {
-    if (confirm('ลบเรื่องราวทั้งหมดในแกลเลอรี?')) {
-      // Delete all stories in gallery?
+    if (confirm('Delete all stories in gallery?')) {
       clearGallery();
     }
   });
@@ -1330,7 +1332,7 @@ function showMobileCardPopup(type, charName, storyText, themeName, themeId = 'ra
                     <span class="au-modal-title">🌌 ${charName}</span>
                     <span class="au-modal-theme-badge">${themeName}</span>
                 </div>
-                <span id="au-mcard-close" class="au-modal-close" style="font-size:1.2em;" title="ปิด">✕</span>
+                <span id="au-mcard-close" class="au-modal-close" style="font-size:1.2em;" title="Close">✕</span>
             </div>
             <div class="au-universal-popup-body">
                 ${bodyHtml}
@@ -1340,7 +1342,7 @@ function showMobileCardPopup(type, charName, storyText, themeName, themeId = 'ra
             </div>
             <div class="au-universal-popup-footer" style="display:flex; flex-direction:row; justify-content:center; gap:8px; padding:12px; border-top:1px solid rgba(130, 160, 220, 0.2);">
                 <button id="au-mcard-back" style="flex:1; padding:8px 4px; border-radius:8px; background:rgba(255,255,255,0.1); color:#fff; border:1px solid rgba(255,255,255,0.2); font-size:0.9em; cursor:pointer;">◀ Back</button>
-                ${onDownload ? `<button id="au-mcard-download" style="flex:1; padding:8px 4px; border-radius:8px; background:rgba(255,255,255,0.1); color:#fff; border:1px solid rgba(255,255,255,0.2); font-size:0.9em; cursor:pointer;">📸 ดูการ์ดเต็มจอ</button>` : ''} <!-- View fullscreen card -->
+                ${onDownload ? `<button id="au-mcard-download" style="flex:1; padding:8px 4px; border-radius:8px; background:rgba(255,255,255,0.1); color:#fff; border:1px solid rgba(255,255,255,0.2); font-size:0.9em; cursor:pointer;">📸 View Fullscreen Card</button>` : ''}
             </div>
         </div>
     </div>`;
@@ -1647,7 +1649,7 @@ function showMobileScreenshotView(type, charName, storyText, themeName, themeId 
 <body>
     <div id="loadingOverlay">
         <div class="spinner">⏳</div>
-        <div style="color: #d0c8e8; font-weight: bold; letter-spacing: 1px;">กำลังสร้างรูปภาพ...</div> <!-- Generating image... -->
+        <div style="color: #d0c8e8; font-weight: bold; letter-spacing: 1px;">Generating image...</div>
     </div>
     <div class="card" id="cardView">
         ${cardContent}
@@ -1656,16 +1658,16 @@ function showMobileScreenshotView(type, charName, storyText, themeName, themeId 
     <div id="imageContainer">
         <img id="renderedImage" src="" />
         <div style="margin-top: 24px; font-size: 1.1em; color: #fff; font-weight: bold;">
-            👇 แตะค้างที่รูปภาพ แล้วเลือก "บันทึกรูปภาพ" <!-- Long press image and select "Save Image" -->
+            👇 Long press image and select "Save Image"
         </div>
         <div style="margin-top: 8px; font-size: 0.8em; color: rgba(200,180,255,0.7);">
             (Long press image to save)
         </div>
-        <button class="back-btn" id="imgBackBtn">◀ ย้อนกลับ</button>
+        <button class="back-btn" id="imgBackBtn">◀ Back</button>
     </div>
     <div class="back-page" id="backPage">
-        <button class="back-btn" id="backBtn">◀ ย้อนกลับ</button>
-        <div class="back-hint">กลับไปยัง SillyTavern</div> <!-- Back to SillyTavern -->
+        <button class="back-btn" id="backBtn">◀ Back</button>
+        <div class="back-hint">Back to SillyTavern</div>
     </div>
 </body>
 </html>`;
@@ -1751,17 +1753,17 @@ function showMobileScreenshotView(type, charName, storyText, themeName, themeId 
         console.error('[Another-Universe] ❌ Failed to render image in new tab', err);
         // Fallback: hide loading, show HTML card, user can screenshot
         loadingOverlay.style.display = 'none';
-        toastr.warning('สร้างรูปภาพไม่สำเร็จ แตะที่หน้าจอเพื่อย้อนกลับ หรือแคปหน้าจอแทน', 'Another Universe'); // Image generation failed. Tap screen to go back or take screenshot instead
+        toastr.warning('Image generation failed. Tap screen to go back or take screenshot instead', 'Another Universe');
       }
     };
 
     // Start the rendering process
     setTimeout(attachEvents, 100);
 
-    toastr.success('เปิดแท็บใหม่แล้ว กำลังสร้างรูปภาพ...', '🌌 Another Universe'); // New tab opened, generating image...
+    toastr.success('New tab opened, generating image...', '🌌 Another Universe');
   } else {
     console.warn('[Another-Universe] ⚠️ Popup blocked');
-    toastr.warning('บราวเซอร์บล็อก popup — กรุณาอนุญาต popup แล้วลองใหม่', '⚠️ Another Universe'); // Browser blocked popup — please allow popups and try again
+    toastr.warning('Browser blocked popup — please allow popups and try again', '⚠️ Another Universe');
   }
 }
 
@@ -2006,7 +2008,7 @@ function showStoryModal(charName, storyText, themeName, themeId = 'random') {
           document.head.appendChild(script);
         });
       } catch (e) {
-        toastr.error('ไม่สามารถโหลดไลบรารี html2canvas ได้', 'Error'); // Cannot load html2canvas library
+        toastr.error('Cannot load html2canvas library', 'Error');
         btn.val(originalText).prop('disabled', false);
         return;
       }
@@ -2178,7 +2180,7 @@ function showStoryModal(charName, storyText, themeName, themeId = 'random') {
     if (!isShort) {
       innerContent = `
             <div style="font-size: 1.1em; font-weight: 700; color: ${textAccent}; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 6px; font-family: 'Prompt', 'Noto Sans Thai', sans-serif;">🌌 Another Universe</div>
-            <div style="font-size: 0.95em; color: ${textMuted}; margin-bottom: 16px; font-style: italic; font-family: 'Prompt', 'Noto Sans Thai', sans-serif;">"ถ้าพวกเราเจอกันในอีกจักรวาลหนึ่ง เรื่องราวของเราจะเปลี่ยนไปไหม"</div> <!-- "If we met in another universe, would our story change?" -->
+            <div style="font-size: 0.95em; color: ${textMuted}; margin-bottom: 16px; font-style: italic; font-family: 'Prompt', 'Noto Sans Thai', sans-serif;">"If we met in another universe, would our story change?"</div>
             <div style="font-size: 2.2em; font-weight: 800; color: ${textMain}; margin-bottom: 16px; text-shadow: ${textShadow}; font-family: 'Prompt', 'Noto Sans Thai', sans-serif;">${charName}</div>
             <div style="margin-bottom: 30px; display: flex; flex-wrap: wrap; justify-content: center; font-family: 'Prompt', 'Noto Sans Thai', sans-serif;">${badgeHtml}</div>
             <div style="font-size: 0.85em; color: #9090b0; margin-bottom: 20px; font-family: 'Prompt', 'Noto Sans Thai', sans-serif; font-style: italic;">${userName} × ${charName} story</div>
@@ -2187,7 +2189,7 @@ function showStoryModal(charName, storyText, themeName, themeId = 'random') {
     } else {
       innerContent = `
             <div style="font-size: 1em; font-weight: 700; color: ${textAccent}; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 6px; font-family: 'Prompt', 'Noto Sans Thai', sans-serif;">🌌 Another Universe</div>
-            <div style="font-size: 0.9em; color: ${textMuted}; margin-bottom: 12px; font-style: italic; font-family: 'Prompt', 'Noto Sans Thai', sans-serif;">"ถ้าพวกเราเจอกันในอีกจักรวาลหนึ่ง เรื่องราวของเราจะเปลี่ยนไปไหม"</div>
+            <div style="font-size: 0.9em; color: ${textMuted}; margin-bottom: 12px; font-style: italic; font-family: 'Prompt', 'Noto Sans Thai', sans-serif;">"If we met in another universe, would our story change?"</div>
             <div style="font-size: 2em; font-weight: 800; color: ${textMain}; margin-bottom: 16px; text-shadow: ${textShadow}; font-family: 'Prompt', 'Noto Sans Thai', sans-serif;">${charName}</div>
             <div style="margin-bottom: 30px; display: flex; flex-wrap: wrap; justify-content: center; font-family: 'Prompt', 'Noto Sans Thai', sans-serif;">${badgeHtml}</div>
             <div style="font-size: 0.85em; color: #9090b0; margin-bottom: 20px; font-family: 'Prompt', 'Noto Sans Thai', sans-serif; font-style: italic;">${userName} × ${charName} story</div>
@@ -2243,7 +2245,7 @@ function showStoryModal(charName, storyText, themeName, themeId = 'random') {
     const loadingHtml = `
         <div id="au-render-loading" style="${getOverlayStyle()}; z-index:999999; flex-direction:column; background:rgba(0,0,0,0.85);">
             <div style="font-size:3.5em;animation:au-spin 1s linear infinite;">⏳</div>
-            <div style="margin-top:24px;font-size:1.1em;font-weight:bold;letter-spacing:1px;color:#d0c8e8;">กำลังบันทึกความทรงจำ...</div> <!-- Saving memory... -->
+            <div style="margin-top:24px;font-size:1.1em;font-weight:bold;letter-spacing:1px;color:#d0c8e8;">Saving memory...</div>
             <style>@keyframes au-spin { 100% { transform: rotate(360deg); } }</style>
         </div>`;
     document.body.insertAdjacentHTML('beforeend', loadingHtml);
@@ -2278,10 +2280,10 @@ function showStoryModal(charName, storyText, themeName, themeId = 'random') {
                 <div id="au-mobile-save-popup" style="position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(10,5,20,0.95); z-index:999999; display:flex; flex-direction:column; justify-content:center; align-items:center; backdrop-filter:blur(10px);">
                     <img src="${blobUrl}" style="max-width:90%; max-height:75vh; border-radius:16px; box-shadow:0 10px 40px rgba(0,0,0,0.5);" />
                     <div style="color:#fff; margin-top:20px; font-size:16px; text-align:center;">
-                        👇 <b>แตะค้างที่รูปภาพ</b> แล้วเลือก <i>บันทึกรูปภาพ</i><br> <!-- Long press image and select Save Image -->
+                        👇 <b>Long press image</b> and select <i>Save Image</i><br>
                         <span style="font-size:0.8em; color:#d0d8e0;">(Long press image to save)</span>
                     </div>
-                    <button id="au-mobile-save-close" style="margin-top:24px; padding:10px 24px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.3); border-radius:20px; color:#fff; font-size:16px; cursor:pointer;">✕ ปิด (Close)</button> <!-- Close -->
+                    <button id="au-mobile-save-close" style="margin-top:24px; padding:10px 24px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.3); border-radius:20px; color:#fff; font-size:16px; cursor:pointer;">✕ Close</button>
                 </div>`;
         document.body.insertAdjacentHTML('beforeend', popupHtml);
         $('#au-mobile-save-close').on('click', () => {
@@ -2304,17 +2306,17 @@ function showStoryModal(charName, storyText, themeName, themeId = 'random') {
         }, 200);
         console.log(`[Another-Universe] 📸 Download triggered for ${a.download}`);
       }
-      toastr.success('บันทึกภาพเสร็จสิ้น!', '🌌 Another Universe'); // Image saved successfully!
+      toastr.success('Image saved successfully!', '🌌 Another Universe');
     } catch (error) {
       console.error('Failed to generate image:', error);
-      let errorMsg = 'ไม่สามารถสร้างรูปภาพได้ ลองอีกครั้ง'; // Cannot generate image, try again
+      let errorMsg = 'Cannot generate image, try again';
 
       if (error.message && error.message.includes('canvas')) {
-        errorMsg = 'ไม่สามารถสร้าง canvas ได้ รูปภาพอาจใหญ่เกินไป'; // Cannot create canvas, image may be too large
+        errorMsg = 'Cannot create canvas, image may be too large';
       } else if (error.message && error.message.includes('blob')) {
-        errorMsg = 'ไม่สามารถแปลงรูปภาพได้ กรุณาลองใหม่'; // Cannot convert image, please try again
+        errorMsg = 'Cannot convert image, please try again';
       } else if (error.message && error.message.includes('font')) {
-        errorMsg = 'ฟอนต์โหลดไม่สำเร็จ กรุณารอสักครู่แล้วลองใหม่'; // Font loading failed, please wait and try again
+        errorMsg = 'Font loading failed, please wait and try again';
       }
 
       toastr.error(errorMsg, '🌌 Another Universe');
@@ -2348,7 +2350,7 @@ let generationAbortController = null;
 
 function showLoadingState(show) {
   if (show) {
-    $('#another_universe_open_btn').prop('disabled', true).val('🌀 กำลังเปิดประตูจักรวาล...'); // Opening universe portal...
+    $('#another_universe_open_btn').prop('disabled', true).val('🌀 Opening universe portal...');
     // Chat button loading state
     $('#au-chat-btn').addClass('au-chat-btn-busy');
     $('#au-chat-btn .au-chat-btn-icon').hide();
@@ -2359,10 +2361,10 @@ function showLoadingState(show) {
       <div id="au-generation-loading" style="${getOverlayStyle()}; z-index: 999999; background: rgba(0,0,0,0.85); backdrop-filter: blur(10px);">
         <div style="text-align: center;">
           <div style="font-size: 4em; animation: au-spin 2s linear infinite; margin-bottom: 24px;">🌀</div>
-          <div style="font-size: 1.3em; font-weight: bold; color: #d0c8e8; margin-bottom: 12px; letter-spacing: 1px;">กำลังเปิดประตูจักรวาล...</div> <!-- Opening universe portal... -->
-          <div style="font-size: 0.9em; color: #b8b0d0; margin-bottom: 32px;">กำลังสร้างเรื่องราวในโลกคู่ขนาน</div> <!-- Creating story in parallel world -->
+          <div style="font-size: 1.3em; font-weight: bold; color: #d0c8e8; margin-bottom: 12px; letter-spacing: 1px;">Opening universe portal...</div>
+          <div style="font-size: 0.9em; color: #b8b0d0; margin-bottom: 32px;">Creating story in parallel world</div>
           <button id="au-cancel-generation" style="padding: 12px 32px; background: rgba(255,100,100,0.2); border: 1px solid rgba(255,100,100,0.5); border-radius: 20px; color: #ffaaaa; font-size: 1em; cursor: pointer; transition: all 0.3s;">
-            ✕ ยกเลิก <!-- Cancel -->
+            ✕ Cancel
           </button>
         </div>
         <style>
@@ -2379,7 +2381,7 @@ function showLoadingState(show) {
       }
       $('#au-generation-loading').remove();
       showLoadingState(false);
-      toastr.info('ยกเลิกการสร้างเรื่องราวแล้ว', '🌌 Another Universe'); // Story generation cancelled
+      toastr.info('Story generation cancelled', '🌌 Another Universe');
     });
   } else {
     $('#another_universe_open_btn').prop('disabled', false).val('✨ Open Another Universe');
@@ -2397,19 +2399,19 @@ async function onOpenUniverseClick() {
   const isEnabled = extension_settings[extensionName].enabled;
 
   if (!isEnabled) {
-    toastr.warning('กรุณาเปิดใช้งาน Extension ก่อนนะ!', '🌌 Another Universe'); // Please enable the extension first!
+    toastr.warning('Please enable the Extension first!', '🌌 Another Universe');
     return;
   }
 
   // Prevent multiple simultaneous generations
   if (generationAbortController) {
-    toastr.warning('กำลังสร้างเรื่องราวอยู่ กรุณารอสักครู่', '🌌 Another Universe'); // Story generation in progress, please wait
+    toastr.warning('Story generation in progress, please wait', '🌌 Another Universe');
     return;
   }
 
   const context = getContext();
   if (!context.characterId && context.characterId !== 0) {
-    toastr.warning('กรุณาเลือกตัวละครก่อนนะ!', '🌌 Another Universe'); // Please select a character first!
+    toastr.warning('Please select a character first!', '🌌 Another Universe');
     return;
   }
 
@@ -2417,11 +2419,11 @@ async function onOpenUniverseClick() {
   const userName = context.name1 || 'User';
   const charDescription = context.characters?.[context.characterId]?.description || '';
   const selectedTheme = extension_settings[extensionName].selectedTheme || 'random';
-  const themeLabel = universeThemes[selectedTheme]?.label || '🎲 สุ่ม';
+  const themeLabel = universeThemes[selectedTheme]?.label || '🎲 Random';
   const selectedEncounter = extension_settings[extensionName].selectedEncounter || 'random';
-  const encounterLabel = selectedEncounter === 'none' ? '' : encounterTypes[selectedEncounter]?.label || '🎲 สุ่ม';
+  const encounterLabel = selectedEncounter === 'none' ? '' : encounterTypes[selectedEncounter]?.label || '🎲 Random';
   const selectedMood = extension_settings[extensionName].selectedMood || 'random';
-  const moodLabel = selectedMood === 'none' ? '' : moodTypes[selectedMood]?.label || '🎲 สุ่ม';
+  const moodLabel = selectedMood === 'none' ? '' : moodTypes[selectedMood]?.label || '🎲 Random';
 
   const chatContext = getRelationshipSummary(6);
   console.log(
@@ -2450,24 +2452,24 @@ async function onOpenUniverseClick() {
 
       saveToGallery(charName, result, badge, selectedTheme);
       showStoryModal(charName, result, badge, selectedTheme);
-      toastr.success('เรื่องราวจักรวาลคู่ขนานพร้อมแล้ว!', '🌌 Another Universe'); // Parallel universe story ready!
+      toastr.success('Parallel universe story ready!', '🌌 Another Universe');
       console.log(`[${extensionName}] ✅ Universe generated successfully`);
     } else {
-      toastr.error('ไม่สามารถสร้างเรื่องราวได้ ลองใหม่อีกครั้ง', '🌌 Another Universe'); // Cannot generate story, try again
+      toastr.error('Cannot generate story, try again', '🌌 Another Universe');
       console.log(`[${extensionName}] ❌ Empty result from LLM`);
     }
   } catch (error) {
     if (error.name === 'AbortError') {
-      toastr.info('ยกเลิกการสร้างเรื่องราวแล้ว', '🌌 Another Universe'); // Story generation cancelled
+      toastr.info('Story generation cancelled', '🌌 Another Universe');
       console.log(`[${extensionName}] ⚠️ Generation cancelled by user`);
     } else if (error.message && error.message.includes('network')) {
-      toastr.error('เกิดปัญหาการเชื่อมต่อ กรุณาตรวจสอบ API และลองใหม่อีกครั้ง', '🌌 Another Universe'); // Connection problem, please check API and try again
+      toastr.error('Connection problem, please check API and try again', '🌌 Another Universe');
       console.error(`[${extensionName}] ❌ Network error:`, error);
     } else if (error.message && error.message.includes('rate limit')) {
-      toastr.error('API rate limit exceeded กรุณารอสักครู่แล้วลองใหม่', '🌌 Another Universe'); // API rate limit exceeded, please wait and try again
+      toastr.error('API rate limit exceeded, please wait and try again', '🌌 Another Universe');
       console.error(`[${extensionName}] ❌ Rate limit error:`, error);
     } else {
-      toastr.error(`เกิดข้อผิดพลาด: ${error.message || 'Unknown error'}`, '🌌 Another Universe');
+      toastr.error(`Error occurred: ${error.message || 'Unknown error'}`, '🌌 Another Universe');
       console.error(`[${extensionName}] ❌ Generation failed:`, error);
     }
   } finally {
@@ -2486,42 +2488,42 @@ function showWelcomeModal() {
             <div class="au-universal-popup-header">
                 <div class="au-card-front-header-text">
                     <span class="au-modal-title">🌌 Another Universe v1.0</span>
-                    <span class="au-modal-theme-badge">ถ้าเราได้พบกัน...ในอีกจักรวาลหนึ่ง</span> <!-- If we met...in another universe -->
+                    <span class="au-modal-theme-badge">If we met...in another universe</span>
                 </div>
                 <span id="au-welcome-close" class="au-modal-close">✕</span>
             </div>
             <div class="au-universal-popup-body" style="padding: 24px; text-align: left;">
                 <h3 style="margin-top:0; margin-bottom:16px; color:#edf2f7;">
-                    ขอบคุณที่ติดตั้ง <strong>Another Universe</strong> <!-- Thank you for installing Another Universe -->
+                    Thank you for installing <strong>Another Universe</strong>
                 </h3>
                 <p style="font-size:0.95em; line-height:1.6; margin-bottom:12px; color:#e8edf2;">
-                    โปรเจกต์นี้เกิดขึ้นจากคำถามง่ายๆ คำถามหนึ่ง<br> <!-- This project was born from a simple question -->
-                    <em>"ถ้าตัวละครสองคนได้พบกันในโลกที่แตกต่างออกไป เรื่องราวของพวกเขาจะยังเหมือนเดิมไหม?"</em> <!-- "If two characters met in a different world, would their story still be the same?" -->
+                    This project was born from a simple question<br>
+                    <em>"If two characters met in a different world, would their story still be the same?"</em>
                 </p>
 
                 <p style="font-size:0.95em; line-height:1.6; margin-bottom:12px; color:#e8edf2;">
-                    บางจักรวาล พวกเขาอาจเป็นคนแปลกหน้าที่เดินสวนกันใต้สายฝน บางจักรวาล อาจเป็นศัตรู คู่หู หรือคนรักที่ถูกโชคชะตาพลัดพราก แต่ไม่ว่าโลกจะเปลี่ยนไปมากแค่ไหน ความรู้สึกบางอย่างอาจยังคงเดิมเสมอ <!-- In some universes, they might be strangers passing in the rain. In others, enemies, partners, or lovers torn apart by fate. But no matter how much the world changes, some feelings may remain the same -->
+                    In some universes, they might be strangers passing in the rain. In others, enemies, partners, or lovers torn apart by fate. But no matter how much the world changes, some feelings may remain the same
                 </p>
 
                 <p style="font-size:0.95em; line-height:1.6; margin-bottom:16px; color:#e8edf2;">
-                    Another Universe จะนำบทสนทนา บุคลิก และความสัมพันธ์ของตัวละคร มาตีความใหม่ในโลกคู่ขนาน ผ่านธีม อารมณ์ และรูปแบบการพบกันที่แตกต่างกันออกไป <!-- Another Universe reinterprets character dialogues, personalities, and relationships in parallel worlds through different themes, moods, and encounter types -->
+                    Another Universe reinterprets character dialogues, personalities, and relationships in parallel worlds through different themes, moods, and encounter types
                 </p>
 
                 <hr style="border-color: rgba(130, 160, 220, 0.15); margin: 16px 0;">
 
 
                 <p style="font-size: 0.85em; color:#d0d8e0; margin:0;">
-                    หากพบปัญหาในการเดินทางข้ามโลก โปรดแจ้งที่ Discord: <strong>majesty.pop (POPKO)</strong> <!-- If you encounter problems traveling across worlds, please report to Discord -->
+                    If you encounter problems traveling across worlds, please report to Discord: <strong>majesty.pop (POPKO)</strong>
                 </p>
                 
                 <div style="margin-top: 28px; font-size: 0.65em; color:#b8c0d0; text-align:center; padding-top: 14px; border-top: 1px dashed rgba(130, 160, 220, 0.2);">
-                    ⚠️ Custom License — ดูไฟล์ LICENSE สำหรับรายละเอียดเต็ม<br> <!-- See LICENSE file for full details -->
-                    อนุญาตให้ดัดแปลงและพัฒนาต่อเพื่อแจกจ่ายคืนคอมมูนิตี้เท่านั้น <strong>ห้ามนำไปปิดซอร์สโค้ด หรือดัดแปลงเพื่อการค้า/ค้ากำไรโดยเด็ดขาด</strong><br> <!-- Modification and development for community distribution only. Strictly prohibited to close-source or commercialize -->
-                    <span style="color: #ff8888;">หากตรวจพบการละเมิด จะดำเนินการแจ้งกับทุกคอมมูนิตี้ที่เกี่ยวข้องทันที</span> <!-- If violations are detected, all relevant communities will be notified immediately -->
+                    ⚠️ Custom License — See LICENSE file for full details<br>
+                    Modification and development for community distribution only. <strong>Strictly prohibited to close-source or commercialize</strong><br>
+                    <span style="color: #ff8888;">If violations are detected, all relevant communities will be notified immediately</span>
                 </div>
             </div>
             <div class="au-universal-popup-footer" style="justify-content:center;">
-                <input id="au-welcome-close-btn" class="menu_button" type="submit" value="✨ เริ่มเดินทางข้ามจักรวาล" style="width:100%;" /> <!-- Start journey across universes -->
+                <input id="au-welcome-close-btn" class="menu_button" type="submit" value="✨ Start Journey Across Universes" style="width:100%;" />
             </div>
         </div>
     </div>`;
