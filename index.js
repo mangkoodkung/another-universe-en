@@ -14,7 +14,7 @@ console.log(`[Another-Universe] Detected folder name: "${extensionName}"`);
 
 // Universe themes
 const universeThemes = {
-  random: { label: '🎲 สุ่ม', prompt: 'any creative setting you can imagine' },
+  random: { label: '🎲 สุ่ม', prompt: 'any creative setting you can imagine' }, // Random
   // --- Classic ---
   medieval: {
     label: '🏰 แฟนตาซียุคกลาง',
@@ -250,8 +250,8 @@ const universeThemes = {
 
 // Encounter types
 const encounterTypes = {
-  none: { label: '❌ ไม่ระบุ', prompt: '' },
-  random: { label: '🎲 สุ่ม', prompt: 'Choose any type of encounter that feels natural and compelling.' },
+  none: { label: '❌ ไม่ระบุ', prompt: '' }, // None / Unspecified
+  random: { label: '🎲 สุ่ม', prompt: 'Choose any type of encounter that feels natural and compelling.' }, // Random
   // --- Classic ---
   firstMeet: {
     label: '💫 พบกันครั้งแรก',
@@ -495,8 +495,8 @@ const encounterTypes = {
 
 // Mood types
 const moodTypes = {
-  none: { label: '❌ ไม่ระบุ', prompt: '' },
-  random: { label: '🎲 สุ่ม', prompt: 'Choose the mood that best fits the scene naturally.' },
+  none: { label: '❌ ไม่ระบุ', prompt: '' }, // None / Unspecified
+  random: { label: '🎲 สุ่ม', prompt: 'Choose the mood that best fits the scene naturally.' }, // Random
   // --- Classic ---
   romantic: {
     label: '💕 โรแมนติกหวานซึ้ง',
@@ -831,7 +831,7 @@ function getOverlayStyle() {
 function showQuickSettings() {
   const isEnabled = extension_settings[extensionName].enabled;
   if (!isEnabled) {
-    toastr.warning('กรุณาเปิดใช้งาน Extension ก่อนนะ!', '🌌 Another Universe');
+    toastr.warning('กรุณาเปิดใช้งาน Extension ก่อนนะ!', '🌌 Another Universe'); // Please enable the extension first!
     return;
   }
   $('#another-universe-modal-overlay').remove();
@@ -856,10 +856,10 @@ function showQuickSettings() {
             <div class="au-universal-popup-header">
                 <div class="au-card-front-header-text">
                     <span class="au-modal-title">🌌 Another Universe</span>
-                    <span class="au-modal-theme-badge">เลือกการตั้งค่าแล้วกด Generate</span>
+                    <span class="au-modal-theme-badge">เลือกการตั้งค่าแล้วกด Generate</span> <!-- Select settings and press Generate -->
                 </div>
                 <div style="display: flex; gap: 4px; align-items: center;">
-                    <span id="au-quick-info" class="au-modal-close" title="เกี่ยวกับโปรเจกต์ (About)">ℹ️</span>
+                    <span id="au-quick-info" class="au-modal-close" title="เกี่ยวกับโปรเจกต์ (About)">ℹ️</span> <!-- About the project -->
                     <span id="au-modal-close" class="au-modal-close">✕</span>
                 </div>
             </div>
@@ -876,7 +876,7 @@ function showQuickSettings() {
                     <label>🎨 Mood</label>
                     <select id="au-quick-mood" class="text_pole">${moodOpts}</select>
                 </div>
-                <div style="font-size:0.75em; color:#9090b0; text-align:center; padding-top:8px; border-top:1px dashed rgba(130,100,255,0.15);">💡 ผลลัพธ์อาจแตกต่างกันตาม AI model และ preset ที่ใช้</div>
+                <div style="font-size:0.75em; color:#9090b0; text-align:center; padding-top:8px; border-top:1px dashed rgba(130,100,255,0.15);">💡 ผลลัพธ์อาจแตกต่างกันตาม AI model และ preset ที่ใช้</div> <!-- Results may vary depending on AI model and preset used -->
             </div>
             <div class="au-universal-popup-footer au-quick-footer">
                 <input id="au-quick-gallery" class="menu_button" type="submit" value="📚 Gallery" />
@@ -1136,8 +1136,8 @@ function showGalleryModal(showFavOnly = false) {
   let listHtml = '';
   if (filtered.length === 0) {
     const msg = showFavOnly
-      ? 'ยังไม่มีเรื่องโปรด<br><small>กด ⭐ เพื่อเพิ่ม!</small>'
-      : 'ยังไม่มีเรื่องราวในแกลเลอรี<br><small>กด Generate เพื่อสร้างเรื่องแรก!</small>';
+      ? 'ยังไม่มีเรื่องโปรด<br><small>กด ⭐ เพื่อเพิ่ม!</small>' // No favorites yet. Press ⭐ to add!
+      : 'ยังไม่มีเรื่องราวในแกลเลอรี<br><small>กด Generate เพื่อสร้างเรื่องแรก!</small>'; // No stories in gallery yet. Press Generate to create your first!
     listHtml = `<div style="text-align:center;padding:40px 20px;color:rgba(180,160,255,0.5);">${msg}</div>`;
   } else {
     listHtml = filtered
@@ -1165,14 +1165,14 @@ function showGalleryModal(showFavOnly = false) {
   }
 
   const favBtnLabel = showFavOnly ? '📚 All' : '⭐ Favorites';
-  const countLabel = showFavOnly ? `${filtered.length} favorites` : `${gallery.length} เรื่องราว`;
+  const countLabel = showFavOnly ? `${filtered.length} favorites` : `${gallery.length} เรื่องราว`; // stories
 
   const modalHtml = `
     <div id="another-universe-modal-overlay" style="${getOverlayStyle()}">
         <div class="au-universal-popup">
             <div class="au-universal-popup-header">
                 <div class="au-card-front-header-text">
-                    <span class="au-modal-title">📚 แกลเลอรีจักรวาลคู่ขนาน</span>
+                    <span class="au-modal-title">📚 แกลเลอรีจักรวาลคู่ขนาน</span> <!-- Parallel Universe Gallery -->
                     <span class="au-modal-theme-badge">${countLabel}</span>
                 </div>
                 <span id="au-modal-close" class="au-modal-close">✕</span>
@@ -1220,7 +1220,7 @@ function showGalleryModal(showFavOnly = false) {
 
   // Backup to TXT
   $('#au-gallery-backup').on('click', () => {
-    if (gallery.length === 0) return toastr.info('ไม่มีเรื่องราวให้บันทึก', '🌌 Another Universe');
+    if (gallery.length === 0) return toastr.info('ไม่มีเรื่องราวให้บันทึก', '🌌 Another Universe'); // No stories to backup
 
     let content = '🌌 ANOTHER UNIVERSE - GALLERY BACKUP 🌌\n';
     content += 'Generated on: ' + new Date().toLocaleString() + '\n\n';
@@ -1242,12 +1242,13 @@ function showGalleryModal(showFavOnly = false) {
     a.download = `Another_Universe_Backup_${new Date().toISOString().slice(0, 10)}.txt`;
     a.click();
     URL.revokeObjectURL(url);
-    toastr.success('สำรองข้อมูลเรียบร้อยแล้ว!', '🌌 Another Universe');
+    toastr.success('สำรองข้อมูลเรียบร้อยแล้ว!', '🌌 Another Universe'); // Backup completed successfully!
   });
 
   // Clear all
   $('#au-gallery-clear').on('click', () => {
     if (confirm('ลบเรื่องราวทั้งหมดในแกลเลอรี?')) {
+      // Delete all stories in gallery?
       clearGallery();
     }
   });
@@ -1339,7 +1340,7 @@ function showMobileCardPopup(type, charName, storyText, themeName, themeId = 'ra
             </div>
             <div class="au-universal-popup-footer" style="display:flex; flex-direction:row; justify-content:center; gap:8px; padding:12px; border-top:1px solid rgba(130, 160, 220, 0.2);">
                 <button id="au-mcard-back" style="flex:1; padding:8px 4px; border-radius:8px; background:rgba(255,255,255,0.1); color:#fff; border:1px solid rgba(255,255,255,0.2); font-size:0.9em; cursor:pointer;">◀ Back</button>
-                ${onDownload ? `<button id="au-mcard-download" style="flex:1; padding:8px 4px; border-radius:8px; background:rgba(255,255,255,0.1); color:#fff; border:1px solid rgba(255,255,255,0.2); font-size:0.9em; cursor:pointer;">📸 ดูการ์ดเต็มจอ</button>` : ''}
+                ${onDownload ? `<button id="au-mcard-download" style="flex:1; padding:8px 4px; border-radius:8px; background:rgba(255,255,255,0.1); color:#fff; border:1px solid rgba(255,255,255,0.2); font-size:0.9em; cursor:pointer;">📸 ดูการ์ดเต็มจอ</button>` : ''} <!-- View fullscreen card -->
             </div>
         </div>
     </div>`;
@@ -1646,7 +1647,7 @@ function showMobileScreenshotView(type, charName, storyText, themeName, themeId 
 <body>
     <div id="loadingOverlay">
         <div class="spinner">⏳</div>
-        <div style="color: #d0c8e8; font-weight: bold; letter-spacing: 1px;">กำลังสร้างรูปภาพ...</div>
+        <div style="color: #d0c8e8; font-weight: bold; letter-spacing: 1px;">กำลังสร้างรูปภาพ...</div> <!-- Generating image... -->
     </div>
     <div class="card" id="cardView">
         ${cardContent}
@@ -1655,7 +1656,7 @@ function showMobileScreenshotView(type, charName, storyText, themeName, themeId 
     <div id="imageContainer">
         <img id="renderedImage" src="" />
         <div style="margin-top: 24px; font-size: 1.1em; color: #fff; font-weight: bold;">
-            👇 แตะค้างที่รูปภาพ แล้วเลือก "บันทึกรูปภาพ"
+            👇 แตะค้างที่รูปภาพ แล้วเลือก "บันทึกรูปภาพ" <!-- Long press image and select "Save Image" -->
         </div>
         <div style="margin-top: 8px; font-size: 0.8em; color: rgba(200,180,255,0.7);">
             (Long press image to save)
@@ -1664,7 +1665,7 @@ function showMobileScreenshotView(type, charName, storyText, themeName, themeId 
     </div>
     <div class="back-page" id="backPage">
         <button class="back-btn" id="backBtn">◀ ย้อนกลับ</button>
-        <div class="back-hint">กลับไปยัง SillyTavern</div>
+        <div class="back-hint">กลับไปยัง SillyTavern</div> <!-- Back to SillyTavern -->
     </div>
 </body>
 </html>`;
@@ -1750,17 +1751,17 @@ function showMobileScreenshotView(type, charName, storyText, themeName, themeId 
         console.error('[Another-Universe] ❌ Failed to render image in new tab', err);
         // Fallback: hide loading, show HTML card, user can screenshot
         loadingOverlay.style.display = 'none';
-        toastr.warning('สร้างรูปภาพไม่สำเร็จ แตะที่หน้าจอเพื่อย้อนกลับ หรือแคปหน้าจอแทน', 'Another Universe');
+        toastr.warning('สร้างรูปภาพไม่สำเร็จ แตะที่หน้าจอเพื่อย้อนกลับ หรือแคปหน้าจอแทน', 'Another Universe'); // Image generation failed. Tap screen to go back or take screenshot instead
       }
     };
 
     // Start the rendering process
     setTimeout(attachEvents, 100);
 
-    toastr.success('เปิดแท็บใหม่แล้ว กำลังสร้างรูปภาพ...', '🌌 Another Universe');
+    toastr.success('เปิดแท็บใหม่แล้ว กำลังสร้างรูปภาพ...', '🌌 Another Universe'); // New tab opened, generating image...
   } else {
     console.warn('[Another-Universe] ⚠️ Popup blocked');
-    toastr.warning('บราวเซอร์บล็อก popup — กรุณาอนุญาต popup แล้วลองใหม่', '⚠️ Another Universe');
+    toastr.warning('บราวเซอร์บล็อก popup — กรุณาอนุญาต popup แล้วลองใหม่', '⚠️ Another Universe'); // Browser blocked popup — please allow popups and try again
   }
 }
 
@@ -1797,8 +1798,8 @@ function showStoryModal(charName, storyText, themeName, themeId = 'random') {
                 <button id="au-modal-regenerate" style="flex:1; padding:8px 4px; border-radius:8px; background:rgba(255,255,255,0.1); color:#fff; border:1px solid rgba(255,255,255,0.2); font-size:0.9em; cursor:pointer;">🔄 New</button>
             </div>
             <div id="au-modal-edit-controls" class="au-universal-popup-footer" style="display:none; flex-direction:row; justify-content:center; gap:8px; padding:12px; border-top:1px solid rgba(130, 160, 220, 0.2);">
-                <button id="au-modal-save-edit" style="flex:1; padding:8px 4px; border-radius:8px; background:rgba(100,255,100,0.2); color:#aaffaa; border:1px solid rgba(100,255,100,0.5); font-size:0.9em; cursor:pointer;">💾 Save</button>
-                <button id="au-modal-cancel-edit" style="flex:1; padding:8px 4px; border-radius:8px; background:rgba(255,100,100,0.2); color:#ffaaaa; border:1px solid rgba(255,100,100,0.5); font-size:0.9em; cursor:pointer;">✕ Cancel</button>
+                <button id="au-modal-save-edit" style="flex:1; padding:8px 4px; border-radius:8px; background:rgba(50,200,50,0.3); color:#66ff66; border:1px solid rgba(50,200,50,0.7); font-size:0.9em; cursor:pointer; font-weight:600;">💾 Save</button>
+                <button id="au-modal-cancel-edit" style="flex:1; padding:8px 4px; border-radius:8px; background:rgba(255,50,50,0.3); color:#ff6666; border:1px solid rgba(255,50,50,0.7); font-size:0.9em; cursor:pointer; font-weight:600;">✕ Cancel</button>
             </div>
         `;
   } else {
@@ -1811,8 +1812,8 @@ function showStoryModal(charName, storyText, themeName, themeId = 'random') {
                 <input id="au-modal-close-btn" class="menu_button" type="submit" value="Close" />
             </div>
             <div id="au-modal-edit-controls" class="au-universal-popup-footer" style="display:none; flex-wrap: wrap;">
-                <input id="au-modal-save-edit" class="menu_button" type="submit" value="💾 Save Changes" style="background:rgba(100,255,100,0.2); border-color:rgba(100,255,100,0.5);" />
-                <input id="au-modal-cancel-edit" class="menu_button" type="submit" value="✕ Cancel" style="background:rgba(255,100,100,0.2); border-color:rgba(255,100,100,0.5);" />
+                <input id="au-modal-save-edit" class="menu_button" type="submit" value="💾 Save Changes" style="background:rgba(50,200,50,0.3); border-color:rgba(50,200,50,0.7); color:#66ff66; font-weight:600;" />
+                <input id="au-modal-cancel-edit" class="menu_button" type="submit" value="✕ Cancel" style="background:rgba(255,50,50,0.3); border-color:rgba(255,50,50,0.7); color:#ff6666; font-weight:600;" />
             </div>
         `;
   }
@@ -1829,7 +1830,7 @@ function showStoryModal(charName, storyText, themeName, themeId = 'random') {
             </div>
             <div class="au-universal-popup-body">
                 <div id="au-story-display" class="au-story-text">${escapedStory}</div>
-                <textarea id="au-story-editor" class="au-story-text" style="display:none; width:100%; min-height:300px; background:rgba(255,255,255,0.05); border:1px solid rgba(130,160,220,0.3); border-radius:8px; padding:16px; color:#e8edf2; font-family:inherit; font-size:inherit; line-height:inherit; resize:vertical;">${cleanStoryText}</textarea>
+                <textarea id="au-story-editor" class="au-story-text" style="display:none; width:100%; min-height:300px; background:#1a1a2e !important; border:1px solid rgba(130,160,220,0.4); border-radius:8px; padding:16px; color:#e8edf2 !important; font-family:inherit; font-size:inherit; line-height:inherit; resize:vertical;">${cleanStoryText}</textarea>
             </div>
             ${footerHtml}
         </div>
@@ -1992,7 +1993,7 @@ function showStoryModal(charName, storyText, themeName, themeId = 'random') {
           document.head.appendChild(script);
         });
       } catch (e) {
-        toastr.error('ไม่สามารถโหลดไลบรารี html2canvas ได้', 'Error');
+        toastr.error('ไม่สามารถโหลดไลบรารี html2canvas ได้', 'Error'); // Cannot load html2canvas library
         btn.val(originalText).prop('disabled', false);
         return;
       }
@@ -2164,7 +2165,7 @@ function showStoryModal(charName, storyText, themeName, themeId = 'random') {
     if (!isShort) {
       innerContent = `
             <div style="font-size: 1.1em; font-weight: 700; color: ${textAccent}; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 6px; font-family: 'Prompt', 'Noto Sans Thai', sans-serif;">🌌 Another Universe</div>
-            <div style="font-size: 0.95em; color: ${textMuted}; margin-bottom: 16px; font-style: italic; font-family: 'Prompt', 'Noto Sans Thai', sans-serif;">"ถ้าพวกเราเจอกันในอีกจักรวาลหนึ่ง เรื่องราวของเราจะเปลี่ยนไปไหม"</div>
+            <div style="font-size: 0.95em; color: ${textMuted}; margin-bottom: 16px; font-style: italic; font-family: 'Prompt', 'Noto Sans Thai', sans-serif;">"ถ้าพวกเราเจอกันในอีกจักรวาลหนึ่ง เรื่องราวของเราจะเปลี่ยนไปไหม"</div> <!-- "If we met in another universe, would our story change?" -->
             <div style="font-size: 2.2em; font-weight: 800; color: ${textMain}; margin-bottom: 16px; text-shadow: ${textShadow}; font-family: 'Prompt', 'Noto Sans Thai', sans-serif;">${charName}</div>
             <div style="margin-bottom: 30px; display: flex; flex-wrap: wrap; justify-content: center; font-family: 'Prompt', 'Noto Sans Thai', sans-serif;">${badgeHtml}</div>
             <div style="font-size: 0.85em; color: #9090b0; margin-bottom: 20px; font-family: 'Prompt', 'Noto Sans Thai', sans-serif; font-style: italic;">${userName} × ${charName} story</div>
@@ -2229,7 +2230,7 @@ function showStoryModal(charName, storyText, themeName, themeId = 'random') {
     const loadingHtml = `
         <div id="au-render-loading" style="${getOverlayStyle()}; z-index:999999; flex-direction:column; background:rgba(0,0,0,0.85);">
             <div style="font-size:3.5em;animation:au-spin 1s linear infinite;">⏳</div>
-            <div style="margin-top:24px;font-size:1.1em;font-weight:bold;letter-spacing:1px;color:#d0c8e8;">กำลังบันทึกความทรงจำ...</div>
+            <div style="margin-top:24px;font-size:1.1em;font-weight:bold;letter-spacing:1px;color:#d0c8e8;">กำลังบันทึกความทรงจำ...</div> <!-- Saving memory... -->
             <style>@keyframes au-spin { 100% { transform: rotate(360deg); } }</style>
         </div>`;
     document.body.insertAdjacentHTML('beforeend', loadingHtml);
@@ -2264,10 +2265,10 @@ function showStoryModal(charName, storyText, themeName, themeId = 'random') {
                 <div id="au-mobile-save-popup" style="position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(10,5,20,0.95); z-index:999999; display:flex; flex-direction:column; justify-content:center; align-items:center; backdrop-filter:blur(10px);">
                     <img src="${blobUrl}" style="max-width:90%; max-height:75vh; border-radius:16px; box-shadow:0 10px 40px rgba(0,0,0,0.5);" />
                     <div style="color:#fff; margin-top:20px; font-size:16px; text-align:center;">
-                        👇 <b>แตะค้างที่รูปภาพ</b> แล้วเลือก <i>บันทึกรูปภาพ</i><br>
+                        👇 <b>แตะค้างที่รูปภาพ</b> แล้วเลือก <i>บันทึกรูปภาพ</i><br> <!-- Long press image and select Save Image -->
                         <span style="font-size:0.8em; color:#d0d8e0;">(Long press image to save)</span>
                     </div>
-                    <button id="au-mobile-save-close" style="margin-top:24px; padding:10px 24px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.3); border-radius:20px; color:#fff; font-size:16px; cursor:pointer;">✕ ปิด (Close)</button>
+                    <button id="au-mobile-save-close" style="margin-top:24px; padding:10px 24px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.3); border-radius:20px; color:#fff; font-size:16px; cursor:pointer;">✕ ปิด (Close)</button> <!-- Close -->
                 </div>`;
         document.body.insertAdjacentHTML('beforeend', popupHtml);
         $('#au-mobile-save-close').on('click', () => {
@@ -2290,17 +2291,17 @@ function showStoryModal(charName, storyText, themeName, themeId = 'random') {
         }, 200);
         console.log(`[Another-Universe] 📸 Download triggered for ${a.download}`);
       }
-      toastr.success('บันทึกภาพเสร็จสิ้น!', '🌌 Another Universe');
+      toastr.success('บันทึกภาพเสร็จสิ้น!', '🌌 Another Universe'); // Image saved successfully!
     } catch (error) {
       console.error('Failed to generate image:', error);
-      let errorMsg = 'ไม่สามารถสร้างรูปภาพได้ ลองอีกครั้ง';
+      let errorMsg = 'ไม่สามารถสร้างรูปภาพได้ ลองอีกครั้ง'; // Cannot generate image, try again
 
       if (error.message && error.message.includes('canvas')) {
-        errorMsg = 'ไม่สามารถสร้าง canvas ได้ รูปภาพอาจใหญ่เกินไป';
+        errorMsg = 'ไม่สามารถสร้าง canvas ได้ รูปภาพอาจใหญ่เกินไป'; // Cannot create canvas, image may be too large
       } else if (error.message && error.message.includes('blob')) {
-        errorMsg = 'ไม่สามารถแปลงรูปภาพได้ กรุณาลองใหม่';
+        errorMsg = 'ไม่สามารถแปลงรูปภาพได้ กรุณาลองใหม่'; // Cannot convert image, please try again
       } else if (error.message && error.message.includes('font')) {
-        errorMsg = 'ฟอนต์โหลดไม่สำเร็จ กรุณารอสักครู่แล้วลองใหม่';
+        errorMsg = 'ฟอนต์โหลดไม่สำเร็จ กรุณารอสักครู่แล้วลองใหม่'; // Font loading failed, please wait and try again
       }
 
       toastr.error(errorMsg, '🌌 Another Universe');
@@ -2334,7 +2335,7 @@ let generationAbortController = null;
 
 function showLoadingState(show) {
   if (show) {
-    $('#another_universe_open_btn').prop('disabled', true).val('🌀 กำลังเปิดประตูจักรวาล...');
+    $('#another_universe_open_btn').prop('disabled', true).val('🌀 กำลังเปิดประตูจักรวาล...'); // Opening universe portal...
     // Chat button loading state
     $('#au-chat-btn').addClass('au-chat-btn-busy');
     $('#au-chat-btn .au-chat-btn-icon').hide();
@@ -2345,10 +2346,10 @@ function showLoadingState(show) {
       <div id="au-generation-loading" style="${getOverlayStyle()}; z-index: 999999; background: rgba(0,0,0,0.85); backdrop-filter: blur(10px);">
         <div style="text-align: center;">
           <div style="font-size: 4em; animation: au-spin 2s linear infinite; margin-bottom: 24px;">🌀</div>
-          <div style="font-size: 1.3em; font-weight: bold; color: #d0c8e8; margin-bottom: 12px; letter-spacing: 1px;">กำลังเปิดประตูจักรวาล...</div>
-          <div style="font-size: 0.9em; color: #b8b0d0; margin-bottom: 32px;">กำลังสร้างเรื่องราวในโลกคู่ขนาน</div>
+          <div style="font-size: 1.3em; font-weight: bold; color: #d0c8e8; margin-bottom: 12px; letter-spacing: 1px;">กำลังเปิดประตูจักรวาล...</div> <!-- Opening universe portal... -->
+          <div style="font-size: 0.9em; color: #b8b0d0; margin-bottom: 32px;">กำลังสร้างเรื่องราวในโลกคู่ขนาน</div> <!-- Creating story in parallel world -->
           <button id="au-cancel-generation" style="padding: 12px 32px; background: rgba(255,100,100,0.2); border: 1px solid rgba(255,100,100,0.5); border-radius: 20px; color: #ffaaaa; font-size: 1em; cursor: pointer; transition: all 0.3s;">
-            ✕ ยกเลิก
+            ✕ ยกเลิก <!-- Cancel -->
           </button>
         </div>
         <style>
@@ -2365,7 +2366,7 @@ function showLoadingState(show) {
       }
       $('#au-generation-loading').remove();
       showLoadingState(false);
-      toastr.info('ยกเลิกการสร้างเรื่องราวแล้ว', '🌌 Another Universe');
+      toastr.info('ยกเลิกการสร้างเรื่องราวแล้ว', '🌌 Another Universe'); // Story generation cancelled
     });
   } else {
     $('#another_universe_open_btn').prop('disabled', false).val('✨ Open Another Universe');
@@ -2383,19 +2384,19 @@ async function onOpenUniverseClick() {
   const isEnabled = extension_settings[extensionName].enabled;
 
   if (!isEnabled) {
-    toastr.warning('กรุณาเปิดใช้งาน Extension ก่อนนะ!', '🌌 Another Universe');
+    toastr.warning('กรุณาเปิดใช้งาน Extension ก่อนนะ!', '🌌 Another Universe'); // Please enable the extension first!
     return;
   }
 
   // Prevent multiple simultaneous generations
   if (generationAbortController) {
-    toastr.warning('กำลังสร้างเรื่องราวอยู่ กรุณารอสักครู่', '🌌 Another Universe');
+    toastr.warning('กำลังสร้างเรื่องราวอยู่ กรุณารอสักครู่', '🌌 Another Universe'); // Story generation in progress, please wait
     return;
   }
 
   const context = getContext();
   if (!context.characterId && context.characterId !== 0) {
-    toastr.warning('กรุณาเลือกตัวละครก่อนนะ!', '🌌 Another Universe');
+    toastr.warning('กรุณาเลือกตัวละครก่อนนะ!', '🌌 Another Universe'); // Please select a character first!
     return;
   }
 
@@ -2436,21 +2437,21 @@ async function onOpenUniverseClick() {
 
       saveToGallery(charName, result, badge, selectedTheme);
       showStoryModal(charName, result, badge, selectedTheme);
-      toastr.success('เรื่องราวจักรวาลคู่ขนานพร้อมแล้ว!', '🌌 Another Universe');
+      toastr.success('เรื่องราวจักรวาลคู่ขนานพร้อมแล้ว!', '🌌 Another Universe'); // Parallel universe story ready!
       console.log(`[${extensionName}] ✅ Universe generated successfully`);
     } else {
-      toastr.error('ไม่สามารถสร้างเรื่องราวได้ ลองใหม่อีกครั้ง', '🌌 Another Universe');
+      toastr.error('ไม่สามารถสร้างเรื่องราวได้ ลองใหม่อีกครั้ง', '🌌 Another Universe'); // Cannot generate story, try again
       console.log(`[${extensionName}] ❌ Empty result from LLM`);
     }
   } catch (error) {
     if (error.name === 'AbortError') {
-      toastr.info('ยกเลิกการสร้างเรื่องราวแล้ว', '🌌 Another Universe');
+      toastr.info('ยกเลิกการสร้างเรื่องราวแล้ว', '🌌 Another Universe'); // Story generation cancelled
       console.log(`[${extensionName}] ⚠️ Generation cancelled by user`);
     } else if (error.message && error.message.includes('network')) {
-      toastr.error('เกิดปัญหาการเชื่อมต่อ กรุณาตรวจสอบ API และลองใหม่อีกครั้ง', '🌌 Another Universe');
+      toastr.error('เกิดปัญหาการเชื่อมต่อ กรุณาตรวจสอบ API และลองใหม่อีกครั้ง', '🌌 Another Universe'); // Connection problem, please check API and try again
       console.error(`[${extensionName}] ❌ Network error:`, error);
     } else if (error.message && error.message.includes('rate limit')) {
-      toastr.error('API rate limit exceeded กรุณารอสักครู่แล้วลองใหม่', '🌌 Another Universe');
+      toastr.error('API rate limit exceeded กรุณารอสักครู่แล้วลองใหม่', '🌌 Another Universe'); // API rate limit exceeded, please wait and try again
       console.error(`[${extensionName}] ❌ Rate limit error:`, error);
     } else {
       toastr.error(`เกิดข้อผิดพลาด: ${error.message || 'Unknown error'}`, '🌌 Another Universe');
@@ -2472,42 +2473,42 @@ function showWelcomeModal() {
             <div class="au-universal-popup-header">
                 <div class="au-card-front-header-text">
                     <span class="au-modal-title">🌌 Another Universe v1.0</span>
-                    <span class="au-modal-theme-badge">ถ้าเราได้พบกัน...ในอีกจักรวาลหนึ่ง</span>
+                    <span class="au-modal-theme-badge">ถ้าเราได้พบกัน...ในอีกจักรวาลหนึ่ง</span> <!-- If we met...in another universe -->
                 </div>
                 <span id="au-welcome-close" class="au-modal-close">✕</span>
             </div>
             <div class="au-universal-popup-body" style="padding: 24px; text-align: left;">
                 <h3 style="margin-top:0; margin-bottom:16px; color:#edf2f7;">
-                    ขอบคุณที่ติดตั้ง <strong>Another Universe</strong>
+                    ขอบคุณที่ติดตั้ง <strong>Another Universe</strong> <!-- Thank you for installing Another Universe -->
                 </h3>
                 <p style="font-size:0.95em; line-height:1.6; margin-bottom:12px; color:#e8edf2;">
-                    โปรเจกต์นี้เกิดขึ้นจากคำถามง่ายๆ คำถามหนึ่ง<br>
-                    <em>"ถ้าตัวละครสองคนได้พบกันในโลกที่แตกต่างออกไป เรื่องราวของพวกเขาจะยังเหมือนเดิมไหม?"</em>
+                    โปรเจกต์นี้เกิดขึ้นจากคำถามง่ายๆ คำถามหนึ่ง<br> <!-- This project was born from a simple question -->
+                    <em>"ถ้าตัวละครสองคนได้พบกันในโลกที่แตกต่างออกไป เรื่องราวของพวกเขาจะยังเหมือนเดิมไหม?"</em> <!-- "If two characters met in a different world, would their story still be the same?" -->
                 </p>
 
                 <p style="font-size:0.95em; line-height:1.6; margin-bottom:12px; color:#e8edf2;">
-                    บางจักรวาล พวกเขาอาจเป็นคนแปลกหน้าที่เดินสวนกันใต้สายฝน บางจักรวาล อาจเป็นศัตรู คู่หู หรือคนรักที่ถูกโชคชะตาพลัดพราก แต่ไม่ว่าโลกจะเปลี่ยนไปมากแค่ไหน ความรู้สึกบางอย่างอาจยังคงเดิมเสมอ
+                    บางจักรวาล พวกเขาอาจเป็นคนแปลกหน้าที่เดินสวนกันใต้สายฝน บางจักรวาล อาจเป็นศัตรู คู่หู หรือคนรักที่ถูกโชคชะตาพลัดพราก แต่ไม่ว่าโลกจะเปลี่ยนไปมากแค่ไหน ความรู้สึกบางอย่างอาจยังคงเดิมเสมอ <!-- In some universes, they might be strangers passing in the rain. In others, enemies, partners, or lovers torn apart by fate. But no matter how much the world changes, some feelings may remain the same -->
                 </p>
 
                 <p style="font-size:0.95em; line-height:1.6; margin-bottom:16px; color:#e8edf2;">
-                    Another Universe จะนำบทสนทนา บุคลิก และความสัมพันธ์ของตัวละคร มาตีความใหม่ในโลกคู่ขนาน ผ่านธีม อารมณ์ และรูปแบบการพบกันที่แตกต่างกันออกไป
+                    Another Universe จะนำบทสนทนา บุคลิก และความสัมพันธ์ของตัวละคร มาตีความใหม่ในโลกคู่ขนาน ผ่านธีม อารมณ์ และรูปแบบการพบกันที่แตกต่างกันออกไป <!-- Another Universe reinterprets character dialogues, personalities, and relationships in parallel worlds through different themes, moods, and encounter types -->
                 </p>
 
                 <hr style="border-color: rgba(130, 160, 220, 0.15); margin: 16px 0;">
 
 
                 <p style="font-size: 0.85em; color:#d0d8e0; margin:0;">
-                    หากพบปัญหาในการเดินทางข้ามโลก โปรดแจ้งที่ Discord: <strong>majesty.pop (POPKO)</strong>
+                    หากพบปัญหาในการเดินทางข้ามโลก โปรดแจ้งที่ Discord: <strong>majesty.pop (POPKO)</strong> <!-- If you encounter problems traveling across worlds, please report to Discord -->
                 </p>
                 
                 <div style="margin-top: 28px; font-size: 0.65em; color:#b8c0d0; text-align:center; padding-top: 14px; border-top: 1px dashed rgba(130, 160, 220, 0.2);">
-                    ⚠️ Custom License — ดูไฟล์ LICENSE สำหรับรายละเอียดเต็ม<br>
-                    อนุญาตให้ดัดแปลงและพัฒนาต่อเพื่อแจกจ่ายคืนคอมมูนิตี้เท่านั้น <strong>ห้ามนำไปปิดซอร์สโค้ด หรือดัดแปลงเพื่อการค้า/ค้ากำไรโดยเด็ดขาด</strong><br>
-                    <span style="color: #ff8888;">หากตรวจพบการละเมิด จะดำเนินการแจ้งกับทุกคอมมูนิตี้ที่เกี่ยวข้องทันที</span>
+                    ⚠️ Custom License — ดูไฟล์ LICENSE สำหรับรายละเอียดเต็ม<br> <!-- See LICENSE file for full details -->
+                    อนุญาตให้ดัดแปลงและพัฒนาต่อเพื่อแจกจ่ายคืนคอมมูนิตี้เท่านั้น <strong>ห้ามนำไปปิดซอร์สโค้ด หรือดัดแปลงเพื่อการค้า/ค้ากำไรโดยเด็ดขาด</strong><br> <!-- Modification and development for community distribution only. Strictly prohibited to close-source or commercialize -->
+                    <span style="color: #ff8888;">หากตรวจพบการละเมิด จะดำเนินการแจ้งกับทุกคอมมูนิตี้ที่เกี่ยวข้องทันที</span> <!-- If violations are detected, all relevant communities will be notified immediately -->
                 </div>
             </div>
             <div class="au-universal-popup-footer" style="justify-content:center;">
-                <input id="au-welcome-close-btn" class="menu_button" type="submit" value="✨ เริ่มเดินทางข้ามจักรวาล" style="width:100%;" />
+                <input id="au-welcome-close-btn" class="menu_button" type="submit" value="✨ เริ่มเดินทางข้ามจักรวาล" style="width:100%;" /> <!-- Start journey across universes -->
             </div>
         </div>
     </div>`;
