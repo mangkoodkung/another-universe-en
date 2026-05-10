@@ -876,7 +876,7 @@ function showQuickSettings() {
                     <label>🎨 Mood</label>
                     <select id="au-quick-mood" class="text_pole">${moodOpts}</select>
                 </div>
-                <div style="font-size:0.75em; opacity:0.5; text-align:center; padding-top:8px; border-top:1px dashed rgba(130,100,255,0.15);">💡 ผลลัพธ์อาจแตกต่างกันตาม AI model และ preset ที่ใช้</div>
+                <div style="font-size:0.75em; opacity:0.85; color:#c8d0e0; text-align:center; padding-top:8px; border-top:1px dashed rgba(130,100,255,0.15);">💡 ผลลัพธ์อาจแตกต่างกันตาม AI model และ preset ที่ใช้</div>
             </div>
             <div class="au-universal-popup-footer au-quick-footer">
                 <input id="au-quick-gallery" class="menu_button" type="submit" value="📚 Gallery" />
