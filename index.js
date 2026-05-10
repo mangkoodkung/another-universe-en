@@ -1798,9 +1798,15 @@ function showStoryModal(charName, storyText, themeName, themeId = 'random') {
                 <button id="au-modal-regenerate" style="flex:1; padding:8px 4px; border-radius:8px; background:rgba(255,255,255,0.1); color:#fff; border:1px solid rgba(255,255,255,0.2); font-size:0.9em; cursor:pointer;">🔄 New</button>
             </div>
             <div id="au-modal-edit-controls" class="au-universal-popup-footer" style="display:none; flex-direction:row; justify-content:center; gap:8px; padding:12px; border-top:1px solid rgba(130, 160, 220, 0.2);">
-                <button id="au-modal-save-edit" style="flex:1; padding:8px 4px; border-radius:8px; background:rgba(50,200,50,0.3); color:#66ff66; border:1px solid rgba(50,200,50,0.7); font-size:0.9em; cursor:pointer; font-weight:600;">💾 Save</button>
-                <button id="au-modal-cancel-edit" style="flex:1; padding:8px 4px; border-radius:8px; background:rgba(255,50,50,0.3); color:#ff6666; border:1px solid rgba(255,50,50,0.7); font-size:0.9em; cursor:pointer; font-weight:600;">✕ Cancel</button>
+                <button id="au-modal-save-edit" style="flex:1; padding:8px 4px; border-radius:8px; background:rgba(50,200,50,0.3); color:#66ff66; border:1px solid rgba(50,200,50,0.7); font-size:0.9em; cursor:pointer; font-weight:600; transition:all 0.2s ease; box-shadow:0 2px 8px rgba(50,200,50,0.2);">💾 Save</button>
+                <button id="au-modal-cancel-edit" style="flex:1; padding:8px 4px; border-radius:8px; background:rgba(255,50,50,0.3); color:#ff6666; border:1px solid rgba(255,50,50,0.7); font-size:0.9em; cursor:pointer; font-weight:600; transition:all 0.2s ease; box-shadow:0 2px 8px rgba(255,50,50,0.2);">✕ Cancel</button>
             </div>
+            <style>
+                #au-modal-save-edit:hover { background:rgba(50,200,50,0.5) !important; border-color:rgba(50,200,50,0.9) !important; box-shadow:0 4px 12px rgba(50,200,50,0.4) !important; transform:translateY(-1px); }
+                #au-modal-save-edit:active { transform:translateY(0); box-shadow:0 2px 6px rgba(50,200,50,0.3) !important; }
+                #au-modal-cancel-edit:hover { background:rgba(255,50,50,0.5) !important; border-color:rgba(255,50,50,0.9) !important; box-shadow:0 4px 12px rgba(255,50,50,0.4) !important; transform:translateY(-1px); }
+                #au-modal-cancel-edit:active { transform:translateY(0); box-shadow:0 2px 6px rgba(255,50,50,0.3) !important; }
+            </style>
         `;
   } else {
     footerHtml = `
@@ -1812,8 +1818,15 @@ function showStoryModal(charName, storyText, themeName, themeId = 'random') {
                 <input id="au-modal-close-btn" class="menu_button" type="submit" value="Close" />
             </div>
             <div id="au-modal-edit-controls" class="au-universal-popup-footer" style="display:none; flex-wrap: wrap;">
-                <input id="au-modal-save-edit" class="menu_button" type="submit" value="💾 Save Changes" style="background:rgba(50,200,50,0.3); border-color:rgba(50,200,50,0.7); color:#66ff66; font-weight:600;" />
-                <input id="au-modal-cancel-edit" class="menu_button" type="submit" value="✕ Cancel" style="background:rgba(255,50,50,0.3); border-color:rgba(255,50,50,0.7); color:#ff6666; font-weight:600;" />
+                <input id="au-modal-save-edit" class="menu_button au-edit-save-btn" type="submit" value="💾 Save Changes" style="background:rgba(50,200,50,0.3); border-color:rgba(50,200,50,0.7); color:#66ff66; font-weight:600; transition:all 0.2s ease; box-shadow:0 2px 8px rgba(50,200,50,0.2);" />
+                <input id="au-modal-cancel-edit" class="menu_button au-edit-cancel-btn" type="submit" value="✕ Cancel" style="background:rgba(255,50,50,0.3); border-color:rgba(255,50,50,0.7); color:#ff6666; font-weight:600; transition:all 0.2s ease; box-shadow:0 2px 8px rgba(255,50,50,0.2);" />
+            </div>
+            <style>
+                .au-edit-save-btn:hover { background:rgba(50,200,50,0.5) !important; border-color:rgba(50,200,50,0.9) !important; box-shadow:0 4px 12px rgba(50,200,50,0.4) !important; transform:translateY(-1px); }
+                .au-edit-save-btn:active { transform:translateY(0); box-shadow:0 2px 6px rgba(50,200,50,0.3) !important; }
+                .au-edit-cancel-btn:hover { background:rgba(255,50,50,0.5) !important; border-color:rgba(255,50,50,0.9) !important; box-shadow:0 4px 12px rgba(255,50,50,0.4) !important; transform:translateY(-1px); }
+                .au-edit-cancel-btn:active { transform:translateY(0); box-shadow:0 2px 6px rgba(255,50,50,0.3) !important; }
+            </style>
             </div>
         `;
   }
