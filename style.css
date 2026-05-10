@@ -1,302 +1,316 @@
 /* Another Universe - Styles */
+/* Theme-Independent Styling - Override SillyTavern themes */
 
 /* ===== Universal Popup (works on all screen sizes) ===== */
 /* NOTE: The overlay uses INLINE STYLES in JS for bulletproof positioning */
 /* These styles are for the popup CONTENT only */
 
 .au-universal-popup {
-    width: 90vw;
-    max-width: 620px;
-    max-height: 80vh;
-    background: #11141e;
-    border: 1px solid rgba(130, 160, 220, 0.25);
-    border-radius: 16px;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    box-shadow:
-        0 0 40px rgba(0, 0, 0, 0.5),
-        0 20px 60px rgba(0, 0, 0, 0.8);
-    animation: au-popupEntrance 0.4s ease-out;
+  width: 90vw !important;
+  max-width: 620px !important;
+  max-height: 80vh !important;
+  background: #11141e !important;
+  border: 1px solid rgba(130, 160, 220, 0.25) !important;
+  border-radius: 16px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+  box-shadow:
+    0 0 40px rgba(0, 0, 0, 0.5),
+    0 20px 60px rgba(0, 0, 0, 0.8) !important;
+  animation: au-popupEntrance 0.4s ease-out !important;
 }
 
 .au-universal-popup-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 16px 20px;
-    border-bottom: 1px solid rgba(130, 160, 220, 0.2);
-    background: rgba(130, 160, 220, 0.05);
-    flex-shrink: 0;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding: 16px 20px !important;
+  border-bottom: 1px solid rgba(130, 160, 220, 0.2) !important;
+  background: rgba(130, 160, 220, 0.05) !important;
+  flex-shrink: 0 !important;
 }
 
 .au-card-front-header-text {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 4px !important;
 }
 
 .au-modal-title {
-    font-size: 1.1em;
-    font-weight: 600;
-    color: #edf2f7;
+  font-size: 1.1em !important;
+  font-weight: 600 !important;
+  color: #edf2f7 !important;
 }
 
 .au-modal-theme-badge {
-    font-size: 0.75em;
-    color: #a3b8cc;
-    letter-spacing: 0.5px;
+  font-size: 0.75em !important;
+  color: #a3b8cc !important;
+  letter-spacing: 0.5px !important;
 }
 
 .au-modal-close {
-    cursor: pointer;
-    font-size: 1.3em;
-    color: #a3b8cc;
-    opacity: 0.6;
-    transition: opacity 0.2s;
-    padding: 4px 8px;
-    border-radius: 8px;
+  cursor: pointer !important;
+  font-size: 1.3em !important;
+  color: #a3b8cc !important;
+  opacity: 0.6 !important;
+  transition: opacity 0.2s !important;
+  padding: 4px 8px !important;
+  border-radius: 8px !important;
 }
 
 .au-modal-close:hover {
-    opacity: 1;
-    background: rgba(255, 255, 255, 0.05);
+  opacity: 1 !important;
+  background: rgba(255, 255, 255, 0.05) !important;
 }
 
 .au-universal-popup-body {
-    padding: 20px 24px;
-    overflow-y: auto;
-    flex: 1;
-    min-height: 0;
-    -webkit-overflow-scrolling: touch;
+  padding: 20px 24px !important;
+  overflow-y: auto !important;
+  flex: 1 !important;
+  min-height: 0 !important;
+  -webkit-overflow-scrolling: touch !important;
+  background: transparent !important;
 }
 
 .au-story-text {
-    font-size: 0.95em;
-    line-height: 1.75;
-    color: #e8edf2;
-    white-space: pre-wrap;
+  font-size: 0.95em !important;
+  line-height: 1.75 !important;
+  color: #e8edf2 !important;
+  white-space: pre-wrap !important;
 }
 
 .au-universal-popup-footer {
-    display: flex;
-    gap: 10px;
-    padding: 14px 20px;
-    border-top: 1px solid rgba(130, 160, 220, 0.2);
-    justify-content: flex-end;
-    flex-shrink: 0;
+  display: flex !important;
+  gap: 10px !important;
+  padding: 14px 20px !important;
+  border-top: 1px solid rgba(130, 160, 220, 0.2) !important;
+  justify-content: flex-end !important;
+  flex-shrink: 0 !important;
+  background: transparent !important;
 }
 
 /* ===== Gallery Items ===== */
 .au-gallery-list {
-    padding: 12px 16px !important;
+  padding: 12px 16px !important;
 }
 
 .au-gallery-item {
-    padding: 12px 14px;
-    margin-bottom: 8px;
-    background: rgba(130, 160, 220, 0.05);
-    border: 1px solid rgba(130, 160, 220, 0.15);
-    border-radius: 10px;
-    cursor: pointer;
-    transition: all 0.2s ease;
+  padding: 12px 14px !important;
+  margin-bottom: 8px !important;
+  background: rgba(130, 160, 220, 0.05) !important;
+  border: 1px solid rgba(130, 160, 220, 0.15) !important;
+  border-radius: 10px !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
 }
 
 .au-gallery-item:hover {
-    background: rgba(130, 160, 220, 0.1);
-    border-color: rgba(130, 160, 220, 0.3);
-    transform: translateY(-1px);
+  background: rgba(130, 160, 220, 0.1) !important;
+  border-color: rgba(130, 160, 220, 0.3) !important;
+  transform: translateY(-1px) !important;
 }
 
 .au-gallery-item:last-child {
-    margin-bottom: 0;
+  margin-bottom: 0 !important;
 }
 
 .au-gallery-item-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 4px;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  margin-bottom: 4px !important;
 }
 
 .au-gallery-item-char {
-    font-weight: 600;
-    font-size: 0.9em;
-    color: #e2e8f0;
+  font-weight: 600 !important;
+  font-size: 0.9em !important;
+  color: #e2e8f0 !important;
 }
 
 .au-gallery-item-time {
-    font-size: 0.7em;
-    color: rgba(163, 184, 204, 0.6);
+  font-size: 0.7em !important;
+  color: rgba(163, 184, 204, 0.6) !important;
 }
 
 .au-gallery-item-badge {
-    font-size: 0.7em;
-    color: rgba(163, 184, 204, 0.8);
-    margin-bottom: 6px;
+  font-size: 0.7em !important;
+  color: rgba(163, 184, 204, 0.8) !important;
+  margin-bottom: 6px !important;
 }
 
 .au-gallery-item-preview {
-    font-size: 0.8em;
-    line-height: 1.5;
-    color: rgba(226, 232, 240, 0.8);
-    opacity: 0.7;
+  font-size: 0.8em !important;
+  line-height: 1.5 !important;
+  color: rgba(226, 232, 240, 0.8) !important;
+  opacity: 0.7 !important;
 }
 
 /* ===== Quick Settings Popup ===== */
 .au-quick-popup {
-    max-width: 400px;
+  max-width: 400px !important;
 }
 
 .au-quick-body {
-    padding: 16px 20px !important;
+  padding: 16px 20px !important;
 }
 
 .au-quick-row {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    margin-bottom: 12px;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 4px !important;
+  margin-bottom: 12px !important;
 }
 
 .au-quick-row:last-child {
-    margin-bottom: 0;
+  margin-bottom: 0 !important;
 }
 
 .au-quick-row label {
-    font-size: 0.8em;
-    color: rgba(180, 160, 255, 0.7);
+  font-size: 0.8em !important;
+  color: rgba(180, 160, 255, 0.7) !important;
 }
 
 .au-quick-row select {
-    width: 100%;
+  width: 100% !important;
 }
 
 .au-quick-footer {
-    display: flex;
-    gap: 8px;
+  display: flex !important;
+  gap: 8px !important;
 }
 
 .au-quick-footer .menu_button {
-    flex: 1;
-    text-align: center;
+  flex: 1 !important;
+  text-align: center !important;
 }
 
 /* ===== Gallery Actions ===== */
 .au-gallery-item-actions {
-    display: flex;
-    gap: 6px;
-    align-items: center;
+  display: flex !important;
+  gap: 6px !important;
+  align-items: center !important;
 }
 
 .au-gallery-star,
 .au-gallery-delete {
-    cursor: pointer;
-    font-size: 0.85em;
-    opacity: 0.4;
-    transition: all 0.2s;
-    padding: 2px;
+  cursor: pointer !important;
+  font-size: 0.85em !important;
+  opacity: 0.4 !important;
+  transition: all 0.2s !important;
+  padding: 2px !important;
 }
 
-.au-gallery-star:hover { opacity: 1; }
-.au-gallery-delete:hover { opacity: 1; }
-.au-gallery-star.au-star-active { opacity: 1; filter: drop-shadow(0 0 4px gold); }
+.au-gallery-star:hover {
+  opacity: 1 !important;
+}
+.au-gallery-delete:hover {
+  opacity: 1 !important;
+}
+.au-gallery-star.au-star-active {
+  opacity: 1 !important;
+  filter: drop-shadow(0 0 4px gold) !important;
+}
 
 .au-gallery-item-meta {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 6px;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  margin-bottom: 6px !important;
 }
 
 /* ===== Settings Panel ===== */
 .another-universe-settings hr {
-    border-color: rgba(130, 100, 255, 0.15);
-    margin: 10px 0;
+  border-color: rgba(130, 100, 255, 0.15) !important;
+  margin: 10px 0 !important;
 }
 
 .au-theme-selector {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 4px !important;
 }
 
 .au-theme-selector select {
-    width: 100%;
+  width: 100% !important;
 }
 
 /* ===== Chat Menu Button specific styles (Optional if needed) ===== */
 .au-chat-btn-icon {
-    font-size: 1.15em;
-    line-height: 1;
+  font-size: 1.15em !important;
+  line-height: 1 !important;
 }
 
 .au-chat-btn-loading {
-    font-size: 1.15em;
-    line-height: 1;
-    animation: au-btnSpin 1.2s linear infinite;
+  font-size: 1.15em !important;
+  line-height: 1 !important;
+  animation: au-btnSpin 1.2s linear infinite !important;
 }
 
 .au-chat-btn-busy {
-    pointer-events: none;
-    opacity: 0.6;
+  pointer-events: none !important;
+  opacity: 0.6 !important;
 }
 
 /* ===== Animations ===== */
 @keyframes au-popupEntrance {
-    from {
-        opacity: 0;
-        transform: scale(0.9) translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-    }
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
 }
 
 @keyframes au-btnSpin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* ===== Mobile adjustments ===== */
 @media screen and (max-width: 768px) {
-    .au-universal-popup {
-        width: 95vw;
-        max-height: 75vh;
-        border-radius: 14px;
-    }
+  .au-universal-popup {
+    width: 95vw !important;
+    max-height: 75vh !important;
+    border-radius: 14px !important;
+  }
 
-    .au-universal-popup-header {
-        padding: 12px 16px;
-    }
+  .au-universal-popup-header {
+    padding: 12px 16px !important;
+  }
 
-    .au-modal-title {
-        font-size: 1em;
-    }
+  .au-modal-title {
+    font-size: 1em !important;
+  }
 
-    .au-universal-popup-body {
-        padding: 16px 18px;
-    }
+  .au-universal-popup-body {
+    padding: 16px 18px !important;
+  }
 
-    .au-story-text {
-        font-size: 0.9em;
-        line-height: 1.65;
-    }
+  .au-story-text {
+    font-size: 0.9em !important;
+    line-height: 1.65 !important;
+  }
 
-    .au-universal-popup-footer {
-        flex-direction: column;
-        padding: 12px 16px;
-        gap: 8px;
-    }
+  .au-universal-popup-footer {
+    flex-direction: column !important;
+    padding: 12px 16px !important;
+    gap: 8px !important;
+  }
 
-    .au-universal-popup-footer .menu_button {
-        width: 100%;
-        text-align: center;
-    }
+  .au-universal-popup-footer .menu_button {
+    width: 100% !important;
+    text-align: center !important;
+  }
 
-    .au-chat-btn-icon,
-    .au-chat-btn-loading {
-        font-size: 1.25em;
-    }
+  .au-chat-btn-icon,
+  .au-chat-btn-loading {
+    font-size: 1.25em !important;
+  }
 }
