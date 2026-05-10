@@ -1791,18 +1791,28 @@ function showStoryModal(charName, storyText, themeName, themeId = 'random') {
     // Simple horizontal row for mobile
     footerHtml = `
             <div class="au-universal-popup-footer" style="display:flex; flex-direction:row; justify-content:center; gap:8px; padding:12px; border-top:1px solid rgba(130, 160, 220, 0.2);">
+                <button id="au-modal-edit" style="flex:1; padding:8px 4px; border-radius:8px; background:rgba(255,255,255,0.1); color:#fff; border:1px solid rgba(255,255,255,0.2); font-size:0.9em; cursor:pointer;">✏️ Edit</button>
                 <button id="au-modal-save-long" style="flex:1; padding:8px 4px; border-radius:8px; background:rgba(255,255,255,0.1); color:#fff; border:1px solid rgba(255,255,255,0.2); font-size:0.9em; cursor:pointer;">📖 Long</button>
                 <button id="au-modal-save-short" style="flex:1; padding:8px 4px; border-radius:8px; background:rgba(255,255,255,0.1); color:#fff; border:1px solid rgba(255,255,255,0.2); font-size:0.9em; cursor:pointer;">✨ Short</button>
                 <button id="au-modal-regenerate" style="flex:1; padding:8px 4px; border-radius:8px; background:rgba(255,255,255,0.1); color:#fff; border:1px solid rgba(255,255,255,0.2); font-size:0.9em; cursor:pointer;">🔄 New</button>
+            </div>
+            <div id="au-modal-edit-controls" class="au-universal-popup-footer" style="display:none; flex-direction:row; justify-content:center; gap:8px; padding:12px; border-top:1px solid rgba(130, 160, 220, 0.2);">
+                <button id="au-modal-save-edit" style="flex:1; padding:8px 4px; border-radius:8px; background:rgba(100,255,100,0.2); color:#aaffaa; border:1px solid rgba(100,255,100,0.5); font-size:0.9em; cursor:pointer;">💾 Save</button>
+                <button id="au-modal-cancel-edit" style="flex:1; padding:8px 4px; border-radius:8px; background:rgba(255,100,100,0.2); color:#ffaaaa; border:1px solid rgba(255,100,100,0.5); font-size:0.9em; cursor:pointer;">✕ Cancel</button>
             </div>
         `;
   } else {
     footerHtml = `
             <div class="au-universal-popup-footer" style="flex-wrap: wrap;">
+                <input id="au-modal-edit" class="menu_button" type="submit" value="✏️ Edit Story" title="Edit story text" />
                 <input id="au-modal-save-long" class="menu_button" type="submit" value="📸 Long Card" title="Save full story" />
                 <input id="au-modal-save-short" class="menu_button" type="submit" value="📸 Short Card" title="Save quote & snippet" />
                 <input id="au-modal-regenerate" class="menu_button" type="submit" value="🔄 Generate" />
                 <input id="au-modal-close-btn" class="menu_button" type="submit" value="Close" />
+            </div>
+            <div id="au-modal-edit-controls" class="au-universal-popup-footer" style="display:none; flex-wrap: wrap;">
+                <input id="au-modal-save-edit" class="menu_button" type="submit" value="💾 Save Changes" style="background:rgba(100,255,100,0.2); border-color:rgba(100,255,100,0.5);" />
+                <input id="au-modal-cancel-edit" class="menu_button" type="submit" value="✕ Cancel" style="background:rgba(255,100,100,0.2); border-color:rgba(255,100,100,0.5);" />
             </div>
         `;
   }
@@ -1818,7 +1828,8 @@ function showStoryModal(charName, storyText, themeName, themeId = 'random') {
                 <span id="au-modal-close" class="au-modal-close">✕</span>
             </div>
             <div class="au-universal-popup-body">
-                <div class="au-story-text">${escapedStory}</div>
+                <div id="au-story-display" class="au-story-text">${escapedStory}</div>
+                <textarea id="au-story-editor" class="au-story-text" style="display:none; width:100%; min-height:300px; background:rgba(255,255,255,0.05); border:1px solid rgba(130,160,220,0.3); border-radius:8px; padding:16px; color:#e8edf2; font-family:inherit; font-size:inherit; line-height:inherit; resize:vertical;">${cleanStoryText}</textarea>
             </div>
             ${footerHtml}
         </div>
@@ -1826,6 +1837,10 @@ function showStoryModal(charName, storyText, themeName, themeId = 'random') {
 
   // Append as LAST child of <body> to avoid parent transform issues
   document.body.insertAdjacentHTML('beforeend', modalHtml);
+
+  // Store original story for cancel functionality
+  let currentStoryText = cleanStoryText;
+  let isEditMode = false;
 
   // On mobile: bind the new popup buttons
   // NOTE: We do NOT use html2canvas on mobile — it crashes Safari/Chrome due to memory usage.
@@ -1835,21 +1850,60 @@ function showStoryModal(charName, storyText, themeName, themeId = 'random') {
       .off('click')
       .on('click', () => {
         $('#another-universe-modal-overlay').remove();
-        showMobileCardPopup('long', charName, storyText, themeName, themeId, () => {
+        showMobileCardPopup('long', charName, currentStoryText, themeName, themeId, () => {
           console.log('[Another-Universe] 📱 Mobile save: showing screenshot-ready view (long)');
-          showMobileScreenshotView('long', charName, storyText, themeName, themeId);
+          showMobileScreenshotView('long', charName, currentStoryText, themeName, themeId);
         });
       });
     $('#au-modal-save-short')
       .off('click')
       .on('click', () => {
         $('#another-universe-modal-overlay').remove();
-        showMobileCardPopup('short', charName, storyText, themeName, themeId, () => {
+        showMobileCardPopup('short', charName, currentStoryText, themeName, themeId, () => {
           console.log('[Another-Universe] 📱 Mobile save: showing screenshot-ready view (short)');
-          showMobileScreenshotView('short', charName, storyText, themeName, themeId);
+          showMobileScreenshotView('short', charName, currentStoryText, themeName, themeId);
         });
       });
   }
+
+  // Bind edit button
+  $('#au-modal-edit').on('click', () => {
+    isEditMode = true;
+    $('#au-story-display').hide();
+    $('#au-story-editor').show().focus();
+    $('.au-universal-popup-footer').first().hide();
+    $('#au-modal-edit-controls').show();
+  });
+
+  // Bind save edit
+  $('#au-modal-save-edit').on('click', () => {
+    const editedText = $('#au-story-editor').val().trim();
+    if (editedText) {
+      currentStoryText = editedText;
+      const escapedEdited = editedText
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/\n/g, '<br>');
+      $('#au-story-display').html(escapedEdited);
+    }
+    isEditMode = false;
+    $('#au-story-editor').hide();
+    $('#au-story-display').show();
+    $('#au-modal-edit-controls').hide();
+    $('.au-universal-popup-footer').first().show();
+    toastr.success('Story updated successfully', '✏️ Another Universe');
+  });
+
+  // Bind cancel edit
+  $('#au-modal-cancel-edit').on('click', () => {
+    $('#au-story-editor').val(currentStoryText);
+    isEditMode = false;
+    $('#au-story-editor').hide();
+    $('#au-story-display').show();
+    $('#au-modal-edit-controls').hide();
+    $('.au-universal-popup-footer').first().show();
+  });
 
   // Bind close
   $('#au-modal-close, #au-modal-close-btn').on('click', () => {
@@ -1915,6 +1969,9 @@ function showStoryModal(charName, storyText, themeName, themeId = 'random') {
 
   // Bind save as image (html2canvas)
   const renderCard = async type => {
+    // Use current edited story text
+    const storyToRender = currentStoryText;
+
     const btnId = type === 'long' ? '#au-modal-save-long' : '#au-modal-save-short';
     const btn = $(btnId);
     const originalText = btn.val();
@@ -2087,7 +2144,7 @@ function showStoryModal(charName, storyText, themeName, themeId = 'random') {
       )
       .join('');
 
-    const extracted = extractQuoteAndSnippet(storyText);
+    const extracted = extractQuoteAndSnippet(storyToRender);
     const displayStory = extracted.cleanText;
 
     let innerContent = '';
