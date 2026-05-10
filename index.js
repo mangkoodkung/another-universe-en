@@ -2421,29 +2421,29 @@ function showWelcomeModal() {
             </div>
             <div class="au-universal-popup-body" style="padding: 24px; text-align: left;">
                 <h3 style="margin-top:0; margin-bottom:16px; color:#edf2f7;">
-                    ขอบคุณที่ติดตั้ง <strong>Another Universe</strong> 
+                    ขอบคุณที่ติดตั้ง <strong>Another Universe</strong>
                 </h3>
-                <p style="font-size:0.95em; line-height:1.6; margin-bottom:12px;">
+                <p style="font-size:0.95em; line-height:1.6; margin-bottom:12px; color:#e8edf2;">
                     โปรเจกต์นี้เกิดขึ้นจากคำถามง่ายๆ คำถามหนึ่ง<br>
-                    <em>“ถ้าตัวละครสองคนได้พบกันในโลกที่แตกต่างออกไป เรื่องราวของพวกเขาจะยังเหมือนเดิมไหม?”</em>
+                    <em>"ถ้าตัวละครสองคนได้พบกันในโลกที่แตกต่างออกไป เรื่องราวของพวกเขาจะยังเหมือนเดิมไหม?"</em>
                 </p>
 
-                <p style="font-size:0.95em; line-height:1.6; margin-bottom:12px;">
+                <p style="font-size:0.95em; line-height:1.6; margin-bottom:12px; color:#e8edf2;">
                     บางจักรวาล พวกเขาอาจเป็นคนแปลกหน้าที่เดินสวนกันใต้สายฝน บางจักรวาล อาจเป็นศัตรู คู่หู หรือคนรักที่ถูกโชคชะตาพลัดพราก แต่ไม่ว่าโลกจะเปลี่ยนไปมากแค่ไหน ความรู้สึกบางอย่างอาจยังคงเดิมเสมอ
                 </p>
 
-                <p style="font-size:0.95em; line-height:1.6; margin-bottom:16px;">
+                <p style="font-size:0.95em; line-height:1.6; margin-bottom:16px; color:#e8edf2;">
                     Another Universe จะนำบทสนทนา บุคลิก และความสัมพันธ์ของตัวละคร มาตีความใหม่ในโลกคู่ขนาน ผ่านธีม อารมณ์ และรูปแบบการพบกันที่แตกต่างกันออกไป
                 </p>
 
                 <hr style="border-color: rgba(130, 160, 220, 0.15); margin: 16px 0;">
 
 
-                <p style="font-size: 0.85em; opacity: 0.75; margin:0;">
+                <p style="font-size: 0.85em; color:#d0d8e0; margin:0;">
                     หากพบปัญหาในการเดินทางข้ามโลก โปรดแจ้งที่ Discord: <strong>majesty.pop (POPKO)</strong>
                 </p>
                 
-                <div style="margin-top: 28px; font-size: 0.65em; opacity: 0.6; text-align:center; padding-top: 14px; border-top: 1px dashed rgba(130, 160, 220, 0.2);">
+                <div style="margin-top: 28px; font-size: 0.65em; color:#b8c0d0; text-align:center; padding-top: 14px; border-top: 1px dashed rgba(130, 160, 220, 0.2);">
                     ⚠️ Custom License — ดูไฟล์ LICENSE สำหรับรายละเอียดเต็ม<br>
                     อนุญาตให้ดัดแปลงและพัฒนาต่อเพื่อแจกจ่ายคืนคอมมูนิตี้เท่านั้น <strong>ห้ามนำไปปิดซอร์สโค้ด หรือดัดแปลงเพื่อการค้า/ค้ากำไรโดยเด็ดขาด</strong><br>
                     <span style="color: #ff8888;">หากตรวจพบการละเมิด จะดำเนินการแจ้งกับทุกคอมมูนิตี้ที่เกี่ยวข้องทันที</span>
